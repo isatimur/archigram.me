@@ -11,14 +11,14 @@ import {
   increment,
   getFirestore,
 } from 'firebase/firestore';
-import { getFirebaseApp } from '@/lib/firebase/client';
+import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/client';
 import type { CommunityDiagram } from '@/types';
 
 function db() {
   return getFirestore(getFirebaseApp());
 }
 
-function mapDoc(id: string, d: Record<string, unknown>): CommunityDiagram {
+export function mapDoc(id: string, d: Record<string, unknown>): CommunityDiagram {
   const ts = d.created_at as { toMillis?: () => number } | null;
   const ms = ts?.toMillis?.() ?? 0;
   return {
@@ -37,6 +37,7 @@ function mapDoc(id: string, d: Record<string, unknown>): CommunityDiagram {
 }
 
 export async function fetchCommunityDiagrams(n = 100): Promise<CommunityDiagram[]> {
+  if (!isFirebaseConfigured) return [];
   try {
     const q = query(collection(db(), 'diagrams'), orderBy('created_at', 'desc'), limit(n));
     const snap = await getDocs(q);
@@ -55,6 +56,7 @@ export async function publishDiagram(diagram: {
   tags: string[];
   user_id?: string | null;
 }): Promise<boolean> {
+  if (!isFirebaseConfigured) return false;
   try {
     await addDoc(collection(db(), 'diagrams'), {
       title: diagram.title,
@@ -76,6 +78,7 @@ export async function publishDiagram(diagram: {
 }
 
 export async function incrementDiagramLikes(id: string, delta: 1 | -1): Promise<boolean> {
+  if (!isFirebaseConfigured) return false;
   try {
     await updateDoc(doc(db(), 'diagrams', id), { likes: increment(delta) });
     return true;
@@ -86,6 +89,7 @@ export async function incrementDiagramLikes(id: string, delta: 1 | -1): Promise<
 }
 
 export async function incrementDiagramViews(id: string): Promise<boolean> {
+  if (!isFirebaseConfigured) return false;
   try {
     await updateDoc(doc(db(), 'diagrams', id), { views: increment(1) });
     return true;

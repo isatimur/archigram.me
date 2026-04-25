@@ -12,7 +12,7 @@ import {
   increment,
   getFirestore,
 } from 'firebase/firestore';
-import { getFirebaseApp } from '@/lib/firebase/client';
+import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/client';
 import type { PromptEntry, PromptDomain } from '@/types';
 
 function db() {
@@ -24,6 +24,7 @@ export async function fetchPrompts(options?: {
   sort?: 'new' | 'top' | 'trending';
   limit?: number;
 }): Promise<PromptEntry[]> {
+  if (!isFirebaseConfigured) return [];
   const n = options?.limit ?? 50;
   try {
     const sortField =
@@ -72,6 +73,7 @@ export async function publishPrompt(prompt: {
   result_diagram_code?: string;
   user_id?: string;
 }): Promise<boolean> {
+  if (!isFirebaseConfigured) return false;
   try {
     await addDoc(collection(db(), 'prompts'), {
       title: prompt.title,
@@ -94,11 +96,23 @@ export async function publishPrompt(prompt: {
 }
 
 export async function incrementPromptLikes(id: string, delta: 1 | -1): Promise<boolean> {
+  if (!isFirebaseConfigured) return false;
   try {
     await updateDoc(doc(db(), 'prompts', id), { likes: increment(delta) });
     return true;
   } catch (e) {
     console.warn('[Firestore] incrementPromptLikes failed', e);
+    return false;
+  }
+}
+
+export async function incrementPromptViews(id: string): Promise<boolean> {
+  if (!isFirebaseConfigured) return false;
+  try {
+    await updateDoc(doc(db(), 'prompts', id), { views: increment(1) });
+    return true;
+  } catch (e) {
+    console.warn('[Firestore] incrementPromptViews failed', e);
     return false;
   }
 }

@@ -1,17 +1,15 @@
 import {
   collection,
-  addDoc,
   getDocs,
-  deleteDoc,
   doc,
   query,
   orderBy,
   serverTimestamp,
   increment,
-  updateDoc,
+  writeBatch,
   getFirestore,
 } from 'firebase/firestore';
-import { getFirebaseApp } from '@/lib/firebase/client';
+import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/client';
 import type { Comment } from '@/types';
 
 function db() {
@@ -19,6 +17,7 @@ function db() {
 }
 
 export async function fetchComments(diagramId: string): Promise<Comment[]> {
+  if (!isFirebaseConfigured) return [];
   try {
     const q = query(
       collection(db(), 'diagrams', diagramId, 'comments'),
@@ -49,16 +48,20 @@ export async function addComment(
   author: string,
   userId: string
 ): Promise<Comment | null> {
+  if (!isFirebaseConfigured) return null;
   try {
-    const ref = await addDoc(collection(db(), 'diagrams', diagramId, 'comments'), {
+    const batch = writeBatch(db());
+    const commentRef = doc(collection(db(), 'diagrams', diagramId, 'comments'));
+    batch.set(commentRef, {
       user_id: userId,
       author,
       content,
       created_at: serverTimestamp(),
     });
-    await updateDoc(doc(db(), 'diagrams', diagramId), { commentCount: increment(1) });
+    batch.update(doc(db(), 'diagrams', diagramId), { commentCount: increment(1) });
+    await batch.commit();
     return {
-      id: ref.id,
+      id: commentRef.id,
       diagram_id: diagramId,
       user_id: userId,
       author,
@@ -72,9 +75,12 @@ export async function addComment(
 }
 
 export async function deleteComment(diagramId: string, commentId: string): Promise<boolean> {
+  if (!isFirebaseConfigured) return false;
   try {
-    await deleteDoc(doc(db(), 'diagrams', diagramId, 'comments', commentId));
-    await updateDoc(doc(db(), 'diagrams', diagramId), { commentCount: increment(-1) });
+    const batch = writeBatch(db());
+    batch.delete(doc(db(), 'diagrams', diagramId, 'comments', commentId));
+    batch.update(doc(db(), 'diagrams', diagramId), { commentCount: increment(-1) });
+    await batch.commit();
     return true;
   } catch (e) {
     console.warn('[Firestore] deleteComment failed', e);

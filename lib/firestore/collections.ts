@@ -8,7 +8,8 @@ import {
   where,
   getFirestore,
 } from 'firebase/firestore';
-import { getFirebaseApp } from '@/lib/firebase/client';
+import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/client';
+import { mapDoc } from '@/lib/firestore/diagrams';
 import type { Collection, CommunityDiagram } from '@/types';
 
 function db() {
@@ -16,6 +17,7 @@ function db() {
 }
 
 export async function fetchCollections(): Promise<Collection[]> {
+  if (!isFirebaseConfigured) return [];
   try {
     const q = query(collection(db(), 'collections'), orderBy('created_at', 'desc'));
     const snap = await getDocs(q);
@@ -41,6 +43,7 @@ export async function fetchCollections(): Promise<Collection[]> {
 export async function fetchCollectionBySlug(
   slug: string
 ): Promise<{ collection: Collection; items: CommunityDiagram[] } | null> {
+  if (!isFirebaseConfigured) return null;
   try {
     const q = query(collection(db(), 'collections'), where('slug', '==', slug));
     const snap = await getDocs(q);
@@ -68,6 +71,7 @@ export async function fetchCollectionBySlug(
 }
 
 export async function fetchCollectionItems(collectionId: string): Promise<CommunityDiagram[]> {
+  if (!isFirebaseConfigured) return [];
   try {
     const itemsSnap = await getDocs(
       query(collection(db(), 'collections', collectionId, 'items'), orderBy('position', 'asc'))
@@ -78,22 +82,7 @@ export async function fetchCollectionItems(collectionId: string): Promise<Commun
       diagramIds.map(async (id) => {
         const snap = await getDoc(doc(db(), 'diagrams', id));
         if (!snap.exists()) return null;
-        const d = snap.data();
-        const ts = d.created_at as { toMillis?: () => number } | null;
-        const ms = ts?.toMillis?.() ?? 0;
-        return {
-          id: snap.id,
-          title: d.title as string,
-          author: (d.author as string) || 'Anonymous',
-          description: (d.description as string) || '',
-          code: d.code as string,
-          likes: (d.likes as number) || 0,
-          views: (d.views as number) || 0,
-          tags: (d.tags as string[]) || [],
-          commentCount: (d.commentCount as number) || 0,
-          createdAt: ms ? new Date(ms).toLocaleDateString() : '',
-          createdAtTimestamp: ms,
-        } as CommunityDiagram;
+        return mapDoc(snap.id, snap.data() as Record<string, unknown>);
       })
     );
     return diagrams.filter((d): d is CommunityDiagram => d !== null);
