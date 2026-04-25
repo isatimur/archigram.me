@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
 import { AppView, Collection, CommunityDiagram } from '../types.ts';
-import { fetchCollections, fetchCollectionItems } from '../services/supabaseClient.ts';
+import { fetchCollections, fetchCollectionItems } from '../lib/firestore/collections.ts';
 import { SEED_COLLECTIONS, SEED_DIAGRAMS } from '../scripts/seed-diagrams.ts';
 import CollectionView from './CollectionView.tsx';
 
