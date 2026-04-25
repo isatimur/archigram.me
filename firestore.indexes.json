@@ -27,6 +27,11 @@
         { "fieldPath": "domain", "order": "ASCENDING" },
         { "fieldPath": "created_at", "order": "DESCENDING" }
       ]
+    },
+    {
+      "collectionGroup": "prompts",
+      "queryScope": "COLLECTION",
+      "fields": [{ "fieldPath": "views", "order": "DESCENDING" }]
     }
   ],
   "fieldOverrides": []
