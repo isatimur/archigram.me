@@ -8,10 +8,9 @@ import DiagramPreview from './DiagramPreview.tsx';
 import { decodeCodeFromUrl } from '../utils/url.ts';
 import {
   fetchCommunityDiagrams,
-  fetchCommentCounts,
-  updateDiagramLikes,
+  incrementDiagramLikes,
   incrementDiagramViews,
-} from '../services/supabaseClient.ts';
+} from '../lib/firestore/diagrams.ts';
 import { analytics } from '../utils/analytics.ts';
 
 const CommentThread = lazy(() => import('./CommentThread.tsx'));
@@ -66,20 +65,14 @@ const CommunityGallery: React.FC<CommunityGalleryProps> = ({
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
-      const result = await fetchCommunityDiagrams({ limit: 100 });
-
-      let loadedDiagrams: CommunityDiagram[];
-      if (result.data && result.data.length > 0) {
-        loadedDiagrams = result.data;
-      } else {
-        loadedDiagrams = COMMUNITY_DATA;
-      }
+      const loaded = await fetchCommunityDiagrams(100);
+      const loadedDiagrams = loaded.length > 0 ? loaded : COMMUNITY_DATA;
       setDiagrams(loadedDiagrams);
-
-      const ids = loadedDiagrams.map((d) => d.id);
-      const counts = await fetchCommentCounts(ids);
+      const counts: Record<string, number> = {};
+      loadedDiagrams.forEach((d) => {
+        counts[d.id] = d.commentCount ?? 0;
+      });
       setCommentCounts(counts);
-
       setIsLoading(false);
     };
     loadData();
@@ -142,7 +135,7 @@ const CommunityGallery: React.FC<CommunityGalleryProps> = ({
 
     if (!isLiked) analytics.diagramLiked();
 
-    const success = await updateDiagramLikes(id, newLikes);
+    const success = await incrementDiagramLikes(id, isLiked ? -1 : 1);
     if (!success) {
       toast.error('Failed to update like');
       setDiagrams((prev) => prev.map((d) => (d.id === id ? { ...d, likes: currentLikes } : d)));
