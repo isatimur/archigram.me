@@ -68,6 +68,7 @@ export interface CommunityDiagram {
   createdAt: string;
   /** Timestamp for sorting (ms). Optional for static fallback data. */
   createdAtTimestamp?: number;
+  commentCount?: number;
 }
 
 export type AppView =
