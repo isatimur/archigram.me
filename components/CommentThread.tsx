@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { Comment, User } from '../types.ts';
-import { fetchComments, addComment, deleteComment } from '../services/supabaseClient.ts';
+import { fetchComments, addComment, deleteComment } from '../lib/firestore/comments.ts';
 import { analytics } from '../utils/analytics.ts';
 
 interface CommentThreadProps {
@@ -37,7 +37,12 @@ const CommentThread: React.FC<CommentThreadProps> = ({ diagramId, user, onOpenAu
     }
 
     setIsSubmitting(true);
-    const comment = await addComment(diagramId, newComment.trim(), user.username || 'Anonymous');
+    const comment = await addComment(
+      diagramId,
+      newComment.trim(),
+      user.username || 'Anonymous',
+      user.id
+    );
     setIsSubmitting(false);
 
     if (comment) {
@@ -50,7 +55,7 @@ const CommentThread: React.FC<CommentThreadProps> = ({ diagramId, user, onOpenAu
   };
 
   const handleDelete = async (commentId: string) => {
-    const success = await deleteComment(commentId);
+    const success = await deleteComment(diagramId, commentId);
     if (success) {
       setComments((prev) => prev.filter((c) => c.id !== commentId));
       analytics.commentDeleted();
