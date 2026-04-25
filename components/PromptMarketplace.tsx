@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { AppView, PromptEntry, PromptDomain } from '../types.ts';
-import { fetchPrompts, updatePromptLikes } from '../services/supabaseClient.ts';
+import { fetchPrompts, incrementPromptLikes } from '../lib/firestore/prompts.ts';
 import { SEED_PROMPTS } from '../constants.ts';
 import { analytics } from '../utils/analytics.ts';
 import { trendingScore } from '../utils/trending.ts';
@@ -122,7 +122,7 @@ const PromptMarketplace: React.FC<PromptMarketplaceProps> = ({
     setLikedIds(newLiked);
     localStorage.setItem(LIKED_PROMPT_IDS_KEY, JSON.stringify([...newLiked]));
 
-    const success = await updatePromptLikes(prompt.id, newCount);
+    const success = await incrementPromptLikes(prompt.id, isLiked ? -1 : 1);
     if (!success) {
       toast.error('Failed to update like');
     }
