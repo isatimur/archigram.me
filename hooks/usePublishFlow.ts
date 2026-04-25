@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { toast } from 'sonner';
 import { analytics } from '@/utils/analytics';
-import { publishDiagram } from '@/lib/supabase/browser';
+import { publishDiagram } from '@/lib/firestore/diagrams';
 import { AUTHOR_KEY } from '@/constants';
 import type { AuditReport } from '@/services/geminiService';
 import type { Project, User as UserType } from '@/types';
@@ -66,6 +66,7 @@ export function usePublishFlow({
       description: publishData.description,
       code,
       tags: tagsArray,
+      user_id: user?.id ?? null,
     });
     setIsPublishing(false);
     if (success) {

@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 import { PromptDomain } from '../types.ts';
-import { publishPrompt } from '../services/supabaseClient.ts';
+import { publishPrompt } from '../lib/firestore/prompts.ts';
 import { analytics } from '../utils/analytics.ts';
 import { toast } from 'sonner';
 
