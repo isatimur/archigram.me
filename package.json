@@ -63,7 +63,7 @@
     "@modelcontextprotocol/sdk": "^1.25.3",
     "@plausible-analytics/tracker": "^0.4.4",
     "@sentry/react": "^10.38.0",
-    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.104.1",
     "@types/three": "^0.184.0",
     "@vercel/og": "^0.11.1",
     "bpmn-js": "^18.10.1",
