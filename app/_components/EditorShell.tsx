@@ -6,9 +6,9 @@ import { toast } from 'sonner';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { useUI } from '@/lib/contexts/UIContext';
 import { useEditor } from '@/lib/contexts/EditorContext';
-import { VIEW_TO_PATH } from '@/app/_components/NavigationAdapter';
+import { useAppRouter } from '@/hooks/useAppRouter';
 import { ViewMode } from '@/types';
-import type { DiagramTheme, AppView } from '@/types';
+import type { DiagramTheme, CommunityDiagram } from '@/types';
 import { encodeCodeToUrl } from '@/utils/url';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useSplitPane } from '@/hooks/useSplitPane';
@@ -18,6 +18,14 @@ import { usePublishFlow } from '@/hooks/usePublishFlow';
 import ActivityBar from '@/app/_components/ActivityBar';
 
 const CommandBar = lazy(() => import('@/components/CommandBar'));
+const LandingPage = lazy(() => import('@/components/LandingPage'));
+const CommunityGallery = lazy(() => import('@/components/CommunityGallery'));
+const DiscoverPage = lazy(() => import('@/components/DiscoverPage'));
+const Documentation = lazy(() => import('@/components/Documentation'));
+const PromptMarketplace = lazy(() => import('@/components/PromptMarketplace'));
+const FAQPage = lazy(() => import('@/components/FAQPage'));
+const LegalPage = lazy(() => import('@/components/LegalPage'));
+const ProfilePage = lazy(() => import('@/components/ProfilePage'));
 const LeftPanel = lazy(() => import('@/components/LeftPanel'));
 const CopilotPanel = lazy(() => import('@/components/CopilotPanel'));
 const ModalRenderer = lazy(() => import('@/components/ModalRenderer'));
@@ -127,7 +135,7 @@ const THEMES: Record<DiagramTheme, ThemeVars> = {
 };
 
 export default function EditorShell() {
-  const { user, requireAuth } = useAuth();
+  const { user, requireAuth, handleSignOut } = useAuth();
 
   const {
     viewMode,
@@ -188,8 +196,11 @@ export default function EditorShell() {
 
   const { handleExportSvg, handleExportPng } = useExportHandlers({ code, theme, customStyle });
 
-  const setCurrentView = (_view: AppView) => {
-    void VIEW_TO_PATH;
+  const { currentView, setCurrentView } = useAppRouter();
+
+  const handleFork = (diagram: CommunityDiagram) => {
+    handleCreateFromTemplate(diagram.title, diagram.code);
+    setCurrentView('app');
   };
 
   const handleShare = () => {
@@ -256,7 +267,7 @@ export default function EditorShell() {
   };
 
   useKeyboardShortcuts({
-    currentView: 'app',
+    currentView,
     isPublishModalOpen,
     isImageImportModalOpen,
     isAuditModalOpen,
@@ -279,6 +290,59 @@ export default function EditorShell() {
   });
 
   const appStyle = THEMES[theme] || THEMES.dark;
+
+  // Page views — render full-screen outside the editor chrome
+  if (currentView !== 'app' && currentView !== 'plantuml') {
+    return (
+      <div
+        className="h-dvh w-full overflow-auto bg-[#04040a] text-white font-sans"
+        style={appStyle}
+      >
+        <Suspense
+          fallback={
+            <div className="flex h-full items-center justify-center">
+              <Icon icon="lucide:loader-2" className="w-8 h-8 animate-spin text-zinc-500" />
+            </div>
+          }
+        >
+          {currentView === 'landing' && <LandingPage onNavigate={setCurrentView} />}
+          {currentView === 'gallery' && (
+            <CommunityGallery onNavigate={setCurrentView} onFork={handleFork} />
+          )}
+          {currentView === 'discover' && (
+            <DiscoverPage onNavigate={setCurrentView} onFork={handleFork} />
+          )}
+          {currentView === 'docs' && <Documentation onNavigate={setCurrentView} />}
+          {currentView === 'prompts' && (
+            <PromptMarketplace
+              onNavigate={setCurrentView}
+              onTryPrompt={(promptText, _domain, resultCode) => {
+                consumeExternalPrompt?.();
+                handleCreateFromTemplate('Prompt Result', resultCode ?? '');
+                setCurrentView('app');
+                void promptText;
+              }}
+              onRequireAuth={requireAuth}
+            />
+          )}
+          {currentView === 'faq' && <FAQPage onNavigate={setCurrentView} />}
+          {currentView === 'privacy' && <LegalPage type="privacy" onNavigate={setCurrentView} />}
+          {currentView === 'terms' && <LegalPage type="terms" onNavigate={setCurrentView} />}
+          {currentView === 'license' && <LegalPage type="license" onNavigate={setCurrentView} />}
+          {currentView === 'profile' && user && (
+            <ProfilePage
+              user={user}
+              projects={projects}
+              onSignOut={handleSignOut}
+              onOpenDiagram={() => setCurrentView('app')}
+              onDeleteProject={confirmDeleteProject}
+            />
+          )}
+          {currentView === 'profile' && !user && <LandingPage onNavigate={setCurrentView} />}
+        </Suspense>
+      </div>
+    );
+  }
 
   return (
     <div
