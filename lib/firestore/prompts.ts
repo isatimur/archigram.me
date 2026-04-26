@@ -16,7 +16,7 @@ import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/client';
 import type { PromptEntry, PromptDomain } from '@/types';
 
 function db() {
-  return getFirestore(getFirebaseApp());
+  return getFirestore(getFirebaseApp(), 'archigram');
 }
 
 export async function fetchPrompts(options?: {

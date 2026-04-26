@@ -1,26 +1,6 @@
 {
   "indexes": [
     {
-      "collectionGroup": "diagrams",
-      "queryScope": "COLLECTION",
-      "fields": [{ "fieldPath": "created_at", "order": "DESCENDING" }]
-    },
-    {
-      "collectionGroup": "diagrams",
-      "queryScope": "COLLECTION",
-      "fields": [{ "fieldPath": "likes", "order": "DESCENDING" }]
-    },
-    {
-      "collectionGroup": "prompts",
-      "queryScope": "COLLECTION",
-      "fields": [{ "fieldPath": "created_at", "order": "DESCENDING" }]
-    },
-    {
-      "collectionGroup": "prompts",
-      "queryScope": "COLLECTION",
-      "fields": [{ "fieldPath": "likes", "order": "DESCENDING" }]
-    },
-    {
       "collectionGroup": "prompts",
       "queryScope": "COLLECTION",
       "fields": [
@@ -43,11 +23,6 @@
         { "fieldPath": "domain", "order": "ASCENDING" },
         { "fieldPath": "views", "order": "DESCENDING" }
       ]
-    },
-    {
-      "collectionGroup": "prompts",
-      "queryScope": "COLLECTION",
-      "fields": [{ "fieldPath": "views", "order": "DESCENDING" }]
     }
   ],
   "fieldOverrides": []

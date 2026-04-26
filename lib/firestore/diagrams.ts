@@ -15,7 +15,7 @@ import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/client';
 import type { CommunityDiagram } from '@/types';
 
 function db() {
-  return getFirestore(getFirebaseApp());
+  return getFirestore(getFirebaseApp(), 'archigram');
 }
 
 export function mapDoc(id: string, d: Record<string, unknown>): CommunityDiagram {

@@ -13,7 +13,7 @@ import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/client';
 import type { Comment } from '@/types';
 
 function db() {
-  return getFirestore(getFirebaseApp());
+  return getFirestore(getFirebaseApp(), 'archigram');
 }
 
 export async function fetchComments(diagramId: string): Promise<Comment[]> {

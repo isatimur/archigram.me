@@ -1,34 +1,30 @@
 /**
  * One-shot migration: Supabase → Firestore
- * Run with: bun --env-file=.env scripts/migrate-supabase-to-firestore.ts
+ * Run with: GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json bun --env-file=.env scripts/migrate-supabase-to-firestore.ts
  * Safe to re-run (uses Supabase row `id` as Firestore document ID).
  */
 import { createClient } from '@supabase/supabase-js';
-import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore, doc, writeBatch, Timestamp } from 'firebase/firestore';
+import admin from 'firebase-admin';
+import { Timestamp } from 'firebase-admin/firestore';
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 const supabase = createClient(process.env.VITE_SUPABASE_URL!, process.env.VITE_SUPABASE_KEY!);
-
-const firebaseConfig = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY!,
-  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN!,
-  projectId: process.env.VITE_FIREBASE_PROJECT_ID!,
-  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET!,
-  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID!,
-  appId: process.env.VITE_FIREBASE_APP_ID!,
-};
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
-const app = getApps()[0] ?? initializeApp(firebaseConfig);
-const db = getFirestore(app);
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  projectId: process.env.VITE_FIREBASE_PROJECT_ID ?? 'newagent-ba506',
+});
+
+const db = admin.firestore();
+db.settings({ databaseId: 'archigram' });
 
 async function batchWrite(
-  writes: Array<{ ref: ReturnType<typeof doc>; data: Record<string, unknown> }>
+  writes: Array<{ ref: admin.firestore.DocumentReference; data: Record<string, unknown> }>
 ) {
   const BATCH_SIZE = 499;
   for (let i = 0; i < writes.length; i += BATCH_SIZE) {
-    const batch = writeBatch(db);
+    const batch = db.batch();
     writes
       .slice(i, i + BATCH_SIZE)
       .forEach(({ ref, data }) => batch.set(ref, data, { merge: true }));
@@ -48,7 +44,7 @@ async function migrateDiagrams() {
   }
 
   const writes = data.map((row) => ({
-    ref: doc(db, 'diagrams', String(row.id)),
+    ref: db.collection('diagrams').doc(String(row.id)),
     data: {
       title: row.title ?? '',
       author: row.author ?? 'Anonymous',
@@ -70,7 +66,10 @@ async function migrateDiagrams() {
 
 async function migrateComments(diagramIds: Record<string, boolean>) {
   const { data, error } = await supabase.from('comments').select('*');
-  if (error) throw new Error(`Supabase comments: ${error.message}`);
+  if (error) {
+    console.log(`comments: skipped (${error.message})`);
+    return;
+  }
   if (!data?.length) {
     console.log('comments: 0 rows');
     return;
@@ -86,7 +85,11 @@ async function migrateComments(diagramIds: Record<string, boolean>) {
   const writes = data
     .filter((row) => diagramIds[row.diagram_id])
     .map((row) => ({
-      ref: doc(db, 'diagrams', String(row.diagram_id), 'comments', String(row.id)),
+      ref: db
+        .collection('diagrams')
+        .doc(String(row.diagram_id))
+        .collection('comments')
+        .doc(String(row.id)),
       data: {
         user_id: row.user_id ?? '',
         author: row.author ?? 'Anonymous',
@@ -97,7 +100,7 @@ async function migrateComments(diagramIds: Record<string, boolean>) {
   await batchWrite(writes);
 
   const countWrites = Object.entries(counts).map(([id, count]) => ({
-    ref: doc(db, 'diagrams', String(id)),
+    ref: db.collection('diagrams').doc(String(id)),
     data: { commentCount: count },
   }));
   await batchWrite(countWrites);
@@ -106,14 +109,17 @@ async function migrateComments(diagramIds: Record<string, boolean>) {
 
 async function migrateCollections() {
   const { data, error } = await supabase.from('collections').select('*');
-  if (error) throw new Error(`Supabase collections: ${error.message}`);
+  if (error) {
+    console.log(`collections: skipped (${error.message})`);
+    return {};
+  }
   if (!data?.length) {
     console.log('collections: 0 rows');
     return {};
   }
 
   const writes = data.map((row) => ({
-    ref: doc(db, 'collections', String(row.id)),
+    ref: db.collection('collections').doc(String(row.id)),
     data: {
       title: row.title ?? '',
       slug: row.slug ?? '',
@@ -133,7 +139,10 @@ async function migrateCollectionItems(collectionIds: Record<string, boolean>) {
     .from('collection_items')
     .select('*')
     .order('position', { ascending: true });
-  if (error) throw new Error(`Supabase collection_items: ${error.message}`);
+  if (error) {
+    console.log(`collection_items: skipped (${error.message})`);
+    return;
+  }
   if (!data?.length) {
     console.log('collection_items: 0 rows');
     return;
@@ -142,7 +151,11 @@ async function migrateCollectionItems(collectionIds: Record<string, boolean>) {
   const writes = data
     .filter((row) => collectionIds[row.collection_id])
     .map((row) => ({
-      ref: doc(db, 'collections', String(row.collection_id), 'items', String(row.id)),
+      ref: db
+        .collection('collections')
+        .doc(String(row.collection_id))
+        .collection('items')
+        .doc(String(row.id)),
       data: {
         diagram_id: String(row.diagram_id),
         position: row.position ?? 0,
@@ -154,14 +167,17 @@ async function migrateCollectionItems(collectionIds: Record<string, boolean>) {
 
 async function migratePrompts() {
   const { data, error } = await supabase.from('prompts').select('*');
-  if (error) throw new Error(`Supabase prompts: ${error.message}`);
+  if (error) {
+    console.log(`prompts: skipped (${error.message})`);
+    return;
+  }
   if (!data?.length) {
     console.log('prompts: 0 rows');
     return;
   }
 
   const writes = data.map((row) => ({
-    ref: doc(db, 'prompts', String(row.id)),
+    ref: db.collection('prompts').doc(String(row.id)),
     data: {
       title: row.title ?? '',
       author: row.author ?? 'Anonymous',
@@ -188,6 +204,7 @@ async function main() {
   await migrateCollectionItems(collectionIds);
   await migratePrompts();
   console.log('Migration complete.');
+  process.exit(0);
 }
 
 main().catch((e) => {

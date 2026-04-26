@@ -86,7 +86,7 @@ export function getFirebaseAuth() {
 }
 
 export function getFirebaseDb() {
-  return getFirestore(getFirebaseApp());
+  return getFirestore(getFirebaseApp(), 'archigram');
 }
 
 function mapFirebaseUser(user: FirebaseUser): User {

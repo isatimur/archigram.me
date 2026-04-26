@@ -13,7 +13,7 @@ import { mapDoc } from '@/lib/firestore/diagrams';
 import type { Collection, CommunityDiagram } from '@/types';
 
 function db() {
-  return getFirestore(getFirebaseApp());
+  return getFirestore(getFirebaseApp(), 'archigram');
 }
 
 export async function fetchCollections(): Promise<Collection[]> {
