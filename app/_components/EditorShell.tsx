@@ -32,6 +32,7 @@ const ModalRenderer = lazy(() => import('@/components/ModalRenderer'));
 const CodeEditor = lazy(() => import('@/components/CodeEditor'));
 const DiagramPreview = lazy(() => import('@/components/DiagramPreview'));
 const WebGLParticles = lazy(() => import('@/components/WebGLParticles'));
+const PlantUMLStudio = lazy(() => import('@/components/PlantUMLStudio'));
 
 type ThemeVars = React.CSSProperties & Record<`--${string}`, string>;
 
@@ -293,7 +294,7 @@ export default function EditorShell() {
   const appStyle = THEMES[theme] || THEMES.dark;
 
   // Page views — render full-screen outside the editor chrome
-  if (currentView !== 'app' && currentView !== 'plantuml') {
+  if (currentView !== 'app') {
     return (
       <div
         className="h-dvh w-full overflow-auto bg-[#04040a] text-white font-sans"
@@ -306,6 +307,7 @@ export default function EditorShell() {
             </div>
           }
         >
+          {currentView === 'plantuml' && <PlantUMLStudio onNavigate={setCurrentView} />}
           {currentView === 'landing' && <LandingPage onNavigate={setCurrentView} />}
           {currentView === 'gallery' && (
             <CommunityGallery onNavigate={setCurrentView} onFork={handleFork} />
