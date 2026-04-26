@@ -60,12 +60,12 @@ AuthProvider            ← index.tsx, wraps everything
   - `NavigationAdapter.tsx` — maps view enum → URL path (all views map to `/`)
 - `components/` — All UI components (35+ files): editor panels, modals, landing page, gallery, docs, etc.
 - `lib/contexts/` — `AuthContext.tsx`, `UIContext.tsx`, `EditorContext.tsx`
-- `lib/supabase/` — `browser.ts` (client-side), `server.ts` (API routes), `admin.ts` (service role)
-- `lib/firebase/` — Firebase client config
+- `lib/firebase/` — Firebase client (`getFirebaseApp`, `getFirebaseDb`, `getFirebaseAuth`, auth helpers, user diagram CRUD)
+- `lib/firestore/` — Community data services: `diagrams.ts`, `comments.ts`, `collections.ts`, `prompts.ts` — all target the `archigram` named Firestore database
 - `services/` — External API clients:
   - `geminiService.ts` — Gemini AI (`gemini-2.5-pro-preview` for generation/audit/fix-syntax, `gemini-2.5-flash` for vision); supports `CopilotDomain` (General/Healthcare/Finance/E-commerce) and optional RAG context
   - `ragClient.ts` — Optional enterprise RAG backend with graceful degradation (5s timeout)
-- `hooks/` — `useProjects` (project CRUD + localStorage), `useDiagramSync` (merges local ↔ Supabase `user_diagrams` on sign-in; higher `updatedAt` wins), `useKeyboardShortcuts`, `useExportHandlers`, `usePublishFlow`, `useSplitPane`
+- `hooks/` — `useProjects` (project CRUD + localStorage), `useDiagramSync` (merges local ↔ Firestore `users/{id}/diagrams` on sign-in; higher `updatedAt` wins), `useKeyboardShortcuts`, `useExportHandlers`, `usePublishFlow`, `useSplitPane`
 - `utils/` — Helpers (Plausible analytics, LZ-string URL compression, trending)
 - `api/` — Serverless route handlers (legacy from Next.js migration; still deployed as Vercel Functions):
   - `v1/generate` — AI diagram generation
@@ -77,7 +77,7 @@ AuthProvider            ← index.tsx, wraps everything
 - `types.ts` — Shared types: `Project`, `ProjectVersion`, `DiagramStyleConfig`, `ViewMode`, `DiagramTheme`, `User`, `CommunityDiagram`, `ChatMessage`, `AuditReport`
 - `constants.ts` — Domain constants, templates, static community data fallback
 
-**Diagram state** is persisted in URL via LZ-string compression, in localStorage via `useProjects`, and synced to Supabase `user_diagrams` on sign-in via `useDiagramSync`.
+**Diagram state** is persisted in URL via LZ-string compression, in localStorage via `useProjects`, and synced to Firestore `users/{uid}/diagrams` on sign-in via `useDiagramSync`.
 
 **Sub-projects:**
 
@@ -90,7 +90,7 @@ AuthProvider            ← index.tsx, wraps everything
 - Framework: Vitest with jsdom environment, globals enabled
 - Setup: `tests/setup.ts` mocks ResizeObserver, IntersectionObserver, clipboard, URL APIs
 - Custom render: `tests/utils/test-utils.tsx` wraps testing-library
-- Coverage: v8 provider, thresholds at 70% (branches 65%), covers `services/`, `utils/`, `hooks/`, `constants.ts`
+- Coverage: v8 provider, thresholds at 70% (branches 65%), covers `services/`, `utils/`, `constants.ts`, `data/` — hooks excluded (Firebase/localStorage integration; better covered by E2E)
 - Tests live in `tests/` directory mirroring source structure
 
 ## Code Style
@@ -105,7 +105,7 @@ AuthProvider            ← index.tsx, wraps everything
 
 ## Environment Variables
 
-`GEMINI_API_KEY` is required for AI generation (server-side in API functions). `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_KEY` enable community gallery and auth (the `NEXT_PUBLIC_*` prefix is shimmed in `vite.config.ts` — both `VITE_*` and `NEXT_PUBLIC_*` names work). See `.env.example` for all options.
+`GEMINI_API_KEY` is required for AI generation (server-side in API functions). `VITE_FIREBASE_*` vars configure Firebase Auth + Firestore (`archigram` database). `VITE_SUPABASE_URL`/`VITE_SUPABASE_KEY` are still needed for `api/newsletter.ts` and `api/unsubscribe.ts` (email subscriber tables). The `NEXT_PUBLIC_*` prefix is shimmed in `vite.config.ts` — both naming conventions work. See `.env.example` for all options.
 
 ## Deployment
 
