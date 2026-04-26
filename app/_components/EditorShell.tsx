@@ -230,6 +230,7 @@ export default function EditorShell() {
     handleAudit,
     handleOpenPublishPrompt,
     consumeExternalPrompt,
+    setPendingExternalPromptText,
   } = usePublishFlow({
     code,
     activeProjectId,
@@ -316,11 +317,11 @@ export default function EditorShell() {
           {currentView === 'prompts' && (
             <PromptMarketplace
               onNavigate={setCurrentView}
-              onTryPrompt={(promptText, _domain, resultCode) => {
-                consumeExternalPrompt?.();
-                handleCreateFromTemplate('Prompt Result', resultCode ?? '');
+              onTryPrompt={(_promptText, _domain, resultCode) => {
+                if (resultCode) handleCreateFromTemplate('Prompt Result', resultCode);
+                setPendingExternalPromptText(_promptText);
+                setIsCopilotOpen(true);
                 setCurrentView('app');
-                void promptText;
               }}
               onRequireAuth={requireAuth}
             />

@@ -114,6 +114,10 @@ export function usePublishFlow({
     setPendingPromptResultCode(undefined);
   }, []);
 
+  const setPendingExternalPromptText = useCallback((text: string) => {
+    setPendingPromptText(text);
+  }, []);
+
   return {
     auditReport,
     isAuditing,
@@ -127,5 +131,6 @@ export function usePublishFlow({
     handleAudit,
     handleOpenPublishPrompt,
     consumeExternalPrompt,
+    setPendingExternalPromptText,
   };
 }

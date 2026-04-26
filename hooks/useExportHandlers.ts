@@ -66,7 +66,10 @@ export function useExportHandlers({ theme, customStyle }: Params) {
 
   const handleExportPng = useCallback(() => {
     const data = getSvgData();
-    if (!data) return;
+    if (!data) {
+      toast.error('Export failed: No diagram found');
+      return;
+    }
     const { clone, width, height, bgColor } = data;
     try {
       analytics.exportPng();
