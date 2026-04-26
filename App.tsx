@@ -6,12 +6,8 @@ import { useAppRouter } from './hooks/useAppRouter.ts';
 import { useProjects } from './hooks/useProjects.ts';
 import { useDiagramSync } from './hooks/useDiagramSync.ts';
 import { PanelLeftOpen, Trash2, Loader2 } from 'lucide-react';
-import {
-  publishDiagram,
-  getCurrentUser,
-  onAuthStateChange,
-  signOut,
-} from './services/supabaseClient.ts';
+import { getCurrentUser, onAuthStateChange, signOutFirebase } from './lib/firebase/client.ts';
+import { publishDiagram } from './lib/firestore/diagrams.ts';
 import { auditDiagram, AuditReport } from './services/geminiService.ts';
 import { analytics } from './utils/analytics.ts';
 import { ErrorBoundary } from './components/ErrorBoundary.tsx';
@@ -181,14 +177,12 @@ function App() {
   useEffect(() => {
     getCurrentUser().then(setUser);
 
-    const {
-      data: { subscription },
-    } = onAuthStateChange((user) => {
+    const unsubscribe = onAuthStateChange((user) => {
       setUser(user);
     });
 
     return () => {
-      subscription.unsubscribe();
+      unsubscribe();
     };
   }, []);
 
@@ -591,7 +585,7 @@ function App() {
           user={user}
           projects={projects}
           onSignOut={async () => {
-            await signOut();
+            await signOutFirebase();
             setUser(null);
             setCurrentView('landing');
           }}
@@ -918,6 +912,7 @@ function App() {
             promptText={pendingPromptText}
             resultCode={pendingPromptResultCode}
             username={user?.username || ''}
+            userId={user?.id}
           />
         </Suspense>
       )}

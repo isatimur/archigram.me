@@ -107,24 +107,34 @@ const PromptMarketplace: React.FC<PromptMarketplaceProps> = ({
   });
 
   const performLike = async (prompt: PromptEntry) => {
-    const isLiked = likedIds.has(prompt.id);
-    const newCount = isLiked ? prompt.likes - 1 : prompt.likes + 1;
+    const id = prompt.id;
+    const isLiked = likedIds.has(id);
+    const currentLikes = prompt.likes;
+    const newCount = isLiked ? currentLikes - 1 : currentLikes + 1;
 
-    setPrompts((prev) => prev.map((p) => (p.id === prompt.id ? { ...p, likes: newCount } : p)));
+    setPrompts((prev) => prev.map((p) => (p.id === id ? { ...p, likes: newCount } : p)));
 
     const newLiked = new Set(likedIds);
     if (isLiked) {
-      newLiked.delete(prompt.id);
+      newLiked.delete(id);
     } else {
-      newLiked.add(prompt.id);
+      newLiked.add(id);
       analytics.promptLiked();
     }
     setLikedIds(newLiked);
     localStorage.setItem(LIKED_PROMPT_IDS_KEY, JSON.stringify([...newLiked]));
 
-    const success = await incrementPromptLikes(prompt.id, isLiked ? -1 : 1);
+    const success = await incrementPromptLikes(id, isLiked ? -1 : 1);
     if (!success) {
       toast.error('Failed to update like');
+      setPrompts((prev) => prev.map((p) => (p.id === id ? { ...p, likes: currentLikes } : p)));
+      setLikedIds((prev) => {
+        const reverted = new Set(prev);
+        if (isLiked) reverted.add(id);
+        else reverted.delete(id);
+        localStorage.setItem(LIKED_PROMPT_IDS_KEY, JSON.stringify([...reverted]));
+        return reverted;
+      });
     }
   };
 

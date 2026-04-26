@@ -11,6 +11,7 @@ interface PublishPromptModalProps {
   promptText: string;
   resultCode?: string;
   username: string;
+  userId?: string;
 }
 
 const DOMAIN_OPTIONS: { value: PromptDomain; label: string }[] = [
@@ -28,6 +29,7 @@ const PublishPromptModal: React.FC<PublishPromptModalProps> = ({
   promptText,
   resultCode,
   username,
+  userId,
 }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -58,6 +60,7 @@ const PublishPromptModal: React.FC<PublishPromptModalProps> = ({
       domain,
       tags: tagsArray,
       result_diagram_code: resultCode,
+      user_id: userId,
     });
 
     setIsPublishing(false);
