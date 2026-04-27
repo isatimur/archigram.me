@@ -81,9 +81,10 @@ export function useExportHandlers({ theme, customStyle }: Params) {
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const scale = 3;
-        canvas.width = width * scale;
-        canvas.height = height * scale;
+        const MAX_DIM = 32767;
+        const scale = Math.min(3, Math.floor(MAX_DIM / Math.max(width, height, 1)));
+        canvas.width = Math.round(width * scale);
+        canvas.height = Math.round(height * scale);
         const ctx = canvas.getContext('2d');
         if (ctx) {
           ctx.fillStyle = bgColor;

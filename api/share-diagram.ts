@@ -68,6 +68,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         .json({ error: `Maximum ${MAX_EMAILS_PER_REQUEST} recipients per request.` });
     }
 
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const invalidEmails = recipients.filter(
+      (r: unknown) => typeof r !== 'string' || !EMAIL_RE.test(r)
+    );
+    if (invalidEmails.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `Invalid email address(es): ${invalidEmails.join(', ')}` });
+    }
+
     if (!diagramTitle || !diagramUrl) {
       return res.status(400).json({ error: 'diagramTitle and diagramUrl are required.' });
     }

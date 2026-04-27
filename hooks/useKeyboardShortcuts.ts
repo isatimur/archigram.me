@@ -112,7 +112,7 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions): void
 
       if (modKey && e.key === 's' && !e.shiftKey) {
         e.preventDefault();
-        toast.success('Saved automatically');
+        toast.info('Auto-save is always on — your work is already saved');
         return;
       }
 

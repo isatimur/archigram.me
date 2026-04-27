@@ -47,6 +47,7 @@ describe('useAppRouter', () => {
       'landing',
       'app',
       'plantuml',
+      'bpmn',
       'docs',
       'gallery',
       'discover',

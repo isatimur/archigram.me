@@ -51,6 +51,7 @@ const CopilotPanel: React.FC<CopilotPanelProps> = ({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [snapshotSaving, setSnapshotSaving] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   // Load chat for specific project
   useEffect(() => {
@@ -94,6 +95,10 @@ const CopilotPanel: React.FC<CopilotPanelProps> = ({
   }, [externalPrompt]);
 
   const processAIRequest = async (userPrompt: string) => {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     setIsLoading(true);
     setActiveTab('chat');
 
@@ -102,6 +107,7 @@ const CopilotPanel: React.FC<CopilotPanelProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: userPrompt, currentCode, domain: selectedDomain }),
+        signal: controller.signal,
       });
       if (!res.ok) throw new Error((await res.json()).message ?? 'Generation failed');
       const { code: newCode } = await res.json();
@@ -116,7 +122,8 @@ const CopilotPanel: React.FC<CopilotPanelProps> = ({
 
       setMessages((prev) => [...prev, aiMsg]);
       onCodeUpdate(newCode);
-    } catch {
+    } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') return;
       const errorMsg: ChatMessage = {
         id: Date.now().toString(),
         role: 'model',
@@ -129,6 +136,14 @@ const CopilotPanel: React.FC<CopilotPanelProps> = ({
       setIsLoading(false);
     }
   };
+
+  // Abort in-flight request on unmount
+  useEffect(
+    () => () => {
+      abortRef.current?.abort();
+    },
+    []
+  );
 
   const handleSubmit = async (e: React.FormEvent | string) => {
     if (typeof e !== 'string') e.preventDefault();
