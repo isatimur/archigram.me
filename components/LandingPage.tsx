@@ -395,6 +395,46 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
           <div
             className="relative group cursor-pointer max-w-3xl"
+            onClick={() => onNavigate('bpmn')}
+          >
+            <div className="absolute -top-2 -left-2 w-5 h-5 border-t border-l border-orange-400/40 group-hover:border-orange-400/80 transition-colors z-10"></div>
+            <div className="absolute -bottom-2 -right-2 w-5 h-5 border-b border-r border-orange-400/40 group-hover:border-orange-400/80 transition-colors z-10"></div>
+            <div className="border border-white/5 group-hover:border-orange-400/25 transition-all duration-300 bg-zinc-900/15 group-hover:bg-zinc-900/35 p-10 flex flex-col md:flex-row gap-10 items-center">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-6">
+                  <Icon icon="lucide:git-branch" className="w-5 h-5 text-orange-400" />
+                  <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-orange-400/60">
+                    BPMN Studio
+                  </span>
+                </div>
+                <h3 className="font-display text-3xl font-bold text-white mb-4 flex items-center gap-3">
+                  Business Process
+                  <Icon
+                    icon="lucide:arrow-right"
+                    className="w-5 h-5 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-orange-400"
+                  />
+                </h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  Model workflows, approvals, and business processes using the BPMN 2.0 standard.
+                  Visual drag-and-drop editor with XML export.
+                </p>
+              </div>
+              <div className="flex-1 w-full">
+                <div className="bg-[#030305] p-5 border border-white/5 font-mono text-xs text-orange-300/55 group-hover:text-orange-300/80 transition-colors">
+                  <span className="text-zinc-700">&lt;bpmn:startEvent /&gt;</span>
+                  <br />
+                  <span className="text-zinc-700">&nbsp;&nbsp;→ Task: Review</span>
+                  <br />
+                  <span className="text-zinc-700">&nbsp;&nbsp;→ Gateway: Approve?</span>
+                  <br />
+                  <span className="text-zinc-700">&lt;bpmn:endEvent /&gt;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="relative group cursor-pointer max-w-3xl"
             onClick={() => onNavigate('plantuml')}
           >
             {/* Corner brackets */}

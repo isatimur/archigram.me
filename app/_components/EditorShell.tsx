@@ -33,6 +33,7 @@ const CodeEditor = lazy(() => import('@/components/CodeEditor'));
 const DiagramPreview = lazy(() => import('@/components/DiagramPreview'));
 const WebGLParticles = lazy(() => import('@/components/WebGLParticles'));
 const PlantUMLStudio = lazy(() => import('@/components/PlantUMLStudio'));
+const BPMNStudio = lazy(() => import('@/components/BPMNStudio'));
 
 type ThemeVars = React.CSSProperties & Record<`--${string}`, string>;
 
@@ -308,6 +309,7 @@ export default function EditorShell() {
           }
         >
           {currentView === 'plantuml' && <PlantUMLStudio onNavigate={setCurrentView} />}
+          {currentView === 'bpmn' && <BPMNStudio onNavigate={setCurrentView} />}
           {currentView === 'landing' && <LandingPage onNavigate={setCurrentView} />}
           {currentView === 'gallery' && (
             <CommunityGallery onNavigate={setCurrentView} onFork={handleFork} />

@@ -75,6 +75,7 @@ export type AppView =
   | 'landing'
   | 'app'
   | 'plantuml'
+  | 'bpmn'
   | 'docs'
   | 'gallery'
   | 'discover'

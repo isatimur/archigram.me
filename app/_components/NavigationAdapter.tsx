@@ -4,6 +4,7 @@ export const VIEW_TO_PATH: Record<AppView, string> = {
   landing: '/',
   app: '/',
   plantuml: '/',
+  bpmn: '/',
   docs: '/',
   gallery: '/',
   discover: '/',

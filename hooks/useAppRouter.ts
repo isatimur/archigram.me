@@ -7,6 +7,7 @@ const VALID_VIEWS = new Set<AppView>([
   'landing',
   'app',
   'plantuml',
+  'bpmn',
   'docs',
   'gallery',
   'discover',
