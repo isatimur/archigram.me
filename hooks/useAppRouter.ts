@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AppView } from '../types.ts';
 import { PROJECTS_STORAGE_KEY } from '../constants.ts';
+import { decodeCodeFromUrl } from '../utils/url.ts';
 
 const VALID_VIEWS = new Set<AppView>([
   'landing',
@@ -30,6 +31,9 @@ export function useAppRouter() {
     const fromHash = hashToView(window.location.hash);
     if (fromHash) {
       setCurrentViewState(fromHash);
+    } else if (window.location.hash && decodeCodeFromUrl(window.location.hash.slice(1))) {
+      // Hash is a share URL (LZ-string encoded diagram) — open the editor to display it
+      setCurrentViewState('app');
     } else if (localStorage.getItem(PROJECTS_STORAGE_KEY)) {
       setCurrentViewState('app');
     }
