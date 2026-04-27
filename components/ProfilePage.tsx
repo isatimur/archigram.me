@@ -30,6 +30,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
   const [socialLink, setSocialLink] = useState('');
   const [editingProfile, setEditingProfile] = useState(false);
   const [cloudDiagrams, setCloudDiagrams] = useState<Project[]>([]);
+  const [isLoadingCloud, setIsLoadingCloud] = useState(true);
   const [deleteConfirm, setDeleteConfirm] = useState('');
   const [showDangerZone, setShowDangerZone] = useState(false);
 
@@ -45,7 +46,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
   }, [socialLink]);
 
   useEffect(() => {
-    fetchUserDiagrams(user.id).then(setCloudDiagrams);
+    fetchUserDiagrams(user.id).then((diagrams) => {
+      setCloudDiagrams(diagrams);
+      setIsLoadingCloud(false);
+    });
     fetchUserProfile(user.id).then((profile) => {
       if (profile) {
         setUsername(profile.username ?? user.username ?? '');
@@ -271,7 +275,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
           [
             { icon: 'lucide:layout-dashboard', label: 'Diagrams', value: allDiagrams.length },
             { icon: 'lucide:heart', label: 'Likes received', value: '—' },
-            { icon: 'lucide:bar-chart-2', label: 'Published', value: cloudDiagrams.length },
+            {
+              icon: 'lucide:bar-chart-2',
+              label: 'Published',
+              value: isLoadingCloud ? '…' : cloudDiagrams.length,
+            },
           ] as const
         ).map(({ icon, label, value }) => (
           <div key={label} className="bg-surface border border-border rounded-xl p-4 text-center">
@@ -284,7 +292,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
 
       {/* Diagrams */}
       <h2 className="text-lg font-bold mb-4">My Diagrams</h2>
-      {allDiagrams.length === 0 ? (
+      {isLoadingCloud ? (
+        <div className="flex items-center justify-center py-12 text-text-muted gap-2">
+          <Icon icon="lucide:loader-2" className="w-5 h-5 animate-spin" />
+          <span className="text-sm">Loading diagrams…</span>
+        </div>
+      ) : allDiagrams.length === 0 ? (
         <div className="text-center py-12 text-text-muted">
           <Icon icon="lucide:layout" className="w-10 h-10 mx-auto mb-3 opacity-30" />
           <p>No diagrams yet. Create your first one in the editor!</p>
