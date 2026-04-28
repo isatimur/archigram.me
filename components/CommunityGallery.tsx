@@ -65,15 +65,20 @@ const CommunityGallery: React.FC<CommunityGalleryProps> = ({
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
-      const loaded = await fetchCommunityDiagrams(100);
-      const loadedDiagrams = loaded.length > 0 ? loaded : COMMUNITY_DATA;
-      setDiagrams(loadedDiagrams);
-      const counts: Record<string, number> = {};
-      loadedDiagrams.forEach((d) => {
-        counts[d.id] = d.commentCount ?? 0;
-      });
-      setCommentCounts(counts);
-      setIsLoading(false);
+      try {
+        const loaded = await fetchCommunityDiagrams(100);
+        const loadedDiagrams = loaded.length > 0 ? loaded : COMMUNITY_DATA;
+        setDiagrams(loadedDiagrams);
+        const counts: Record<string, number> = {};
+        loadedDiagrams.forEach((d) => {
+          counts[d.id] = d.commentCount ?? 0;
+        });
+        setCommentCounts(counts);
+      } catch {
+        setDiagrams(COMMUNITY_DATA);
+      } finally {
+        setIsLoading(false);
+      }
     };
     loadData();
   }, []);
@@ -159,7 +164,7 @@ const CommunityGallery: React.FC<CommunityGalleryProps> = ({
   };
 
   const handleForkWithStats = (diagram: CommunityDiagram) => {
-    incrementDiagramViews(diagram.id);
+    incrementDiagramViews(diagram.id).catch(() => {});
     onFork(diagram);
   };
 

@@ -21,9 +21,16 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpenState] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<'signin' | 'signup'>('signin');
   const pendingAction = useRef<(() => void) | null>(null);
+
+  // Clear pending action whenever the modal closes so a stale action never
+  // fires if the user signs in later via a different trigger.
+  const setIsAuthModalOpen = React.useCallback((open: boolean) => {
+    if (!open) pendingAction.current = null;
+    setIsAuthModalOpenState(open);
+  }, []);
 
   useEffect(() => {
     getCurrentUser().then(setUser);
@@ -52,11 +59,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const onAuthSuccess = (newUser: User) => {
     setUser(newUser);
+    const action = pendingAction.current; // capture before close clears the ref
     setIsAuthModalOpen(false);
-    if (pendingAction.current) {
-      pendingAction.current();
-      pendingAction.current = null;
-    }
+    if (action) action();
   };
 
   const handleSignOut = async () => {
