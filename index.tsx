@@ -26,8 +26,47 @@ if (!rootElement) throw new Error('Root element not found');
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <AuthProvider>
-      <EditorWithProviders />
-    </AuthProvider>
+    <Sentry.ErrorBoundary
+      fallback={({ error, resetError }) => (
+        <div
+          style={{
+            minHeight: '100vh',
+            background: '#09090b',
+            color: '#fafafa',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: 'system-ui, sans-serif',
+            gap: 16,
+            padding: 24,
+          }}
+        >
+          <h1 style={{ fontSize: 24, fontWeight: 700 }}>Something went wrong</h1>
+          <p style={{ color: '#a1a1aa', maxWidth: 480, textAlign: 'center' }}>
+            {error instanceof Error ? error.message : 'An unexpected error occurred.'}
+          </p>
+          <button
+            onClick={resetError}
+            style={{
+              background: '#6366f1',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 8,
+              padding: '10px 24px',
+              cursor: 'pointer',
+              fontSize: 14,
+              fontWeight: 600,
+            }}
+          >
+            Try again
+          </button>
+        </div>
+      )}
+    >
+      <AuthProvider>
+        <EditorWithProviders />
+      </AuthProvider>
+    </Sentry.ErrorBoundary>
   </React.StrictMode>
 );
