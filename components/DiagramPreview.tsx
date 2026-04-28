@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import mermaid from 'mermaid';
 import { DiagramTheme, DiagramStyleConfig, BackgroundPattern } from '../types.ts';
 
@@ -218,22 +218,27 @@ const DiagramPreview: React.FC<DiagramPreviewProps> = ({
     registerIcons();
   }, [iconsLoaded]);
 
-  // 2. Initialize Mermaid Config
-  useEffect(() => {
-    if (!code) return;
-
-    // Robust Diagram Type Detection
+  // Detect diagram types that are incompatible with handDrawn look.
+  // Memoized so the init effect only re-runs when the detected type changes,
+  // not on every keystroke.
+  const unsafeForHandDrawn = useMemo(() => {
+    if (!code) return false;
     const hasFrontMatter = /^-{3}[\s\S]*?-{3}/.test(code);
     const codeBody = hasFrontMatter ? code.replace(/^-{3}[\s\S]*?-{3}/, '') : code;
+    return (
+      /^\s*gitGraph/m.test(codeBody) ||
+      codeBody.includes('gitGraph') ||
+      /^\s*mindmap/m.test(codeBody) ||
+      codeBody.includes('mindmap') ||
+      /^\s*architecture-beta/m.test(codeBody) ||
+      codeBody.includes('architecture-beta')
+    );
+  }, [code]);
 
-    const isGitGraph = /^\s*gitGraph/m.test(codeBody) || codeBody.includes('gitGraph');
-    const isMindmap = /^\s*mindmap/m.test(codeBody) || codeBody.includes('mindmap');
-    const isArchitecture =
-      /^\s*architecture-beta/m.test(codeBody) || codeBody.includes('architecture-beta');
-
-    // Determine unstable condition: HandDrawn look + unsupported diagram type
-    const unsafeForHandDrawn = isGitGraph || isMindmap || isArchitecture;
-
+  // 2. Initialize Mermaid Config
+  // Depends on theme/style and diagram-type flags — NOT on raw code —
+  // so typing doesn't cause a config reset and SVG flash on every keystroke.
+  useEffect(() => {
     const MERMAID_THEME_MAP: Record<string, 'dark' | 'forest' | 'neutral' | 'default' | 'base'> = {
       dark: 'dark',
       midnight: 'dark',
@@ -301,7 +306,7 @@ const DiagramPreview: React.FC<DiagramPreviewProps> = ({
     activeStyle.lineColor,
     activeStyle.textColor,
     activeStyle.diagramLook,
-    code,
+    unsafeForHandDrawn,
   ]);
 
   // 3. Render Diagram

@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { analytics } from '../utils/analytics.ts';
 
@@ -21,6 +21,13 @@ const ShareEmailModal: React.FC<ShareEmailModalProps> = ({
   const [recipients, setRecipients] = useState<string[]>(['']);
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setRecipients(['']);
+      setMessage('');
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
