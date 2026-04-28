@@ -86,6 +86,7 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
       );
     } finally {
       setIsLoading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
