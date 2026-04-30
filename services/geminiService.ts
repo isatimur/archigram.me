@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 import { DOMAIN_INSTRUCTIONS } from '../constants.ts';
-import { CopilotDomain } from '../types.ts';
+import type { CopilotDomain } from '../types.ts';
 import { getRAGContext, isRAGEnabled } from './ragClient.ts';
 
 const GENERATION_MODEL = 'gemini-3.1-pro-preview';
