@@ -1,9 +1,9 @@
 # Local workspace state
-.worktrees/
-.playwright-cli/
-.claude/
-.cursor/
-.vscode/
+/.worktrees/
+/.playwright-cli/
+/.claude/
+/.cursor/
+/.vscode/
 
 # Dependencies and generated outputs
 node_modules/
@@ -18,13 +18,13 @@ coverage/
 !.env.example
 
 # Python/RAG subproject is not part of the web preview bundle
-rag/
+/rag/
 
 # Local screenshots and design/debug captures
-*.png
-*.jpg
-*.jpeg
-*.webp
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
 
 # Local planning/debug notes not needed by Vercel
 llm.txt
