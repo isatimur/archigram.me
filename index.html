@@ -5,47 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO & Generative Engine Optimization (GEO) -->
-    <title>ArchiGram.ai | AI Architecture Diagramming & System Design Tool</title>
+    <title>Archigram | AI Architecture Diagram Generator for Engineers</title>
     <meta
       name="description"
-      content="The intelligent canvas for modern engineering. Generate Mermaid.js diagrams with Gemini AI. Visualize microservices, ML pipelines, and cloud infrastructure instantly using text-to-diagram AI."
+      content="Create editable Mermaid, PlantUML, and BPMN architecture diagrams from plain English. Archigram helps engineers document systems, cloud architecture, microservices, and ML pipelines."
     />
     <meta
       name="keywords"
       content="archigram, ai diagram generator, text to mermaid, system design tool, cloud architecture visualization, gemini diagramming, devops flowcharts, infrastructure as code, open source architecture tool, mermaid.js editor, mermaid diagram tool, system design diagram maker, architecture diagram AI, text to diagram AI, free mermaid editor, open source diagram generator"
     />
-    <meta name="author" content="ArchiGram.ai OSS" />
+    <meta name="author" content="Archigram OSS" />
     <meta
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
-    <meta name="google-site-verification" content="" />
     <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://archigram.ai/" />
-    <meta property="og:title" content="ArchiGram.ai - Architect Systems at the Speed of Thought" />
+    <meta property="og:url" content="https://archigram.me/" />
+    <meta property="og:title" content="Archigram - AI Architecture Diagram Generator" />
     <meta
       property="og:description"
-      content="Generate enterprise-grade architecture diagrams from text. Powered by Google Gemini & Mermaid.js."
+      content="Turn system descriptions into editable Mermaid, PlantUML, and BPMN diagrams for docs, reviews, and pull requests."
     />
-    <meta property="og:image" content="https://archigram-ai.vercel.app/api/og-image" />
-    <meta property="og:site_name" content="ArchiGram.ai" />
+    <meta property="og:image" content="https://archigram.me/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content="Archigram" />
 
     <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://archigram.ai/" />
-    <meta property="twitter:title" content="ArchiGram.ai | AI System Design Copilot" />
+    <meta property="twitter:url" content="https://archigram.me/" />
+    <meta property="twitter:title" content="Archigram | AI Architecture Diagram Generator" />
     <meta
       property="twitter:description"
-      content="Stop dragging boxes. Start coding architecture. The open-source standard for AI diagramming."
+      content="Describe a system and get editable diagram source you can export, share, and keep with your docs."
     />
-    <meta property="twitter:image" content="https://archigram-ai.vercel.app/api/og-image" />
+    <meta property="twitter:image" content="https://archigram.me/og-image.png" />
+    <meta name="twitter:site" content="@archigram_me" />
+    <meta name="twitter:image:alt" content="Archigram — AI Architecture Diagram Generator" />
 
     <meta name="theme-color" content="#09090b" />
-    <link rel="canonical" href="https://archigram.ai/" />
+    <link rel="canonical" href="https://archigram.me/" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -68,17 +71,17 @@
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "ArchiGram.ai",
+        "name": "Archigram",
         "applicationCategory": "DesignApplication",
         "operatingSystem": "Web Browser",
-        "url": "https://archigram-ai.vercel.app",
+        "url": "https://archigram.me",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
           "category": "Open Source"
         },
-        "description": "ArchiGram.ai is an AI-powered diagramming tool for software architects. It converts natural language descriptions into valid Mermaid.js code for system design, cloud architecture, and flowcharts.",
+        "description": "Archigram is an AI-powered architecture diagram generator for engineers. It converts natural language descriptions into editable Mermaid, PlantUML, and BPMN diagrams for system design, cloud architecture, and documentation.",
         "featureList": [
           "AI Text-to-Diagram Generation",
           "Vision AI (Image to Diagram)",
@@ -93,9 +96,36 @@
         ],
         "author": {
           "@type": "Organization",
-          "name": "ArchiGram OSS",
+          "name": "Archigram OSS",
           "url": "https://github.com/isatimur/archigram.ai"
         }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Archigram",
+        "url": "https://archigram.me/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://archigram.me/#gallery?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Archigram",
+        "url": "https://archigram.me",
+        "logo": "https://archigram.me/brand-mark.svg",
+        "sameAs": ["https://github.com/isatimur/archigram.ai"]
       }
     </script>
 
@@ -104,13 +134,28 @@
       body {
         background-color: rgb(9 9 11);
         color: rgb(240 240 245);
-        overflow: hidden;
+        overflow: auto;
         margin: 0;
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Archigram — AI Architecture Diagram Generator</h1>
+      <p>
+        Archigram converts plain-English system descriptions into editable Mermaid, PlantUML, and
+        BPMN diagrams. Free to start. No credit card required.
+      </p>
+      <p>
+        Use cases: software architecture, cloud architecture, microservices, system design, API
+        sequences, data pipelines, ER diagrams.
+      </p>
+      <p>
+        Visit <a href="https://archigram.me">archigram.me</a> with JavaScript enabled to use the
+        app.
+      </p>
+    </noscript>
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
