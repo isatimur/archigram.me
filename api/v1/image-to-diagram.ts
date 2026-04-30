@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { imageToDiagram } from '../../services/geminiService.ts';
+import { imageToDiagram } from '../../services/geminiService.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {

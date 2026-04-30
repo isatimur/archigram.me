@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { generateDiagramCode } from '../../services/geminiService.ts';
-import type { CopilotDomain } from '../../types.ts';
+import { generateDiagramCode } from '../../services/geminiService.js';
+import type { CopilotDomain } from '../../types.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
