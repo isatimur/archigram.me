@@ -8,11 +8,13 @@ export interface ChatMessage {
   feedback?: 'helpful' | 'unhelpful'; // Phase 1: Data Feedback Loop
 }
 
-export enum ViewMode {
-  Split = 'SPLIT',
-  Code = 'CODE',
-  Preview = 'PREVIEW',
-}
+export const ViewMode = {
+  Split: 'SPLIT',
+  Code: 'CODE',
+  Preview: 'PREVIEW',
+} as const;
+// eslint-disable-next-line no-redeclare
+export type ViewMode = (typeof ViewMode)[keyof typeof ViewMode];
 
 export type DiagramTheme = 'dark' | 'midnight' | 'forest' | 'neutral' | 'ember' | 'dusk';
 
