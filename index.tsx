@@ -5,6 +5,7 @@ import { init as initPlausible } from '@plausible-analytics/tracker';
 import './app/globals.css';
 import { AuthProvider } from '@/lib/contexts/AuthContext';
 import EditorWithProviders from '@/app/_components/EditorWithProviders';
+import { initFirebaseAnalytics } from '@/lib/firebase/client';
 
 Sentry.init({
   dsn:
@@ -17,9 +18,11 @@ Sentry.init({
 });
 
 initPlausible({
-  domain: import.meta.env.VITE_PLAUSIBLE_DOMAIN || 'archigram-ai.vercel.app',
+  domain: import.meta.env.VITE_PLAUSIBLE_DOMAIN || 'archigram.me',
   endpoint: 'https://plausible.io/api/event',
 });
+
+initFirebaseAnalytics();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Root element not found');

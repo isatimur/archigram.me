@@ -1,6 +1,7 @@
 'use client';
 
 import { initializeApp, getApps, type FirebaseApp } from 'firebase/app';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 import {
   getAuth,
   GoogleAuthProvider,
@@ -29,6 +30,7 @@ const defaultFirebaseConfig = {
   storageBucket: 'newagent-ba506.firebasestorage.app',
   messagingSenderId: '1007672315550',
   appId: '1:1007672315550:web:861e93e723d99ccbddb58f',
+  measurementId: 'G-VCGG421FRV',
 };
 
 const firebaseConfig = {
@@ -60,6 +62,9 @@ const firebaseConfig = {
     (import.meta.env.VITE_FIREBASE_APP_ID as string | undefined) ||
     (process.env.NEXT_PUBLIC_FIREBASE_APP_ID as string | undefined) ||
     defaultFirebaseConfig.appId,
+  measurementId:
+    (import.meta.env.VITE_FIREBASE_MEASUREMENT_ID as string | undefined) ||
+    defaultFirebaseConfig.measurementId,
 };
 
 export const isFirebaseConfigured = Boolean(
@@ -79,6 +84,13 @@ export function getFirebaseApp() {
     app = getApps()[0] ?? initializeApp(firebaseConfig);
   }
   return app;
+}
+
+export async function initFirebaseAnalytics() {
+  if (typeof window === 'undefined') return null;
+  const supported = await isSupported();
+  if (!supported) return null;
+  return getAnalytics(getFirebaseApp());
 }
 
 export function getFirebaseAuth() {
