@@ -53,7 +53,7 @@
     "mcp-server": "bun run mcp-server/index.ts"
   },
   "dependencies": {
-    "@google/genai": "1.50.1",
+    "@google/genai": "1.51.0",
     "@iconify-json/fa6-regular": "1",
     "@iconify-json/fa6-solid": "1",
     "@iconify-json/logos": "1",
