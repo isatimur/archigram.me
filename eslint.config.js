@@ -91,8 +91,10 @@ export default [
       'react/prop-types': 'off',
       'react/no-unescaped-entities': 'off',
 
-      // React Hooks rules
-      ...reactHooks.configs.recommended.rules,
+      // React Hooks rules. Keep this scoped to the legacy hooks contract; the
+      // plugin's v7 recommended preset also enables React Compiler rules.
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
 
       // General rules
       'no-console': ['warn', { allow: ['warn', 'error'] }],
