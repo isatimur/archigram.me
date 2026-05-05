@@ -1,6 +1,6 @@
-import type { PromptEntry } from '../types.ts';
-import { POPULAR_SEED_PROMPTS } from './popularSeedPrompts.ts';
-import { TEMPLATES, ML_TEMPLATES, C4_TEMPLATES } from './templates.ts';
+import type { PromptEntry } from '../types.js';
+import { POPULAR_SEED_PROMPTS } from './popularSeedPrompts.js';
+import { TEMPLATES, ML_TEMPLATES, C4_TEMPLATES } from './templates.js';
 
 export const SEED_PROMPTS: PromptEntry[] = [
   // ───── General (4) ─────

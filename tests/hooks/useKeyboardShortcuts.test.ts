@@ -10,7 +10,7 @@ const makeOptions = (overrides = {}) => ({
   isCommandPaletteOpen: false,
   isShortcutsModalOpen: false,
   setCurrentView: vi.fn(),
-  setIsAIChatExpanded: vi.fn(),
+  setIsCopilotOpen: vi.fn(),
   setIsCommandPaletteOpen: vi.fn(),
   setIsPublishModalOpen: vi.fn(),
   setIsImageImportModalOpen: vi.fn(),

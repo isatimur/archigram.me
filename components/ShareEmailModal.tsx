@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Send, Loader2, Plus, Mail } from 'lucide-react';
+import { Icon } from '@iconify/react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { analytics } from '../utils/analytics.ts';
 
@@ -21,6 +21,13 @@ const ShareEmailModal: React.FC<ShareEmailModalProps> = ({
   const [recipients, setRecipients] = useState<string[]>(['']);
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setRecipients(['']);
+      setMessage('');
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -89,14 +96,14 @@ const ShareEmailModal: React.FC<ShareEmailModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-white/5">
           <div className="flex items-center gap-2">
-            <Mail className="w-5 h-5 text-emerald-400" />
+            <Icon icon="lucide:mail" className="w-5 h-5 text-emerald-400" />
             <h3 className="text-lg font-bold text-white">Share via Email</h3>
           </div>
           <button
             onClick={onClose}
             className="p-2 hover:bg-white/5 rounded-full text-zinc-500 hover:text-white transition-colors"
           >
-            <X className="w-4 h-4" />
+            <Icon icon="lucide:x" className="w-4 h-4" />
           </button>
         </div>
 
@@ -126,7 +133,7 @@ const ShareEmailModal: React.FC<ShareEmailModalProps> = ({
                       onClick={() => removeRecipient(i)}
                       className="p-2 hover:bg-white/5 rounded-lg text-zinc-500 hover:text-white transition-colors"
                     >
-                      <X className="w-4 h-4" />
+                      <Icon icon="lucide:x" className="w-4 h-4" />
                     </button>
                   )}
                 </div>
@@ -137,7 +144,7 @@ const ShareEmailModal: React.FC<ShareEmailModalProps> = ({
                 onClick={addRecipient}
                 className="mt-2 flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300 transition-colors"
               >
-                <Plus className="w-3 h-3" />
+                <Icon icon="lucide:plus" className="w-3 h-3" />
                 Add recipient
               </button>
             )}
@@ -173,12 +180,12 @@ const ShareEmailModal: React.FC<ShareEmailModalProps> = ({
           >
             {isSending ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Icon icon="lucide:loader-2" className="w-4 h-4 animate-spin" />
                 Sending...
               </>
             ) : (
               <>
-                <Send className="w-4 h-4" />
+                <Icon icon="lucide:send" className="w-4 h-4" />
                 Send Email
               </>
             )}

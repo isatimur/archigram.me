@@ -1,5 +1,5 @@
+import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
-import { Mail, Loader2, Check } from 'lucide-react';
 import { toast } from 'sonner';
 import { analytics } from '../utils/analytics.ts';
 
@@ -44,7 +44,7 @@ const NewsletterSignup: React.FC = () => {
   if (isSubscribed) {
     return (
       <div className="flex items-center gap-2 text-emerald-400">
-        <Check className="w-4 h-4" />
+        <Icon icon="lucide:check" className="w-4 h-4" />
         <span className="text-sm">Subscribed!</span>
       </div>
     );
@@ -53,7 +53,10 @@ const NewsletterSignup: React.FC = () => {
   return (
     <form onSubmit={handleSubscribe} className="flex gap-2">
       <div className="relative flex-1">
-        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+        <Icon
+          icon="lucide:mail"
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
+        />
         <input
           type="email"
           value={email}
@@ -67,7 +70,11 @@ const NewsletterSignup: React.FC = () => {
         disabled={isSubmitting}
         className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-medium transition-colors disabled:opacity-50 whitespace-nowrap"
       >
-        {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Subscribe'}
+        {isSubmitting ? (
+          <Icon icon="lucide:loader-2" className="w-4 h-4 animate-spin" />
+        ) : (
+          'Subscribe'
+        )}
       </button>
     </form>
   );

@@ -1,21 +1,5 @@
+import { Icon } from '@iconify/react';
 import React, { useState, useMemo } from 'react';
-import {
-  Book,
-  Code2,
-  Keyboard,
-  Zap,
-  LayoutTemplate,
-  ArrowLeft,
-  Search,
-  Share2,
-  GitBranch,
-  Database,
-  Clock,
-  Network,
-  BrainCircuit,
-  Palette,
-  X,
-} from 'lucide-react';
 import { AppView } from '../types.ts';
 import LiveDiagramBlock from './LiveDiagramBlock.tsx';
 
@@ -37,91 +21,91 @@ const DOC_SECTIONS: DocSection[] = [
     label: 'Getting Started',
     group: 'Essentials',
     keywords: ['start', 'quick', 'intro', 'begin', 'setup', 'install'],
-    icon: <Zap className="w-4 h-4" />,
+    icon: <Icon icon="lucide:zap" className="w-4 h-4" />,
   },
   {
     id: 'ai-prompting',
     label: 'AI Prompting',
     group: 'Essentials',
     keywords: ['prompt', 'ai', 'gemini', 'chat', 'copilot', 'generate'],
-    icon: <Code2 className="w-4 h-4" />,
+    icon: <Icon icon="lucide:code-2" className="w-4 h-4" />,
   },
   {
     id: 'shortcuts',
     label: 'Shortcuts',
     group: 'Essentials',
     keywords: ['keyboard', 'shortcut', 'hotkey', 'keybinding', 'ctrl', 'cmd'],
-    icon: <Keyboard className="w-4 h-4" />,
+    icon: <Icon icon="lucide:keyboard" className="w-4 h-4" />,
   },
   {
     id: 'sequence',
     label: 'Sequence',
     group: 'Diagram Syntax',
     keywords: ['sequence', 'participant', 'actor', 'message', 'api', 'interaction'],
-    icon: <LayoutTemplate className="w-4 h-4" />,
+    icon: <Icon icon="lucide:layout-template" className="w-4 h-4" />,
   },
   {
     id: 'flowchart',
     label: 'Flowchart',
     group: 'Diagram Syntax',
     keywords: ['flow', 'graph', 'decision', 'process', 'logic', 'node', 'edge'],
-    icon: <Network className="w-4 h-4" />,
+    icon: <Icon icon="lucide:network" className="w-4 h-4" />,
   },
   {
     id: 'class',
     label: 'Class',
     group: 'Diagram Syntax',
     keywords: ['class', 'uml', 'object', 'inheritance', 'oop', 'method', 'property'],
-    icon: <LayoutTemplate className="w-4 h-4" />,
+    icon: <Icon icon="lucide:layout-template" className="w-4 h-4" />,
   },
   {
     id: 'state',
     label: 'State',
     group: 'Diagram Syntax',
     keywords: ['state', 'transition', 'lifecycle', 'fsm', 'machine', 'status'],
-    icon: <LayoutTemplate className="w-4 h-4" />,
+    icon: <Icon icon="lucide:layout-template" className="w-4 h-4" />,
   },
   {
     id: 'er',
     label: 'ER Diagram',
     group: 'Diagram Syntax',
     keywords: ['er', 'entity', 'relationship', 'database', 'schema', 'table', 'sql'],
-    icon: <Database className="w-4 h-4" />,
+    icon: <Icon icon="lucide:database" className="w-4 h-4" />,
   },
   {
     id: 'gantt',
     label: 'Gantt',
     group: 'Diagram Syntax',
     keywords: ['gantt', 'timeline', 'schedule', 'project', 'milestone', 'task', 'date'],
-    icon: <Clock className="w-4 h-4" />,
+    icon: <Icon icon="lucide:clock" className="w-4 h-4" />,
   },
   {
     id: 'mindmap',
     label: 'Mindmap',
     group: 'Diagram Syntax',
     keywords: ['mind', 'map', 'brainstorm', 'hierarchy', 'tree', 'idea'],
-    icon: <BrainCircuit className="w-4 h-4" />,
+    icon: <Icon icon="lucide:brain-circuit" className="w-4 h-4" />,
   },
   {
     id: 'git',
     label: 'Git Graph',
     group: 'Diagram Syntax',
     keywords: ['git', 'branch', 'commit', 'merge', 'version', 'repo'],
-    icon: <GitBranch className="w-4 h-4" />,
+    icon: <Icon icon="lucide:git-branch" className="w-4 h-4" />,
   },
   {
     id: 'exporting',
     label: 'Export & Share',
     group: 'Guides',
     keywords: ['export', 'share', 'svg', 'png', 'download', 'link', 'publish'],
-    icon: <Share2 className="w-4 h-4" />,
+    icon: <Icon icon="lucide:share-2" className="w-4 h-4" />,
   },
   {
     id: 'themes',
     label: 'Custom Themes',
     group: 'Guides',
     keywords: ['theme', 'color', 'dark', 'light', 'style', 'css', 'variable', 'forest', 'midnight'],
-    icon: <Palette className="w-4 h-4" />,
+    icon: <Icon icon="lucide:palette" className="w-4 h-4" />,
   },
 ];
 
@@ -158,18 +142,21 @@ const Documentation: React.FC<DocumentationProps> = ({ onNavigate }) => {
             className="p-2 hover:bg-surface-hover rounded-lg text-text-muted hover:text-text transition-colors"
             title="Back to Home"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <Icon icon="lucide:arrow-left" className="w-5 h-5" />
           </button>
           <div className="h-6 w-px bg-border"></div>
           <div className="flex items-center gap-2">
-            <Book className="w-5 h-5 text-primary" />
+            <Icon icon="lucide:book" className="w-5 h-5 text-primary" />
             <span className="font-bold text-lg tracking-tight">Documentation</span>
           </div>
         </div>
 
         <div className="hidden md:flex items-center gap-2 max-w-md w-full mx-4">
           <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+            <Icon
+              icon="lucide:search"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted"
+            />
             <input
               type="text"
               value={searchQuery}
@@ -192,7 +179,7 @@ const Documentation: React.FC<DocumentationProps> = ({ onNavigate }) => {
                 onClick={() => setSearchQuery('')}
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-text-muted hover:text-text"
               >
-                <X className="w-3.5 h-3.5" />
+                <Icon icon="lucide:x" className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
@@ -254,7 +241,7 @@ const Documentation: React.FC<DocumentationProps> = ({ onNavigate }) => {
             </p>
             <div className="bg-surface border border-border rounded-xl p-6 mb-6">
               <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-accent" />
+                <Icon icon="lucide:zap" className="w-5 h-5 text-accent" />
                 Quick Start
               </h3>
               <ol className="list-decimal list-inside space-y-3 text-text-muted">
@@ -270,7 +257,7 @@ const Documentation: React.FC<DocumentationProps> = ({ onNavigate }) => {
 
           <section id="ai-prompting" className="mb-16 scroll-mt-20">
             <h2 className="text-3xl font-bold mb-6 text-white flex items-center gap-3">
-              <Code2 className="w-8 h-8 text-primary" />
+              <Icon icon="lucide:code-2" className="w-8 h-8 text-primary" />
               AI Prompting Guide
             </h2>
             <p className="text-text-muted mb-6">
@@ -300,7 +287,7 @@ const Documentation: React.FC<DocumentationProps> = ({ onNavigate }) => {
 
           <section id="shortcuts" className="mb-16 scroll-mt-20">
             <h2 className="text-3xl font-bold mb-6 text-white flex items-center gap-3">
-              <Keyboard className="w-8 h-8 text-primary" />
+              <Icon icon="lucide:keyboard" className="w-8 h-8 text-primary" />
               Keyboard Shortcuts
             </h2>
             <div className="space-y-6">
@@ -543,7 +530,7 @@ const Documentation: React.FC<DocumentationProps> = ({ onNavigate }) => {
 
           <section id="themes" className="mb-16 scroll-mt-20">
             <h2 className="text-2xl font-bold mb-4 text-white flex items-center gap-3">
-              <Palette className="w-7 h-7 text-primary" />
+              <Icon icon="lucide:palette" className="w-7 h-7 text-primary" />
               Custom Themes
             </h2>
             <p className="text-text-muted mb-6">

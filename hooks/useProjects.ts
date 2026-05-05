@@ -18,6 +18,14 @@ interface UseProjectsOptions {
   setViewMode: (mode: ViewMode) => void;
 }
 
+function safeSave(data: Project[]) {
+  try {
+    localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    toast.error('Storage full — diagram saved in memory only');
+  }
+}
+
 export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: UseProjectsOptions) {
   const [projects, setProjects] = useState<Project[]>([]);
   const [activeProjectId, setActiveProjectId] = useState<string>('');
@@ -131,7 +139,7 @@ export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: U
     setSaveStatus('saving');
 
     const saveTimeout = setTimeout(() => {
-      localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projects));
+      safeSave(projects);
       setLastSaved(new Date());
       setSaveStatus('saved');
     }, 1000);
@@ -143,7 +151,11 @@ export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: U
   useEffect(() => {
     const handleBeforeUnload = () => {
       if (projectsRef.current.length > 0) {
-        localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projectsRef.current));
+        try {
+          localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projectsRef.current));
+        } catch {
+          /* page is unloading — nothing actionable */
+        }
       }
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -271,7 +283,7 @@ export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: U
 
     const updatedProjects = [newProject, ...projects];
     setProjects(updatedProjects);
-    localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(updatedProjects));
+    safeSave(updatedProjects);
 
     setActiveProjectId(newProject.id);
     setCode(newProject.code);
@@ -300,7 +312,7 @@ export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: U
 
     const updatedProjects = [newProject, ...projects];
     setProjects(updatedProjects);
-    localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(updatedProjects));
+    safeSave(updatedProjects);
 
     setActiveProjectId(newProject.id);
     setCode(newProject.code);
@@ -329,7 +341,7 @@ export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: U
 
     const updatedProjects = [newProject, ...projects];
     setProjects(updatedProjects);
-    localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(updatedProjects));
+    safeSave(updatedProjects);
 
     setActiveProjectId(newProject.id);
     setCode(newProject.code);
@@ -379,24 +391,18 @@ export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: U
 
   const confirmDeleteProject = () => {
     if (!pendingDeleteId) return;
-
     const id = pendingDeleteId;
-    setProjects((prev) => {
-      const next = prev.filter((p) => p.id !== id);
-
-      if (id === activeProjectId && next.length > 0) {
-        const nextProject = next[0];
-        setActiveProjectId(nextProject.id);
-        setCode(nextProject.code);
-        setCustomStyle(nextProject.styleConfig || {});
-        setHistory([nextProject.code]);
-        setHistoryIndex(0);
-      }
-
-      localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(next));
-      return next;
-    });
-
+    const next = projects.filter((p) => p.id !== id);
+    setProjects(next);
+    safeSave(next);
+    if (id === activeProjectId && next.length > 0) {
+      const nextProject = next[0];
+      setActiveProjectId(nextProject.id);
+      setCode(nextProject.code);
+      setCustomStyle(nextProject.styleConfig || {});
+      setHistory([nextProject.code]);
+      setHistoryIndex(0);
+    }
     setPendingDeleteId(null);
   };
 
@@ -413,7 +419,7 @@ export function useProjects({ setCurrentView, setIsSidebarOpen, setViewMode }: U
 
     const updatedProjects = [newProject, ...projects];
     setProjects(updatedProjects);
-    localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(updatedProjects));
+    safeSave(updatedProjects);
 
     setActiveProjectId(newProject.id);
     setCode(newProject.code);
