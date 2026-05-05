@@ -1,4 +1,4 @@
-import type { CommunityDiagram } from '../types.ts';
+import type { CommunityDiagram } from '../types.js';
 
 /**
  * Static fallback community diagrams data.

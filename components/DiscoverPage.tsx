@@ -1,17 +1,7 @@
+import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
-import {
-  ArrowLeft,
-  Layers,
-  Loader2,
-  ChevronRight,
-  Cloud,
-  Server,
-  Cpu,
-  Database,
-  Brain,
-} from 'lucide-react';
 import { AppView, Collection, CommunityDiagram } from '../types.ts';
-import { fetchCollections, fetchCollectionItems } from '../services/supabaseClient.ts';
+import { fetchCollections, fetchCollectionItems } from '../lib/firestore/collections.ts';
 import { SEED_COLLECTIONS, SEED_DIAGRAMS } from '../scripts/seed-diagrams.ts';
 import CollectionView from './CollectionView.tsx';
 
@@ -21,11 +11,11 @@ interface DiscoverPageProps {
 }
 
 const COLLECTION_ICONS: Record<string, React.ReactNode> = {
-  'microservices-patterns': <Server className="w-6 h-6" />,
-  'cloud-reference-architectures': <Cloud className="w-6 h-6" />,
-  'system-design-interview': <Cpu className="w-6 h-6" />,
-  'data-pipeline-architectures': <Database className="w-6 h-6" />,
-  'ml-ai-system-design': <Brain className="w-6 h-6" />,
+  'microservices-patterns': <Icon icon="lucide:server" className="w-6 h-6" />,
+  'cloud-reference-architectures': <Icon icon="lucide:cloud" className="w-6 h-6" />,
+  'system-design-interview': <Icon icon="lucide:cpu" className="w-6 h-6" />,
+  'data-pipeline-architectures': <Icon icon="lucide:database" className="w-6 h-6" />,
+  'ml-ai-system-design': <Icon icon="lucide:brain" className="w-6 h-6" />,
 };
 
 const COLLECTION_GRADIENTS: Record<string, string> = {
@@ -134,10 +124,10 @@ const DiscoverPage: React.FC<DiscoverPageProps> = ({ onNavigate, onFork }) => {
               onClick={handleBack}
               className="p-2 hover:bg-white/5 rounded-lg transition-colors"
             >
-              <ArrowLeft className="w-5 h-5 text-zinc-400" />
+              <Icon icon="lucide:arrow-left" className="w-5 h-5 text-zinc-400" />
             </button>
             <div className="flex items-center gap-2">
-              <Layers className="w-5 h-5 text-indigo-400" />
+              <Icon icon="lucide:layers" className="w-5 h-5 text-indigo-400" />
               <h1 className="text-lg sm:text-xl font-bold">Discover</h1>
             </div>
           </div>
@@ -165,14 +155,16 @@ const DiscoverPage: React.FC<DiscoverPageProps> = ({ onNavigate, onFork }) => {
         {/* Collections Grid */}
         {isLoading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
+            <Icon icon="lucide:loader-2" className="w-8 h-8 animate-spin text-indigo-500" />
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {collections.map((collection) => {
               const gradient =
                 COLLECTION_GRADIENTS[collection.slug] || 'from-indigo-600 to-blue-500';
-              const icon = COLLECTION_ICONS[collection.slug] || <Layers className="w-6 h-6" />;
+              const icon = COLLECTION_ICONS[collection.slug] || (
+                <Icon icon="lucide:layers" className="w-6 h-6" />
+              );
               const diagramCount = SEED_DIAGRAMS.filter(
                 (d) => d.category === collection.slug
               ).length;
@@ -188,7 +180,10 @@ const DiscoverPage: React.FC<DiscoverPageProps> = ({ onNavigate, onFork }) => {
                     className={`bg-gradient-to-r ${gradient} p-5 sm:p-6 flex items-center justify-between`}
                   >
                     <div className="p-2.5 bg-white/20 rounded-xl backdrop-blur-sm">{icon}</div>
-                    <ChevronRight className="w-5 h-5 text-white/60 group-hover:translate-x-1 transition-transform" />
+                    <Icon
+                      icon="lucide:chevron-right"
+                      className="w-5 h-5 text-white/60 group-hover:translate-x-1 transition-transform"
+                    />
                   </div>
 
                   {/* Content */}

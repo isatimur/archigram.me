@@ -1,5 +1,5 @@
+import { Icon } from '@iconify/react';
 import React from 'react';
-import { ArrowLeft, HelpCircle, Rocket } from 'lucide-react';
 import { AppView } from '../types.ts';
 import { FAQ_DATA } from '../constants.ts';
 
@@ -35,14 +35,14 @@ const FAQPage: React.FC<FAQPageProps> = ({ onNavigate }) => {
             className="p-2 hover:bg-white/5 rounded-lg text-zinc-400 hover:text-white transition-colors"
             title="Back to Home"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <Icon icon="lucide:arrow-left" className="w-5 h-5" />
           </button>
           <div className="h-6 w-px bg-white/10"></div>
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => onNavigate('landing')}
           >
-            <Rocket className="w-5 h-5 text-indigo-500" />
+            <Icon icon="lucide:rocket" className="w-5 h-5 text-indigo-500" />
             <span className="font-bold text-lg tracking-tight">ArchiGram.ai</span>
           </div>
         </div>
@@ -58,7 +58,7 @@ const FAQPage: React.FC<FAQPageProps> = ({ onNavigate }) => {
       <main className="flex-1 max-w-4xl mx-auto w-full px-6 py-16">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-400 mb-6 border border-indigo-500/20 shadow-lg shadow-indigo-500/10">
-            <HelpCircle className="w-6 h-6" />
+            <Icon icon="lucide:help-circle" className="w-6 h-6" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
             Frequently Asked Questions

@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/diagrams/{diagramId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /diagrams/{diagramId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && (
+        resource.data.user_id == null ||
+        request.auth.uid == resource.data.user_id ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'views', 'commentCount'])
+      );
+      allow delete: if false;
+    }
+
+    match /diagrams/{diagramId}/comments/{commentId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow delete: if request.auth != null && request.auth.uid == resource.data.user_id;
+      allow update: if false;
+    }
+
+    match /collections/{collectionId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /collections/{collectionId}/items/{itemId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /prompts/{promptId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && (
+        resource.data.user_id == null ||
+        request.auth.uid == resource.data.user_id ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'views'])
+      );
+      allow delete: if false;
+    }
+  }
+}

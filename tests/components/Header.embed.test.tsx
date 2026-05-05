@@ -1,32 +1,47 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '../utils/test-utils.tsx';
-import Header from '../../components/Header.tsx';
+import React from 'react';
 import { ViewMode } from '../../types.ts';
 
 vi.mock('../../components/ShareEmailModal.tsx', () => ({
   default: () => null,
 }));
+vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
+
+vi.mock('@/lib/contexts/UIContext', () => ({
+  useUI: () => ({
+    viewMode: ViewMode.Split,
+    setViewMode: vi.fn(),
+    theme: 'dark',
+    setTheme: vi.fn(),
+    activePanel: null,
+    isCopilotOpen: false,
+  }),
+}));
+vi.mock('@/lib/contexts/AuthContext', () => ({
+  useAuth: () => ({ user: null, openAuth: vi.fn() }),
+}));
+vi.mock('@/lib/contexts/EditorContext', () => ({
+  useEditor: () => ({
+    activeProject: { id: '1', name: 'My API Flow', code: 'graph TD; A-->B', updatedAt: 0 },
+    handleRenameProject: vi.fn(),
+  }),
+}));
+
+import CommandBar from '../../components/CommandBar.tsx';
 
 const defaultProps = {
-  viewMode: ViewMode.Split,
-  setViewMode: vi.fn(),
   onExportPng: vi.fn(),
   onExportSvg: vi.fn(),
-  currentTheme: 'dark' as const,
-  setTheme: vi.fn(),
   onShare: vi.fn(),
-  onNewProject: vi.fn(),
-  onRenameProject: vi.fn(),
   onPublish: vi.fn(),
-  onNavigate: vi.fn(),
-  onSaveVersion: vi.fn(),
   onAudit: vi.fn(),
-  activeProject: { id: '1', name: 'My API Flow', code: 'graph TD; A-->B', updatedAt: 0 },
+  onNavigate: vi.fn(),
 };
 
 const originalLocation = window.location;
 
-describe('Header embed code generation', () => {
+describe('CommandBar embed code generation', () => {
   beforeEach(() => {
     Object.defineProperty(window, 'location', {
       value: { search: '', hash: '#abc123', href: 'http://localhost/#abc123' },
@@ -44,12 +59,12 @@ describe('Header embed code generation', () => {
   });
 
   it('generated embed code contains mode=toolbar by default', async () => {
-    render(<Header {...defaultProps} />);
+    render(<CommandBar {...defaultProps} />);
 
     const shareBtn = screen.getByRole('button', { name: /share/i });
     fireEvent.click(shareBtn);
 
-    const embedOption = screen.getByText(/embed/i);
+    const embedOption = await screen.findByText(/embed/i);
     fireEvent.click(embedOption);
 
     await waitFor(() => {
@@ -62,12 +77,12 @@ describe('Header embed code generation', () => {
   it('Twitter share URL includes the diagram name as title param', async () => {
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
-    render(<Header {...defaultProps} />);
+    render(<CommandBar {...defaultProps} />);
 
     const shareBtn = screen.getByRole('button', { name: /share/i });
     fireEvent.click(shareBtn);
 
-    const twitterBtn = screen.getByText(/twitter/i);
+    const twitterBtn = await screen.findByText(/twitter/i);
     fireEvent.click(twitterBtn);
 
     expect(openSpy).toHaveBeenCalledOnce();

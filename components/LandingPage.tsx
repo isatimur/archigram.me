@@ -1,17 +1,5 @@
+import { Icon } from '@iconify/react';
 import React, { lazy, Suspense } from 'react';
-import {
-  ArrowRight,
-  CheckCircle2,
-  Shield,
-  Code2,
-  Globe,
-  Layers,
-  Bot,
-  GitBranch,
-  ChevronDown,
-  Binary,
-  Terminal,
-} from 'lucide-react';
 import { AppView } from '../types.ts';
 import LiveDiagramBlock from './LiveDiagramBlock.tsx';
 import { FAQ_DATA } from '../constants.ts';
@@ -160,7 +148,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               onClick={() => setShowTools(!showTools)}
             >
               Tools{' '}
-              <ChevronDown className="w-3 h-3 group-hover:rotate-180 transition-transform duration-300" />
+              <Icon
+                icon="lucide:chevron-down"
+                className="w-3 h-3 group-hover:rotate-180 transition-transform duration-300"
+              />
             </button>
 
             <div
@@ -172,7 +163,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('app')}
                   className="flex items-center gap-3 w-full px-3 py-2.5 hover:bg-cyan-400/5 text-left transition-colors group/item border-l-2 border-transparent hover:border-cyan-400"
                 >
-                  <Terminal className="w-4 h-4 text-cyan-400/50 group-hover/item:text-cyan-400 transition-colors" />
+                  <Icon
+                    icon="lucide:terminal"
+                    className="w-4 h-4 text-cyan-400/50 group-hover/item:text-cyan-400 transition-colors"
+                  />
                   <div>
                     <div className="text-white text-xs font-mono">Mermaid Studio</div>
                     <div className="text-[9px] text-zinc-600 normal-case tracking-normal">
@@ -184,7 +178,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('plantuml')}
                   className="flex items-center gap-3 w-full px-3 py-2.5 hover:bg-lime-400/5 text-left transition-colors group/item border-l-2 border-transparent hover:border-lime-400"
                 >
-                  <Binary className="w-4 h-4 text-lime-400/50 group-hover/item:text-lime-400 transition-colors" />
+                  <Icon
+                    icon="lucide:binary"
+                    className="w-4 h-4 text-lime-400/50 group-hover/item:text-lime-400 transition-colors"
+                  />
                   <div>
                     <div className="text-white text-xs font-mono">PlantUML Studio</div>
                     <div className="text-[9px] text-zinc-600 normal-case tracking-normal">
@@ -206,7 +203,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             onClick={() => onNavigate('gallery')}
             className="hover:text-cyan-400 text-cyan-400/60 transition-colors flex items-center gap-1.5"
           >
-            <Globe className="w-3 h-3" />
+            <Icon icon="lucide:globe" className="w-3 h-3" />
             Community
           </button>
           <button
@@ -286,13 +283,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   aria-label="Start Diagramming Now"
                 >
                   Start Diagramming
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <Icon
+                    icon="lucide:arrow-right"
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  />
                 </button>
                 <button
                   onClick={() => onNavigate('gallery')}
                   className="flex items-center gap-3 px-7 py-3.5 border border-white/12 text-zinc-400 font-mono text-xs tracking-[0.18em] uppercase hover:border-white/35 hover:text-white transition-all"
                 >
-                  <Globe className="w-3.5 h-3.5" />
+                  <Icon icon="lucide:globe" className="w-3.5 h-3.5" />
                   Gallery
                 </button>
               </div>
@@ -358,15 +358,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         <section className="border-t border-white/5 py-6">
           <div className="max-w-7xl mx-auto px-6 flex items-center gap-8 justify-center text-zinc-700 text-[9px] font-mono tracking-[0.22em] uppercase">
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-3 h-3 text-cyan-400" /> Mermaid.js Native
+              <Icon icon="lucide:check-circle-2" className="w-3 h-3 text-cyan-400" /> Mermaid.js
+              Native
             </span>
             <span className="w-px h-4 bg-zinc-800"></span>
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-3 h-3 text-lime-400" /> PlantUML Support
+              <Icon icon="lucide:check-circle-2" className="w-3 h-3 text-lime-400" /> PlantUML
+              Support
             </span>
             <span className="w-px h-4 bg-zinc-800"></span>
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-3 h-3 text-zinc-500" /> Open Source
+              <Icon icon="lucide:check-circle-2" className="w-3 h-3 text-zinc-500" /> Open Source
             </span>
           </div>
         </section>
@@ -393,6 +395,46 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
           <div
             className="relative group cursor-pointer max-w-3xl"
+            onClick={() => onNavigate('bpmn')}
+          >
+            <div className="absolute -top-2 -left-2 w-5 h-5 border-t border-l border-orange-400/40 group-hover:border-orange-400/80 transition-colors z-10"></div>
+            <div className="absolute -bottom-2 -right-2 w-5 h-5 border-b border-r border-orange-400/40 group-hover:border-orange-400/80 transition-colors z-10"></div>
+            <div className="border border-white/5 group-hover:border-orange-400/25 transition-all duration-300 bg-zinc-900/15 group-hover:bg-zinc-900/35 p-10 flex flex-col md:flex-row gap-10 items-center">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-6">
+                  <Icon icon="lucide:git-branch" className="w-5 h-5 text-orange-400" />
+                  <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-orange-400/60">
+                    BPMN Studio
+                  </span>
+                </div>
+                <h3 className="font-display text-3xl font-bold text-white mb-4 flex items-center gap-3">
+                  Business Process
+                  <Icon
+                    icon="lucide:arrow-right"
+                    className="w-5 h-5 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-orange-400"
+                  />
+                </h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  Model workflows, approvals, and business processes using the BPMN 2.0 standard.
+                  Visual drag-and-drop editor with XML export.
+                </p>
+              </div>
+              <div className="flex-1 w-full">
+                <div className="bg-[#030305] p-5 border border-white/5 font-mono text-xs text-orange-300/55 group-hover:text-orange-300/80 transition-colors">
+                  <span className="text-zinc-700">&lt;bpmn:startEvent /&gt;</span>
+                  <br />
+                  <span className="text-zinc-700">&nbsp;&nbsp;→ Task: Review</span>
+                  <br />
+                  <span className="text-zinc-700">&nbsp;&nbsp;→ Gateway: Approve?</span>
+                  <br />
+                  <span className="text-zinc-700">&lt;bpmn:endEvent /&gt;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="relative group cursor-pointer max-w-3xl"
             onClick={() => onNavigate('plantuml')}
           >
             {/* Corner brackets */}
@@ -401,14 +443,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className="border border-white/5 group-hover:border-lime-400/25 transition-all duration-300 bg-zinc-900/15 group-hover:bg-zinc-900/35 p-10 flex flex-col md:flex-row gap-10 items-center">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-6">
-                  <Binary className="w-5 h-5 text-lime-400" />
+                  <Icon icon="lucide:binary" className="w-5 h-5 text-lime-400" />
                   <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-lime-400/60">
                     PlantUML Studio
                   </span>
                 </div>
                 <h3 className="font-display text-3xl font-bold text-white mb-4 flex items-center gap-3">
                   Standard UML
-                  <ArrowRight className="w-5 h-5 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-lime-400" />
+                  <Icon
+                    icon="lucide:arrow-right"
+                    className="w-5 h-5 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-lime-400"
+                  />
                 </h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">
                   The industry standard for textual UML. Generate Sequence, Use Case, Class, and
@@ -454,37 +499,37 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
           <div className="grid md:grid-cols-3 gap-px bg-white/5">
             <FeatureCard
-              icon={<Code2 className="w-5 h-5 text-cyan-400" />}
+              icon={<Icon icon="lucide:code-2" className="w-5 h-5 text-cyan-400" />}
               label="01"
               title="Code-First Diagrams"
               desc="Write standard Mermaid.js code or let AI generate it. Version control your diagrams alongside your source code repository."
             />
             <FeatureCard
-              icon={<Bot className="w-5 h-5 text-pink-400" />}
+              icon={<Icon icon="lucide:bot" className="w-5 h-5 text-pink-400" />}
               label="02"
               title="System Design Copilot"
               desc="Describe your system in plain English. Our AI architect understands Microservices, Event-Driven, and Serverless patterns."
             />
             <FeatureCard
-              icon={<Layers className="w-5 h-5 text-lime-400" />}
+              icon={<Icon icon="lucide:layers" className="w-5 h-5 text-lime-400" />}
               label="03"
               title="Cloud Native Standards"
               desc="Pre-built components for AWS, Azure, GCP, and Kubernetes. Visualize infrastructure with industry-standard icons."
             />
             <FeatureCard
-              icon={<GitBranch className="w-5 h-5 text-amber-400" />}
+              icon={<Icon icon="lucide:git-branch" className="w-5 h-5 text-amber-400" />}
               label="04"
               title="Git-Friendly & Diffable"
               desc="Text-based diagrams mean you can finally diff your architecture changes in Pull Requests using standard Git tools."
             />
             <FeatureCard
-              icon={<Globe className="w-5 h-5 text-sky-400" />}
+              icon={<Icon icon="lucide:globe" className="w-5 h-5 text-sky-400" />}
               label="05"
               title="Global Gallery"
               desc="Don't start from scratch. Fork proven architectures from engineers at Netflix, Uber, and Airbnb via the Community Gallery."
             />
             <FeatureCard
-              icon={<Shield className="w-5 h-5 text-rose-400" />}
+              icon={<Icon icon="lucide:shield" className="w-5 h-5 text-rose-400" />}
               label="06"
               title="Enterprise Ready"
               desc="Self-hostable, RBAC support, and SSO integration for teams that need security and compliance (Enterprise Tier)."
@@ -598,7 +643,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               className="text-cyan-400 hover:text-white font-mono text-[10px] tracking-[0.22em] uppercase flex items-center gap-2 transition-colors group"
             >
               View All FAQs
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <Icon
+                icon="lucide:arrow-right"
+                className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"
+              />
             </button>
           </div>
         </section>
