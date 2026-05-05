@@ -1,15 +1,5 @@
+import { Icon } from '@iconify/react';
 import React, { useRef, useEffect, useMemo, useState, useCallback } from 'react';
-import {
-  Undo,
-  Redo,
-  AlertCircle,
-  CheckCircle2,
-  XCircle,
-  Terminal,
-  FileJson,
-  Sparkles,
-  Loader2,
-} from 'lucide-react';
 import CopyDropdown from './CopyDropdown.tsx';
 import PlatformGuides from './PlatformGuides.tsx';
 import { DiagramTheme } from '../types.ts';
@@ -233,13 +223,13 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         : 'h-8 border-t border-border';
 
   return (
-    <div className="h-full w-full flex flex-col bg-background relative transition-colors duration-300">
+    <div className="h-full min-h-0 w-full flex flex-col bg-background/95 relative transition-colors duration-300">
       {/* Refined Toolbar */}
       {!hideToolbar && (
-        <div className="px-4 py-2 bg-surface/80 border-b border-border flex justify-between items-center shrink-0 h-10 box-border backdrop-blur-sm z-20 transition-colors duration-300">
+        <div className="px-4 py-2 bg-surface/90 border-b border-border flex justify-between items-center shrink-0 h-10 box-border backdrop-blur-sm z-20 transition-colors duration-300">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-xs font-medium text-text-muted group cursor-pointer hover:text-text transition-colors">
-              <FileJson className="w-3.5 h-3.5 text-primary" />
+              <Icon icon="lucide:file-json" className="w-3.5 h-3.5 text-primary" />
               <span>source.mmd</span>
             </div>
             <CopyDropdown code={code} onOpenGuides={() => setShowPlatformGuides(true)} />
@@ -253,7 +243,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
                     className="p-1 text-text-muted hover:text-text disabled:opacity-30 transition-colors rounded hover:bg-surface-hover"
                     title="Undo (Ctrl+Z)"
                   >
-                    <Undo className="w-3.5 h-3.5" />
+                    <Icon icon="lucide:undo" className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={onRedo}
@@ -261,24 +251,24 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
                     className="p-1 text-text-muted hover:text-text disabled:opacity-30 transition-colors rounded hover:bg-surface-hover"
                     title="Redo (Ctrl+Y)"
                   >
-                    <Redo className="w-3.5 h-3.5" />
+                    <Icon icon="lucide:redo" className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </>
             )}
           </div>
           <div className="text-[10px] text-text-muted font-mono flex items-center gap-1.5 opacity-70">
-            <Terminal className="w-3 h-3" />
+            <Icon icon="lucide:terminal" className="w-3 h-3" />
             <span>Mermaid v11.4</span>
           </div>
         </div>
       )}
 
-      <div className="flex-1 flex relative overflow-hidden bg-background transition-colors duration-300">
+      <div className="flex-1 min-h-0 flex relative overflow-hidden bg-background/95 transition-colors duration-300">
         {/* Line Numbers Gutter */}
         <div
           ref={gutterRef}
-          className="w-12 pt-4 pb-4 bg-background border-r border-border text-right select-none overflow-hidden shrink-0 z-10 transition-colors duration-300"
+          className="w-12 h-full pt-4 pb-4 bg-surface/35 border-r border-border text-right select-none overflow-hidden shrink-0 z-10 transition-colors duration-300"
           style={{ fontFamily: '"JetBrains Mono", monospace' }}
         >
           {Array.from({ length: lineCount }).map((_, i) => {
@@ -303,7 +293,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         </div>
 
         {/* Code Area Container */}
-        <div className="flex-1 relative overflow-hidden group bg-background transition-colors duration-300">
+        <div className="flex-1 min-h-0 relative overflow-hidden group bg-background/95 transition-colors duration-300">
           {/* Highlight Overlay Layer */}
           {highlightedLine !== null && (
             <div
@@ -342,7 +332,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
             value={code}
             onChange={(e) => onChange(e.target.value)}
             onScroll={handleScroll}
-            className="absolute inset-0 w-full h-full p-4 bg-transparent text-transparent text-sm font-mono leading-6 caret-primary resize-none outline-none whitespace-pre overflow-auto z-10 selection:bg-primary/30 cursor-text"
+            className="absolute inset-0 w-full h-full p-4 bg-transparent text-transparent text-sm font-mono leading-6 caret-primary resize-none outline-none whitespace-pre overflow-auto z-10 selection:bg-primary/30 cursor-text scrollbar-thin"
             spellCheck={false}
             autoCapitalize="off"
             autoComplete="off"
@@ -365,7 +355,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         >
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted flex items-center gap-2">
-              <AlertCircle className="w-3 h-3" />
+              <Icon icon="lucide:alert-circle" className="w-3 h-3" />
               Problems
             </span>
             {error ? (
@@ -405,7 +395,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           <div className="flex-1 overflow-y-auto p-0 font-mono text-xs">
             {error ? (
               <div className="flex items-center gap-3 p-3 hover:bg-red-500/5 transition-colors group border-l-2 border-red-500">
-                <XCircle className="w-4 h-4 text-red-500 shrink-0 self-start mt-0.5" />
+                <Icon
+                  icon="lucide:x-circle"
+                  className="w-4 h-4 text-red-500 shrink-0 self-start mt-0.5"
+                />
                 <div
                   className="flex-1 cursor-pointer"
                   onClick={() => {
@@ -432,9 +425,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
                     className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-surface border border-border text-text hover:bg-primary hover:text-white hover:border-primary/50 transition-all disabled:opacity-50 disabled:cursor-wait shadow-sm"
                   >
                     {isFixing ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <Icon icon="lucide:loader-2" className="w-3.5 h-3.5 animate-spin" />
                     ) : (
-                      <Sparkles className="w-3.5 h-3.5" />
+                      <Icon icon="lucide:sparkles" className="w-3.5 h-3.5" />
                     )}
                     <span className="font-bold text-[10px] tracking-wide">
                       {isFixing ? 'Fixing...' : 'Fix with AI'}
@@ -444,7 +437,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center h-full min-h-[50px] text-text-muted gap-2 opacity-50">
-                <CheckCircle2 className="w-6 h-6" />
+                <Icon icon="lucide:check-circle-2" className="w-6 h-6" />
                 <p>No problems detected.</p>
               </div>
             )}

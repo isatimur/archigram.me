@@ -1,5 +1,5 @@
+import { Icon } from '@iconify/react';
 import React from 'react';
-import { UploadCloud, X, Loader2 } from 'lucide-react';
 import { User } from '../types.ts';
 
 interface PublishModalProps {
@@ -35,11 +35,11 @@ export const PublishModal: React.FC<PublishModalProps> = ({
       <div className="bg-surface border border-border rounded-xl shadow-2xl w-full max-w-lg mx-4 flex flex-col overflow-hidden animate-slide-up ring-1 ring-white/10">
         <div className="flex items-center justify-between p-4 border-b border-border bg-surface-hover/30">
           <h3 className="text-lg font-bold text-white flex items-center gap-2">
-            <UploadCloud className="w-5 h-5 text-primary" />
+            <Icon icon="lucide:upload-cloud" className="w-5 h-5 text-primary" />
             Publish to Community
           </h3>
           <button onClick={onClose} className="text-text-muted hover:text-white transition-colors">
-            <X className="w-5 h-5" />
+            <Icon icon="lucide:x" className="w-5 h-5" />
           </button>
         </div>
 
@@ -109,9 +109,9 @@ export const PublishModal: React.FC<PublishModalProps> = ({
             className="px-6 py-2 rounded-lg text-sm font-bold bg-primary hover:bg-primary-hover text-white shadow-lg shadow-primary/20 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isPublishing ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Icon icon="lucide:loader-2" className="w-4 h-4 animate-spin" />
             ) : (
-              <UploadCloud className="w-4 h-4" />
+              <Icon icon="lucide:upload-cloud" className="w-4 h-4" />
             )}
             {isPublishing ? 'Publishing...' : 'Publish Diagram'}
           </button>

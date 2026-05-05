@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { toast } from 'sonner';
 import { analytics } from '../utils/analytics.ts';
 import { AppView, ViewMode } from '../types.ts';
@@ -11,7 +11,7 @@ interface UseKeyboardShortcutsOptions {
   isCommandPaletteOpen: boolean;
   isShortcutsModalOpen: boolean;
   setCurrentView: (view: AppView) => void;
-  setIsAIChatExpanded: (fn: (prev: boolean) => boolean) => void;
+  setIsCopilotOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsCommandPaletteOpen: (open: boolean) => void;
   setIsPublishModalOpen: (open: boolean) => void;
   setIsImageImportModalOpen: (open: boolean) => void;
@@ -35,7 +35,7 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions): void
     isCommandPaletteOpen,
     isShortcutsModalOpen,
     setCurrentView,
-    setIsAIChatExpanded,
+    setIsCopilotOpen,
     setIsCommandPaletteOpen,
     setIsPublishModalOpen,
     setIsImageImportModalOpen,
@@ -112,7 +112,7 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions): void
 
       if (modKey && e.key === 's' && !e.shiftKey) {
         e.preventDefault();
-        toast.success('Saved automatically');
+        toast.info('Auto-save is always on — your work is already saved');
         return;
       }
 
@@ -142,7 +142,7 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions): void
 
       if (modKey && e.key === '/') {
         e.preventDefault();
-        setIsAIChatExpanded((prev) => {
+        setIsCopilotOpen((prev) => {
           analytics.aiChatToggled(prev ? 'close' : 'open');
           return !prev;
         });
@@ -193,7 +193,7 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions): void
     isCommandPaletteOpen,
     isShortcutsModalOpen,
     setCurrentView,
-    setIsAIChatExpanded,
+    setIsCopilotOpen,
     setIsCommandPaletteOpen,
     setIsPublishModalOpen,
     setIsImageImportModalOpen,

@@ -1,25 +1,7 @@
+import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
 import pako from 'pako';
 import { AppView, ViewMode } from '../types.ts';
-import {
-  ArrowLeft,
-  Code2,
-  Eye,
-  Columns,
-  Image as ImageIcon,
-  Check,
-  Loader2,
-  RefreshCw,
-  Copy,
-  Settings,
-  Server,
-  Globe,
-  FileText,
-  FileType,
-  FileCode,
-  Undo,
-  Redo,
-} from 'lucide-react';
 import { toast } from 'sonner';
 import CodeEditor from './CodeEditor.tsx';
 
@@ -237,7 +219,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
             className="p-2 hover:bg-surface-hover rounded-lg text-text-muted hover:text-text transition-colors"
             title="Back to Home"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <Icon icon="lucide:arrow-left" className="w-5 h-5" />
           </button>
           <div className="flex flex-col">
             <h1 className="text-lg font-bold text-text flex items-center gap-2">
@@ -264,7 +246,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               className="p-2 text-text-muted hover:text-text disabled:opacity-30 transition-colors rounded hover:bg-surface-hover"
               title="Undo (Ctrl+Z)"
             >
-              <Undo className="w-4 h-4" />
+              <Icon icon="lucide:undo" className="w-4 h-4" />
             </button>
             <button
               onClick={redo}
@@ -272,7 +254,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               className="p-2 text-text-muted hover:text-text disabled:opacity-30 transition-colors rounded hover:bg-surface-hover"
               title="Redo (Ctrl+Y)"
             >
-              <Redo className="w-4 h-4" />
+              <Icon icon="lucide:redo" className="w-4 h-4" />
             </button>
           </div>
 
@@ -284,7 +266,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               title="Server Settings"
               aria-label="Server Settings"
             >
-              <Settings className="w-4 h-4" />
+              <Icon icon="lucide:settings" className="w-4 h-4" />
             </button>
 
             {showSettings && (
@@ -292,7 +274,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
                 <div className="fixed inset-0 z-10" onClick={() => setShowSettings(false)}></div>
                 <div className="absolute top-full right-0 mt-2 w-72 bg-surface border border-border rounded-xl shadow-2xl z-20 p-4 animate-in fade-in slide-in-from-top-2">
                   <h3 className="text-xs font-bold text-text mb-3 uppercase tracking-wider flex items-center gap-2">
-                    <Server className="w-3 h-3" /> Rendering Server
+                    <Icon icon="lucide:server" className="w-3 h-3" /> Rendering Server
                   </h3>
                   <div className="space-y-3">
                     <div>
@@ -316,7 +298,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
                         onClick={() => setServerUrl('https://www.plantuml.com/plantuml')}
                         className="flex-1 py-1.5 bg-surface-hover border border-border rounded text-[10px] text-text-muted hover:text-text hover:border-blue-500/50 transition-colors flex items-center justify-center gap-1"
                       >
-                        <Globe className="w-3 h-3" /> Public
+                        <Icon icon="lucide:globe" className="w-3 h-3" /> Public
                       </button>
                     </div>
                   </div>
@@ -335,9 +317,9 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
             aria-label="Copy Source Code"
           >
             {copied ? (
-              <Check className="w-3.5 h-3.5 text-green-500" />
+              <Icon icon="lucide:check" className="w-3.5 h-3.5 text-green-500" />
             ) : (
-              <Copy className="w-3.5 h-3.5" />
+              <Icon icon="lucide:copy" className="w-3.5 h-3.5" />
             )}
             <span>{copied ? 'Copied' : 'Copy Code'}</span>
           </button>
@@ -345,10 +327,10 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
           {/* View Toggle */}
           <div className="hidden md:flex items-center bg-surface p-1 rounded-lg border border-border shadow-inner">
             {[
-              { mode: ViewMode.Code, icon: Code2, label: 'Code' },
-              { mode: ViewMode.Split, icon: Columns, label: 'Split' },
-              { mode: ViewMode.Preview, icon: Eye, label: 'Preview' },
-            ].map(({ mode, icon: Icon, label }) => (
+              { mode: ViewMode.Code, icon: 'lucide:code-2', label: 'Code' },
+              { mode: ViewMode.Split, icon: 'lucide:columns-2', label: 'Split' },
+              { mode: ViewMode.Preview, icon: 'lucide:eye', label: 'Preview' },
+            ].map(({ mode, icon, label }) => (
               <button
                 key={mode}
                 onClick={() => setViewMode(mode)}
@@ -360,7 +342,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
                 title={label}
                 aria-label={label}
               >
-                <Icon className="w-4 h-4" />
+                <Icon icon={icon} className="w-4 h-4" />
               </button>
             ))}
           </div>
@@ -373,7 +355,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               title="Export as SVG"
               disabled={!imageUrl}
             >
-              <FileCode className="w-4 h-4" />
+              <Icon icon="lucide:file-code" className="w-4 h-4" />
             </button>
             <div className="w-px h-4 bg-border mx-1"></div>
             <button
@@ -382,7 +364,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               title="Export as PNG"
               disabled={!imageUrl}
             >
-              <ImageIcon className="w-4 h-4" />
+              <Icon icon="lucide:image" className="w-4 h-4" />
             </button>
             <div className="w-px h-4 bg-border mx-1"></div>
             <button
@@ -391,7 +373,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               title="Export as ASCII"
               disabled={!imageUrl}
             >
-              <FileText className="w-4 h-4" />
+              <Icon icon="lucide:file-text" className="w-4 h-4" />
             </button>
             <div className="w-px h-4 bg-border mx-1"></div>
             <button
@@ -400,7 +382,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               title="Export as PDF"
               disabled={!imageUrl}
             >
-              <FileType className="w-4 h-4" />
+              <Icon icon="lucide:file-type" className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -430,7 +412,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
           >
             {loading && (
               <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-surface border border-border rounded-full text-xs text-text-muted z-10 shadow-lg">
-                <Loader2 className="w-3 h-3 animate-spin" />
+                <Icon icon="lucide:loader-2" className="w-3 h-3 animate-spin" />
                 Rendering...
               </div>
             )}
@@ -451,7 +433,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
               />
             ) : (
               <div className="text-text-muted flex flex-col items-center gap-2">
-                <RefreshCw className="w-8 h-8 opacity-20" />
+                <Icon icon="lucide:refresh-cw" className="w-8 h-8 opacity-20" />
                 <p>Enter code to generate diagram</p>
               </div>
             )}

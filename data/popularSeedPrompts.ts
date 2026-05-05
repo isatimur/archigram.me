@@ -1,5 +1,5 @@
-import type { PromptEntry, PromptDomain } from '../types.ts';
-import { COMMUNITY_DATA } from './communityDiagrams.ts';
+import type { PromptEntry, PromptDomain } from '../types.js';
+import { COMMUNITY_DATA } from './communityDiagrams.js';
 
 /**
  * Metadata for converting community diagrams into seed prompts.

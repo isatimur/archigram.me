@@ -12,8 +12,8 @@
  */
 
 // Environment configuration
-const RAG_URL = import.meta.env.VITE_RAG_URL || 'http://localhost:8000';
-const RAG_ENABLED = import.meta.env.VITE_RAG_ENABLED === 'true';
+const RAG_URL = process.env.VITE_RAG_URL || 'http://localhost:8000';
+const RAG_ENABLED = process.env.VITE_RAG_ENABLED === 'true';
 const RAG_TIMEOUT_MS = 5000; // 5 second timeout
 
 /**

@@ -1,5 +1,5 @@
+import { Icon } from '@iconify/react';
 import React from 'react';
-import { X } from 'lucide-react';
 
 type KeyboardShortcutsModalProps = {
   isOpen: boolean;
@@ -76,7 +76,7 @@ const KeyboardShortcutsModal: React.FC<KeyboardShortcutsModalProps> = ({ isOpen,
             aria-label="Close shortcuts"
             className="p-2 text-text-muted hover:text-text rounded-lg transition-colors"
           >
-            <X className="w-4 h-4" />
+            <Icon icon="lucide:x" className="w-4 h-4" />
           </button>
         </div>
 

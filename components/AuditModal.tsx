@@ -1,13 +1,5 @@
+import { Icon } from '@iconify/react';
 import React from 'react';
-import {
-  X,
-  ShieldAlert,
-  CheckCircle2,
-  AlertTriangle,
-  ShieldCheck,
-  TrendingUp,
-  Lightbulb,
-} from 'lucide-react';
 import { AuditReport } from '../services/geminiService.ts';
 
 interface AuditModalProps {
@@ -37,7 +29,7 @@ const AuditModal: React.FC<AuditModalProps> = ({ onClose, report, isLoading }) =
         <div className="flex items-center justify-between p-6 border-b border-white/5 bg-[#27272a]/30">
           <div>
             <h3 className="text-xl font-bold text-white flex items-center gap-2">
-              <ShieldCheck className="w-6 h-6 text-indigo-400" />
+              <Icon icon="lucide:shield-check" className="w-6 h-6 text-indigo-400" />
               Architectural Audit
             </h3>
             <p className="text-sm text-zinc-400 mt-1">
@@ -48,7 +40,7 @@ const AuditModal: React.FC<AuditModalProps> = ({ onClose, report, isLoading }) =
             onClick={onClose}
             className="text-zinc-500 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full"
           >
-            <X className="w-5 h-5" />
+            <Icon icon="lucide:x" className="w-5 h-5" />
           </button>
         </div>
 
@@ -59,7 +51,10 @@ const AuditModal: React.FC<AuditModalProps> = ({ onClose, report, isLoading }) =
               <div className="relative">
                 <div className="w-16 h-16 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <ShieldAlert className="w-6 h-6 text-indigo-500 animate-pulse" />
+                  <Icon
+                    icon="lucide:shield-alert"
+                    className="w-6 h-6 text-indigo-500 animate-pulse"
+                  />
                 </div>
               </div>
               <div className="text-center space-y-1">
@@ -103,12 +98,13 @@ const AuditModal: React.FC<AuditModalProps> = ({ onClose, report, isLoading }) =
                 {/* Risks */}
                 <div>
                   <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <AlertTriangle className="w-5 h-5 text-amber-500" />
+                    <Icon icon="lucide:alert-triangle" className="w-5 h-5 text-amber-500" />
                     Identified Risks
                   </h4>
                   {report.risks.length === 0 ? (
                     <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 text-sm flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4" /> No critical risks identified. Great job!
+                      <Icon icon="lucide:check-circle-2" className="w-4 h-4" /> No critical risks
+                      identified. Great job!
                     </div>
                   ) : (
                     <div className="space-y-3">
@@ -141,7 +137,7 @@ const AuditModal: React.FC<AuditModalProps> = ({ onClose, report, isLoading }) =
                 {/* Improvements */}
                 <div>
                   <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <Lightbulb className="w-5 h-5 text-indigo-400" />
+                    <Icon icon="lucide:lightbulb" className="w-5 h-5 text-indigo-400" />
                     Recommended Actions
                   </h4>
                   <div className="grid gap-3">
@@ -162,7 +158,7 @@ const AuditModal: React.FC<AuditModalProps> = ({ onClose, report, isLoading }) =
                 {/* Strengths */}
                 <div>
                   <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-emerald-400" />
+                    <Icon icon="lucide:trending-up" className="w-5 h-5 text-emerald-400" />
                     Architecture Strengths
                   </h4>
                   <div className="flex flex-wrap gap-2">

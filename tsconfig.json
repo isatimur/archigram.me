@@ -18,21 +18,9 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "strict": false,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "incremental": true,
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.d.ts",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-  ],
-  "exclude": ["node_modules", "dist", ".worktrees"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", ".worktrees", "App.tsx", "tests/App.embed.test.tsx"]
 }

@@ -98,7 +98,7 @@ export const LIKED_PROMPT_IDS_KEY = 'archigram_liked_prompt_ids';
 export const AUTHOR_KEY = 'archigram_author';
 
 // Re-export extracted data modules for backwards compatibility
-export { ML_TEMPLATES, TEMPLATES, C4_TEMPLATES } from './data/templates.ts';
-export { COMMUNITY_DATA } from './data/communityDiagrams.ts';
-export { FAQ_DATA } from './data/faq.ts';
-export { SEED_PROMPTS } from './data/seedPrompts.ts';
+export { ML_TEMPLATES, TEMPLATES, C4_TEMPLATES } from './data/templates.js';
+export { COMMUNITY_DATA } from './data/communityDiagrams.js';
+export { FAQ_DATA } from './data/faq.js';
+export { SEED_PROMPTS } from './data/seedPrompts.js';

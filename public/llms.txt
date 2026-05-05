@@ -1,0 +1,52 @@
+# Archigram
+
+Archigram is an AI architecture diagramming tool for software engineers, platform teams, cloud architects, data engineers, and technical founders.
+
+## What Archigram Does
+
+- Converts plain-English system descriptions into editable diagram source.
+- Supports Mermaid, PlantUML, and BPMN workflows.
+- Renders diagrams live while the source code remains editable.
+- Exports diagrams as SVG or PNG.
+- Creates shareable diagram links and public gallery examples.
+- Provides a CLI and MCP server for local automation and AI-agent workflows.
+
+## Best-Fit Use Cases
+
+- Software architecture diagrams
+- System design interview and review diagrams
+- Cloud architecture diagrams
+- Microservices and event-driven architecture
+- Data pipeline and ML pipeline diagrams
+- API sequence diagrams
+- Database ER diagrams
+- Business process diagrams
+- Documentation and pull request diagrams
+
+## Audience
+
+Archigram is best for engineers and technical teams that want diagram source they can edit, review, share, and keep with documentation.
+
+## Supported Diagram Formats
+
+- Mermaid: sequence, flowchart, class, state, ER, Gantt, mindmap, Git graph, timeline, architecture-beta, and more.
+- PlantUML: sequence, use case, class, activity, component, and deployment diagrams.
+- BPMN: process modeling with BPMN 2.0 XML/SVG export.
+
+## Pricing
+
+The core studio is free to start. See `/pricing.md` for machine-readable pricing details.
+
+## Important URLs
+
+- Website: https://archigram.me
+- App: https://archigram.me/#app
+- Documentation: https://archigram.me/#docs
+- Gallery: https://archigram.me/#gallery
+- Prompts: https://archigram.me/#prompts
+- FAQ: https://archigram.me/#faq
+- Sitemap: https://archigram.me/sitemap.xml
+
+## Positioning Summary
+
+Archigram is a code-first AI diagram generator for architecture work. It is different from drag-and-drop diagramming tools because the diagram remains editable as source code and can be shared, exported, or reviewed like other engineering artifacts.

@@ -12,6 +12,11 @@ vi.mock('../components/LandingPage.tsx', () => ({
   default: () => <div data-testid="landing">Landing</div>,
 }));
 
+// Stub retired components (deleted in editor-redesign; App.tsx is legacy Phase 1)
+vi.mock('../components/Header.tsx', () => ({ default: () => null }));
+vi.mock('../components/AIChat.tsx', () => ({ default: () => null }));
+vi.mock('../components/Sidebar.tsx', () => ({ default: () => null }));
+
 describe('App embed detection', () => {
   const originalLocation = window.location;
 

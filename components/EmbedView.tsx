@@ -1,7 +1,7 @@
+import { Icon } from '@iconify/react';
 import React, { Suspense, lazy, useState } from 'react';
 import { decodeCodeFromUrl } from '../utils/url.ts';
 import type { EmbedMode } from '../types.ts';
-import { ZoomIn, ZoomOut, RotateCcw, ExternalLink } from 'lucide-react';
 
 const DiagramPreview = lazy(() => import('./DiagramPreview.tsx'));
 
@@ -54,21 +54,21 @@ const EmbedView: React.FC = () => {
             onClick={() => setScale((s) => Math.max(0.25, +(s - 0.25).toFixed(2)))}
             className="p-1 text-zinc-400 hover:text-white transition-colors"
           >
-            <ZoomOut className="w-4 h-4" />
+            <Icon icon="lucide:zoom-out" className="w-4 h-4" />
           </button>
           <button
             aria-label="Reset zoom"
             onClick={() => setScale(1)}
             className="p-1 text-zinc-400 hover:text-white transition-colors"
           >
-            <RotateCcw className="w-4 h-4" />
+            <Icon icon="lucide:rotate-ccw" className="w-4 h-4" />
           </button>
           <button
             aria-label="Zoom in"
             onClick={() => setScale((s) => Math.min(3, +(s + 0.25).toFixed(2)))}
             className="p-1 text-zinc-400 hover:text-white transition-colors"
           >
-            <ZoomIn className="w-4 h-4" />
+            <Icon icon="lucide:zoom-in" className="w-4 h-4" />
           </button>
 
           {showFork && (
@@ -81,7 +81,7 @@ const EmbedView: React.FC = () => {
                 className="flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 transition-colors"
               >
                 Fork this diagram
-                <ExternalLink className="w-3 h-3" />
+                <Icon icon="lucide:external-link" className="w-3 h-3" />
               </a>
             </>
           )}

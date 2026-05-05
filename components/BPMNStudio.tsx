@@ -1,6 +1,6 @@
+import { Icon } from '@iconify/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { AppView } from '../types.ts';
-import { ArrowLeft, Loader2, Download, Play, Wand2, MonitorPlay } from 'lucide-react';
 
 interface BPMNStudioProps {
   onNavigate: (view: AppView) => void;
@@ -104,12 +104,12 @@ const BPMNStudio: React.FC<BPMNStudioProps> = ({ onNavigate }) => {
             className="p-2 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-white transition-colors"
             title="Back to Home"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <Icon icon="lucide:arrow-left" className="w-5 h-5" />
           </button>
           <div className="flex flex-col">
             <h1 className="text-lg font-bold flex items-center gap-2 text-white">
               <div className="w-7 h-7 rounded-lg bg-orange-600 flex items-center justify-center text-white font-bold shadow-lg shadow-orange-500/20">
-                <MonitorPlay className="w-4 h-4" />
+                <Icon icon="lucide:monitor-play" className="w-4 h-4" />
               </div>
               BPMN Process Studio
             </h1>
@@ -121,14 +121,14 @@ const BPMNStudio: React.FC<BPMNStudioProps> = ({ onNavigate }) => {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 text-orange-400 text-xs font-bold rounded-full border border-orange-500/20">
-            <Wand2 className="w-3 h-3" />
+            <Icon icon="lucide:wand-2" className="w-3 h-3" />
             <span>AI Assistant Ready</span>
           </div>
           <button
             onClick={handleSaveSvg}
             className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-zinc-100 text-zinc-900 hover:bg-white rounded-lg shadow-lg transition-all hover:scale-105"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Icon icon="lucide:download" className="w-3.5 h-3.5" />
             Export XML/SVG
           </button>
         </div>
@@ -141,7 +141,7 @@ const BPMNStudio: React.FC<BPMNStudioProps> = ({ onNavigate }) => {
         {!isReady && (
           <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 z-10">
             <div className="flex flex-col items-center gap-3">
-              <Loader2 className="w-8 h-8 animate-spin text-orange-600" />
+              <Icon icon="lucide:loader-2" className="w-8 h-8 animate-spin text-orange-600" />
               <p className="text-sm font-medium text-zinc-500">Loading Process Engine...</p>
             </div>
           </div>
@@ -157,7 +157,10 @@ const BPMNStudio: React.FC<BPMNStudioProps> = ({ onNavigate }) => {
               className="flex-1 bg-transparent text-zinc-800 text-sm focus:outline-none placeholder:text-zinc-400"
             />
             <button className="bg-zinc-900 text-white p-2.5 rounded-xl hover:bg-orange-600 transition-all shadow-md group">
-              <Play className="w-4 h-4 fill-current group-hover:translate-x-0.5 transition-transform" />
+              <Icon
+                icon="lucide:play"
+                className="w-4 h-4 fill-current group-hover:translate-x-0.5 transition-transform"
+              />
             </button>
           </div>
           <div className="text-center mt-2">

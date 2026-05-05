@@ -1,19 +1,5 @@
+import { Icon } from '@iconify/react';
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Search,
-  FileCode,
-  Image as ImageIcon,
-  Share2,
-  Grid,
-  Plus,
-  Copy,
-  Rocket,
-  Eye,
-  Code2,
-  ShieldCheck,
-  X,
-  ArrowRight,
-} from 'lucide-react';
 import { AppView, ViewMode } from '../types.ts';
 
 interface Command {
@@ -67,7 +53,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'new',
       label: 'New Diagram',
       description: 'Create a new diagram project',
-      icon: <Plus className="w-4 h-4" />,
+      icon: <Icon icon="lucide:plus" className="w-4 h-4" />,
       action: () => {
         onNewProject();
         onClose();
@@ -79,7 +65,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'duplicate',
       label: 'Duplicate Diagram',
       description: 'Create a copy of the current diagram',
-      icon: <Copy className="w-4 h-4" />,
+      icon: <Icon icon="lucide:copy" className="w-4 h-4" />,
       action: () => {
         onDuplicate();
         onClose();
@@ -91,7 +77,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'export-png',
       label: 'Export as PNG',
       description: 'Download diagram as PNG image',
-      icon: <ImageIcon className="w-4 h-4" />,
+      icon: <Icon icon="lucide:image" className="w-4 h-4" />,
       action: () => {
         onExportPng();
         onClose();
@@ -103,7 +89,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'export-svg',
       label: 'Export as SVG',
       description: 'Download diagram as SVG file',
-      icon: <FileCode className="w-4 h-4" />,
+      icon: <Icon icon="lucide:file-code" className="w-4 h-4" />,
       action: () => {
         onExportSvg();
         onClose();
@@ -115,7 +101,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'share',
       label: 'Share Diagram',
       description: 'Copy shareable link',
-      icon: <Share2 className="w-4 h-4" />,
+      icon: <Icon icon="lucide:share-2" className="w-4 h-4" />,
       action: () => {
         onShare();
         onClose();
@@ -127,7 +113,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'publish',
       label: 'Publish to Gallery',
       description: 'Share diagram with community',
-      icon: <Rocket className="w-4 h-4" />,
+      icon: <Icon icon="lucide:rocket" className="w-4 h-4" />,
       action: () => {
         onPublish();
         onClose();
@@ -139,7 +125,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'gallery',
       label: 'Open Gallery',
       description: 'Browse community diagrams',
-      icon: <Grid className="w-4 h-4" />,
+      icon: <Icon icon="lucide:grid" className="w-4 h-4" />,
       action: () => {
         onNavigate('gallery');
         onClose();
@@ -151,7 +137,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'docs',
       label: 'Documentation',
       description: 'View documentation and examples',
-      icon: <FileCode className="w-4 h-4" />,
+      icon: <Icon icon="lucide:file-code" className="w-4 h-4" />,
       action: () => {
         onNavigate('docs');
         onClose();
@@ -162,7 +148,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'view-split',
       label: 'Split View',
       description: 'Show code and preview side by side',
-      icon: <Eye className="w-4 h-4" />,
+      icon: <Icon icon="lucide:eye" className="w-4 h-4" />,
       action: () => {
         setViewMode(ViewMode.Split);
         onClose();
@@ -173,7 +159,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'view-code',
       label: 'Code View',
       description: 'Show only code editor',
-      icon: <Code2 className="w-4 h-4" />,
+      icon: <Icon icon="lucide:code-2" className="w-4 h-4" />,
       action: () => {
         setViewMode(ViewMode.Code);
         onClose();
@@ -184,7 +170,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'view-preview',
       label: 'Preview View',
       description: 'Show only diagram preview',
-      icon: <Eye className="w-4 h-4" />,
+      icon: <Icon icon="lucide:eye" className="w-4 h-4" />,
       action: () => {
         setViewMode(ViewMode.Preview);
         onClose();
@@ -195,7 +181,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'audit',
       label: 'Architectural Audit',
       description: 'Analyze diagram for security and scalability',
-      icon: <ShieldCheck className="w-4 h-4" />,
+      icon: <Icon icon="lucide:shield-check" className="w-4 h-4" />,
       action: () => {
         onAudit();
         onClose();
@@ -206,7 +192,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'scan',
       label: 'Scan Image',
       description: 'Convert image to diagram code',
-      icon: <ImageIcon className="w-4 h-4" />,
+      icon: <Icon icon="lucide:image" className="w-4 h-4" />,
       action: () => {
         onScanImage();
         onClose();
@@ -279,7 +265,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
       >
         {/* Header */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
-          <Search className="w-5 h-5 text-text-muted" />
+          <Icon icon="lucide:search" className="w-5 h-5 text-text-muted" />
           <input
             ref={inputRef}
             type="text"
@@ -296,7 +282,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
             onClick={onClose}
             className="text-text-muted hover:text-text transition-colors p-1"
           >
-            <X className="w-4 h-4" />
+            <Icon icon="lucide:x" className="w-4 h-4" />
           </button>
         </div>
 
@@ -329,7 +315,9 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
                       {cmd.shortcut}
                     </kbd>
                   )}
-                  {index === selectedIndex && <ArrowRight className="w-4 h-4 text-primary" />}
+                  {index === selectedIndex && (
+                    <Icon icon="lucide:arrow-right" className="w-4 h-4 text-primary" />
+                  )}
                 </div>
               </button>
             ))

@@ -1,9 +1,24 @@
 {
-  "framework": "nextjs",
-  "headers": [
+  "framework": null,
+  "installCommand": "bun install",
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist",
+  "redirects": [
     {
-      "source": "/_next/static/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "source": "/(.*)",
+      "destination": "https://archigram.me/$1",
+      "permanent": true,
+      "has": [{ "type": "host", "value": "archigram.ai" }]
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://archigram.me/$1",
+      "permanent": true,
+      "has": [{ "type": "host", "value": "www.archigram.me" }]
     }
+  ],
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

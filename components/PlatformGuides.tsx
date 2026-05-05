@@ -1,15 +1,5 @@
+import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
-import {
-  X,
-  Github,
-  FileText,
-  Gitlab,
-  Code2,
-  BookOpen,
-  ExternalLink,
-  ChevronDown,
-  ChevronRight,
-} from 'lucide-react';
 
 interface PlatformGuide {
   id: string;
@@ -24,7 +14,7 @@ const GUIDES: PlatformGuide[] = [
   {
     id: 'github',
     name: 'GitHub',
-    icon: <Github className="w-5 h-5" />,
+    icon: <Icon icon="lucide:github" className="w-5 h-5" />,
     steps: [
       'Copy your diagram using "Copy for GitHub" from the editor toolbar',
       'Open your README.md, issue, or pull request',
@@ -40,7 +30,7 @@ const GUIDES: PlatformGuide[] = [
   {
     id: 'notion',
     name: 'Notion',
-    icon: <FileText className="w-5 h-5" />,
+    icon: <Icon icon="lucide:file-text" className="w-5 h-5" />,
     steps: [
       'Copy your diagram using "Copy for Notion"',
       'In Notion, type /mermaid and select the Mermaid block',
@@ -52,7 +42,7 @@ const GUIDES: PlatformGuide[] = [
   {
     id: 'gitlab',
     name: 'GitLab',
-    icon: <Gitlab className="w-5 h-5" />,
+    icon: <Icon icon="lucide:gitlab" className="w-5 h-5" />,
     steps: [
       'Copy your diagram using "Copy for GitLab"',
       'Open a wiki page, merge request, or .md file',
@@ -64,7 +54,7 @@ const GUIDES: PlatformGuide[] = [
   {
     id: 'vscode',
     name: 'VS Code',
-    icon: <Code2 className="w-5 h-5" />,
+    icon: <Icon icon="lucide:code-2" className="w-5 h-5" />,
     steps: [
       'Copy your diagram using "Copy for VS Code"',
       'Create or open a .md file',
@@ -76,7 +66,7 @@ const GUIDES: PlatformGuide[] = [
   {
     id: 'obsidian',
     name: 'Obsidian',
-    icon: <BookOpen className="w-5 h-5" />,
+    icon: <Icon icon="lucide:book-open" className="w-5 h-5" />,
     steps: [
       'Copy your diagram using "Copy for Obsidian"',
       'Open or create a note',
@@ -88,7 +78,7 @@ const GUIDES: PlatformGuide[] = [
   {
     id: 'confluence',
     name: 'Confluence',
-    icon: <FileText className="w-5 h-5" />,
+    icon: <Icon icon="lucide:file-text" className="w-5 h-5" />,
     steps: [
       'Install "Mermaid for Confluence" or similar app from Atlassian Marketplace',
       'Copy your diagram using "Copy for Confluence"',
@@ -121,7 +111,7 @@ const PlatformGuides: React.FC<PlatformGuidesProps> = ({ isOpen, onClose }) => {
         <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Code2 className="w-5 h-5 text-primary" />
+              <Icon icon="lucide:code-2" className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h2 className="text-lg font-bold text-text">How to use your diagram</h2>
@@ -132,7 +122,7 @@ const PlatformGuides: React.FC<PlatformGuidesProps> = ({ isOpen, onClose }) => {
             onClick={onClose}
             className="p-2 hover:bg-surface-hover rounded-lg transition-colors text-text-muted hover:text-text"
           >
-            <X className="w-5 h-5" />
+            <Icon icon="lucide:x" className="w-5 h-5" />
           </button>
         </div>
 
@@ -151,9 +141,9 @@ const PlatformGuides: React.FC<PlatformGuidesProps> = ({ isOpen, onClose }) => {
                   <span className="text-primary">{guide.icon}</span>
                   <span className="font-medium text-text flex-1">{guide.name}</span>
                   {isExpanded ? (
-                    <ChevronDown className="w-4 h-4 text-text-muted" />
+                    <Icon icon="lucide:chevron-down" className="w-4 h-4 text-text-muted" />
                   ) : (
-                    <ChevronRight className="w-4 h-4 text-text-muted" />
+                    <Icon icon="lucide:chevron-right" className="w-4 h-4 text-text-muted" />
                   )}
                 </button>
                 {isExpanded && (
@@ -177,7 +167,7 @@ const PlatformGuides: React.FC<PlatformGuidesProps> = ({ isOpen, onClose }) => {
                         rel="noopener noreferrer"
                         className="mt-3 inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
                       >
-                        <ExternalLink className="w-3.5 h-3.5" />
+                        <Icon icon="lucide:external-link" className="w-3.5 h-3.5" />
                         {guide.link.label}
                       </a>
                     )}
