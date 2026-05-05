@@ -16,10 +16,6 @@ export default defineConfig({
     env: {
       VITE_RAG_ENABLED: 'true',
       VITE_RAG_URL: 'http://localhost:8000',
-      // Prevent @supabase/supabase-js from throwing "supabaseUrl is required"
-      // when supabaseClient.ts is imported during tests
-      VITE_SUPABASE_URL: 'https://placeholder.supabase.co',
-      VITE_SUPABASE_KEY: 'placeholder-anon-key-for-tests',
     },
     include: ['**/*.{test,spec}.{ts,tsx}'],
     exclude: [
@@ -30,18 +26,14 @@ export default defineConfig({
       '.opencode/**',
       '.claude/**',
       '.worktrees/**',
+      // App.tsx is the legacy Vite SPA (Phase 1); retired components deleted in editor-redesign
+      'tests/App.embed.test.tsx',
     ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html', 'lcov'],
       reportsDirectory: './coverage',
-      include: [
-        'services/**/*.ts',
-        'utils/**/*.ts',
-        'hooks/**/*.ts',
-        'constants.ts',
-        'data/**/*.ts',
-      ],
+      include: ['services/**/*.ts', 'utils/**/*.ts', 'constants.ts', 'data/**/*.ts'],
       exclude: [
         'node_modules/**',
         'dist/**',
@@ -58,10 +50,7 @@ export default defineConfig({
         lines: 70,
       },
     },
-    reporters: ['default', 'html'],
-    outputFile: {
-      html: './coverage/test-report.html',
-    },
+    reporters: ['default'],
   },
   resolve: {
     alias: {

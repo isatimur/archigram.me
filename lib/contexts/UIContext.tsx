@@ -11,13 +11,10 @@ type UIContextValue = {
   setViewMode: (mode: ViewMode) => void;
   activePanel: ActivePanel;
   setActivePanel: (panel: ActivePanel) => void;
-  // Legacy aliases — derived from activePanel so existing consumers compile unchanged
-  isSidebarOpen: boolean;
-  setIsSidebarOpen: (open: boolean) => void;
-  isSidebarCollapsed: boolean;
-  setIsSidebarCollapsed: (collapsed: boolean) => void;
   theme: DiagramTheme;
   setTheme: (theme: DiagramTheme) => void;
+  isCopilotOpen: boolean;
+  setIsCopilotOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isPublishModalOpen: boolean;
   setIsPublishModalOpen: (open: boolean) => void;
   isImageImportModalOpen: boolean;
@@ -30,8 +27,6 @@ type UIContextValue = {
   setIsShortcutsModalOpen: (open: boolean) => void;
   isPublishPromptModalOpen: boolean;
   setIsPublishPromptModalOpen: (open: boolean) => void;
-  isAIChatExpanded: boolean;
-  setIsAIChatExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const UIContext = createContext<UIContextValue | null>(null);
@@ -39,21 +34,21 @@ const UIContext = createContext<UIContextValue | null>(null);
 export function UIProvider({ children }: { children: React.ReactNode }) {
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.Split);
   const [activePanel, setActivePanel] = useState<ActivePanel>('projects');
-  const [theme, setTheme] = useState<DiagramTheme>('dark');
+  const [theme, setTheme] = useState<DiagramTheme>('neutral');
+  const [isCopilotOpen, setIsCopilotOpen] = useState(true);
   const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
   const [isImageImportModalOpen, setIsImageImportModalOpen] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isShortcutsModalOpen, setIsShortcutsModalOpen] = useState(false);
   const [isPublishPromptModalOpen, setIsPublishPromptModalOpen] = useState(false);
-  const [isAIChatExpanded, setIsAIChatExpanded] = useState(true);
 
-  // Responsive: close panel on small screens, reopen on desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setViewMode(ViewMode.Preview);
         setActivePanel(null);
+        setIsCopilotOpen(false);
       } else {
         setActivePanel((p) => p ?? 'projects');
       }
@@ -63,12 +58,6 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Legacy aliases derived from activePanel
-  const isSidebarOpen = activePanel !== null;
-  const setIsSidebarOpen = (open: boolean) => setActivePanel(open ? 'projects' : null);
-  const isSidebarCollapsed = false;
-  const setIsSidebarCollapsed = (_: boolean) => {};
-
   return (
     <UIContext.Provider
       value={{
@@ -76,12 +65,10 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
         setViewMode,
         activePanel,
         setActivePanel,
-        isSidebarOpen,
-        setIsSidebarOpen,
-        isSidebarCollapsed,
-        setIsSidebarCollapsed,
         theme,
         setTheme,
+        isCopilotOpen,
+        setIsCopilotOpen,
         isPublishModalOpen,
         setIsPublishModalOpen,
         isImageImportModalOpen,
@@ -94,8 +81,6 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
         setIsShortcutsModalOpen,
         isPublishPromptModalOpen,
         setIsPublishPromptModalOpen,
-        isAIChatExpanded,
-        setIsAIChatExpanded,
       }}
     >
       {children}

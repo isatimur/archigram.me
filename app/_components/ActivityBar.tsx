@@ -1,71 +1,86 @@
 'use client';
+import { Icon } from '@iconify/react';
 
-import { FolderOpen, LayoutTemplate, Globe, Sparkles } from 'lucide-react';
-import type { ActivePanel } from '@/lib/contexts/UIContext';
+import React from 'react';
+import { useUI } from '@/lib/contexts/UIContext';
 
-type ActivityBarProps = {
-  activePanel: ActivePanel;
-  onPanelToggle: (panel: Exclude<ActivePanel, null>) => void;
-  onOpenCopilot: () => void;
-};
+type Panel = 'projects' | 'templates' | 'community';
 
-const TOP_ITEMS = [
-  { id: 'projects' as const, icon: FolderOpen, label: 'Projects' },
-  { id: 'templates' as const, icon: LayoutTemplate, label: 'Templates' },
-  { id: 'community' as const, icon: Globe, label: 'Community' },
-] as const;
+const TOP_ITEMS: { id: Panel; icon: string; label: string }[] = [
+  { id: 'projects', icon: 'lucide:folder-open', label: 'Projects' },
+  { id: 'templates', icon: 'lucide:layout-template', label: 'Templates' },
+  { id: 'community', icon: 'lucide:globe', label: 'Community' },
+];
 
-export default function ActivityBar({
-  activePanel,
-  onPanelToggle,
-  onOpenCopilot,
-}: ActivityBarProps) {
+export default function ActivityBar() {
+  const { activePanel, setActivePanel, isCopilotOpen, setIsCopilotOpen, setIsShortcutsModalOpen } =
+    useUI();
+
+  const togglePanel = (id: Panel) => {
+    setActivePanel(activePanel === id ? null : id);
+  };
+
   return (
-    <div
-      className="w-12 h-full flex flex-col items-center py-1 bg-surface border-r border-border shrink-0"
-      role="navigation"
+    <aside
+      className="w-12 shrink-0 h-full glass-panel border-r border-border/70 flex flex-col items-center py-2 z-20"
       aria-label="Activity bar"
     >
       {/* Top: panel toggles */}
-      <div className="flex-1 flex flex-col items-center gap-0.5 pt-1">
-        {TOP_ITEMS.map(({ id, icon: Icon, label }) => {
+      <div className="flex flex-col items-center gap-1 flex-1">
+        {TOP_ITEMS.map(({ id, icon, label }) => {
           const isActive = activePanel === id;
           return (
             <button
               key={id}
-              title={label}
+              onClick={() => togglePanel(id)}
               aria-label={label}
               aria-pressed={isActive}
-              onClick={() => onPanelToggle(id)}
-              className={`
-                relative w-10 h-10 flex items-center justify-center rounded-md transition-colors
-                ${
-                  isActive
-                    ? 'text-primary bg-primary-bg'
-                    : 'text-text-dim hover:text-text-muted hover:bg-surface-hover'
-                }
-              `}
+              title={label}
+              className={`relative w-10 h-10 flex items-center justify-center rounded-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
+                isActive
+                  ? 'bg-primary/15 text-primary border border-primary/30 shadow-[0_0_15px_rgb(var(--primary)/0.12)]'
+                  : 'text-text-muted hover:text-text hover:bg-surface-hover border border-transparent'
+              }`}
             >
               {isActive && (
-                <span className="absolute left-0 top-2 bottom-2 w-0.5 bg-primary rounded-full" />
+                <span className="absolute left-[-10px] top-1/2 -translate-y-1/2 w-1 h-4 bg-primary rounded-r-full shadow-[0_0_10px_rgb(var(--primary)/0.8)]" />
               )}
-              <Icon className="w-4 h-4" />
+              <Icon icon={icon} className="w-4.5 h-4.5" />
             </button>
           );
         })}
       </div>
 
-      {/* Bottom: copilot */}
-      <div className="flex flex-col items-center gap-0.5 pb-2">
+      {/* Bottom: copilot + shortcuts */}
+      <div className="flex flex-col items-center gap-1 pb-1">
+        <div className="w-6 h-px bg-border mb-1" />
+
         <button
-          title="AI Copilot"
-          aria-label="Open AI Copilot"
-          onClick={onOpenCopilot}
-          className="w-10 h-10 flex items-center justify-center rounded-md text-text-dim hover:text-text-muted hover:bg-surface-hover transition-colors"
+          onClick={() => setIsCopilotOpen(!isCopilotOpen)}
+          aria-label="Toggle AI Copilot"
+          aria-pressed={isCopilotOpen}
+          title="AI Copilot (⌘⇧C)"
+          className={`relative w-10 h-10 flex items-center justify-center rounded-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 ${
+            isCopilotOpen
+              ? 'bg-accent/15 text-accent border border-accent/30 shadow-[0_0_15px_rgb(var(--accent)/0.12)]'
+              : 'text-text-muted hover:text-text hover:bg-surface-hover border border-transparent'
+          }`}
         >
-          <Sparkles className="w-4 h-4" />
+          {isCopilotOpen && (
+            <span className="absolute left-[-10px] top-1/2 -translate-y-1/2 w-1 h-4 bg-accent rounded-r-full shadow-[0_0_10px_rgb(var(--accent)/0.8)]" />
+          )}
+          <Icon icon="lucide:bot" className="w-4.5 h-4.5" />
+        </button>
+
+        <button
+          onClick={() => setIsShortcutsModalOpen(true)}
+          aria-label="Keyboard shortcuts"
+          title="Keyboard shortcuts (?)"
+          className="w-10 h-10 flex items-center justify-center rounded-lg text-text-muted hover:text-text hover:bg-surface-hover border border-transparent transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+        >
+          <Icon icon="lucide:keyboard" className="w-4 h-4" />
         </button>
       </div>
-    </div>
+    </aside>
   );
 }

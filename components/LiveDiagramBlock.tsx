@@ -1,7 +1,7 @@
+import { Icon } from '@iconify/react';
 import React, { useState, useEffect, useRef, memo } from 'react';
 import CodeEditor from './CodeEditor.tsx';
 import DiagramPreview from './DiagramPreview.tsx';
-import { Copy, Check, Loader2 } from 'lucide-react';
 
 interface LiveDiagramBlockProps {
   initialCode: string;
@@ -92,9 +92,9 @@ const LiveDiagramBlock: React.FC<LiveDiagramBlockProps> = ({
             className="text-xs font-medium text-zinc-500 hover:text-white flex items-center gap-1.5 transition-colors group"
           >
             {copied ? (
-              <Check className="w-3 h-3 text-emerald-500" />
+              <Icon icon="lucide:check" className="w-3 h-3 text-emerald-500" />
             ) : (
-              <Copy className="w-3 h-3 group-hover:text-primary" />
+              <Icon icon="lucide:copy" className="w-3 h-3 group-hover:text-primary" />
             )}
             {copied ? 'Copied' : 'Copy'}
           </button>
@@ -133,7 +133,7 @@ const LiveDiagramBlock: React.FC<LiveDiagramBlockProps> = ({
       ) : (
         <div className="flex-1 flex items-center justify-center text-zinc-800 bg-[#09090b]">
           <div className="flex flex-col items-center gap-3">
-            <Loader2 className="w-5 h-5 animate-spin opacity-20" />
+            <Icon icon="lucide:loader-2" className="w-5 h-5 animate-spin opacity-20" />
             <span className="text-xs font-mono opacity-20">Initializing Preview...</span>
           </div>
         </div>

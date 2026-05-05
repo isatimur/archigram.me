@@ -1,0 +1,31 @@
+# Local workspace state
+/.worktrees/
+/.playwright-cli/
+/.claude/
+/.cursor/
+/.vscode/
+
+# Dependencies and generated outputs
+node_modules/
+dist/
+coverage/
+.next/
+*.tsbuildinfo
+
+# Local env files should be configured in Vercel Project Settings instead
+.env
+.env.*
+!.env.example
+
+# Python/RAG subproject is not part of the web preview bundle
+/rag/
+
+# Local screenshots and design/debug captures
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+
+# Local planning/debug notes not needed by Vercel
+llm.txt
+llm-prd.txt

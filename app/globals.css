@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
-/* Custom theme using CSS variables (matches CDN Tailwind config from index.html) */
+/* ─── Design System Tokens ─── */
 @theme {
+  --font-family-display: 'Syne', sans-serif;
   --font-family-sans: 'Inter', sans-serif;
   --font-family-mono: 'JetBrains Mono', monospace;
 
@@ -18,9 +19,14 @@
   --color-primary-bg: rgb(var(--primary-bg) / <alpha-value>);
   --color-accent: rgb(var(--accent) / <alpha-value>);
 
-  --animate-fade-in: fadeIn 0.4s ease-in-out;
-  --animate-slide-up: slideUp 0.5s ease-out;
+  /* ─── Core Animations ─── */
+  --animate-fade-in: fadeIn 0.3s ease-out;
+  --animate-slide-up: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-scale-in: scaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow-pulse: glowPulse 2s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s ease-in-out infinite;
+  --animate-spin-slow: spin 3s linear infinite;
 
   @keyframes fadeIn {
     0% {
@@ -33,7 +39,7 @@
 
   @keyframes slideUp {
     0% {
-      transform: translateY(20px);
+      transform: translateY(12px);
       opacity: 0;
     }
     100% {
@@ -41,25 +47,236 @@
       opacity: 1;
     }
   }
+
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes glowPulse {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-dash: dash 2s ease-in-out infinite;
+  --animate-gradient: gradientFlow 6s ease infinite;
+  --animate-orbit: orbit 8s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes gradientFlow {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(28px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(28px) rotate(-360deg);
+    }
+  }
+
+  @keyframes nodeAppear {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes edgeDraw {
+    from {
+      stroke-dashoffset: 120;
+      opacity: 0;
+    }
+    to {
+      stroke-dashoffset: 0;
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes labelFade {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes diamondPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+    }
+    50% {
+      box-shadow: 0 0 16px 4px rgba(34, 211, 238, 0.35);
+    }
+  }
 }
 
-/* Default dark theme CSS variables */
+/* ─── Default Dark Theme ─── */
 :root {
-  --bg: 13 13 15;
-  --surface: 20 20 22;
-  --surface-hover: 28 28 31;
-  --surface-elevated: 36 36 40;
-  --border: 42 42 46;
-  --text: 228 228 231;
-  --text-muted: 113 113 122;
-  --text-dim: 63 63 70;
-  --primary: 99 102 241;
-  --primary-hover: 79 70 229;
-  --primary-bg: 30 30 63;
-  --accent: 168 85 247;
+  --bg: 9 9 11;
+  --surface: 15 15 18;
+  --surface-hover: 24 24 28;
+  --surface-elevated: 32 32 38;
+  --border: 38 38 46;
+  --text: 240 240 245;
+  --text-muted: 115 115 128;
+  --text-dim: 55 55 65;
+  --primary: 129 140 248;
+  --primary-hover: 99 102 241;
+  --primary-bg: 24 24 58;
+  --accent: 196 130 249;
+  --grid: 255 255 255;
 }
 
-/* Scrollbar styling */
+/* ─── Editor Utilities ─── */
+.editor-studio-shell {
+  --color-background: rgb(var(--bg));
+  --color-surface: rgb(var(--surface));
+  --color-surface-hover: rgb(var(--surface-hover));
+  --color-surface-elevated: rgb(var(--surface-elevated));
+  --color-border: rgb(var(--border));
+  --color-text: rgb(var(--text));
+  --color-text-muted: rgb(var(--text-muted));
+  --color-text-dim: rgb(var(--text-dim));
+  --color-primary: rgb(var(--primary));
+  --color-primary-hover: rgb(var(--primary-hover));
+  --color-primary-bg: rgb(var(--primary-bg));
+  --color-accent: rgb(var(--accent));
+  background:
+    radial-gradient(circle at 22% 0%, rgb(var(--primary) / 0.08), transparent 32rem),
+    radial-gradient(circle at 78% 12%, rgb(var(--accent) / 0.06), transparent 34rem), rgb(var(--bg));
+}
+
+.editor-studio-main {
+  background:
+    linear-gradient(180deg, rgb(var(--surface) / 0.18), transparent 10rem), rgb(var(--bg) / 0.94);
+}
+
+.studio-pane {
+  background: rgb(var(--surface) / 0.82);
+  border: 1px solid rgb(var(--border) / 0.82);
+  border-radius: 10px;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.03) inset,
+    0 18px 54px rgb(0 0 0 / 0.22);
+}
+
+.studio-canvas {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(var(--primary) / 0.08), transparent 28rem),
+    rgb(var(--surface) / 0.5);
+  border: 1px solid rgb(var(--border) / 0.7);
+  border-radius: 10px;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.03) inset,
+    0 18px 54px rgb(0 0 0 / 0.18);
+}
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgb(var(--grid) / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--grid) / 0.045) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+.splitter-line {
+  height: 100%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.splitter-hitbox:hover .splitter-line,
+.splitter-hitbox:active .splitter-line {
+  background-color: #3b82f6;
+  width: 2px;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+}
+
+textarea.code-editor {
+  resize: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  background: transparent;
+  border: none;
+  caret-color: #3b82f6;
+}
+
+textarea.code-editor:focus {
+  outline: none;
+}
+
+/* ─── Scrollbar utilities ─── */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -70,23 +287,137 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(var(--border), 0.5);
-  border-radius: 3px;
+  background: rgb(var(--border) / 0.7);
+  border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--text-muted), 0.8);
+  background: rgb(var(--text-muted) / 0.6);
 }
 
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ─── Base Styles ─── */
 body {
   background-color: rgb(var(--bg));
   color: rgb(var(--text));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Landing page grid background */
+/* ─── Glass Panels ─── */
+.glass-panel {
+  background: rgb(var(--surface) / 0.82);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  border: 1px solid rgb(var(--border) / 0.72);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.04) inset,
+    0 12px 36px rgb(0 0 0 / 0.18);
+}
+
+.glass-surface {
+  background: rgb(var(--surface) / 0.74);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgb(var(--border) / 0.62);
+}
+
+/* ─── Ghost Borders (softer than hard borders) ─── */
+.border-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.border-glow {
+  border: 1px solid rgba(var(--primary), 0.2);
+  box-shadow: 0 0 12px rgba(var(--primary), 0.06);
+}
+
+/* ─── Floating HUD Shadows ─── */
+.shadow-hud {
+  box-shadow:
+    0 0 0 1px rgb(var(--border) / 0.56),
+    0 16px 42px rgb(0 0 0 / 0.22),
+    0 1px 3px rgb(0 0 0 / 0.16);
+}
+
+.shadow-float {
+  box-shadow:
+    0 0 0 1px rgb(var(--border) / 0.48),
+    0 22px 60px rgb(0 0 0 / 0.28),
+    0 4px 12px rgb(0 0 0 / 0.16);
+}
+
+/* ─── Focus Ring Utility ─── */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  box-shadow:
+    0 0 0 2px rgb(var(--bg)),
+    0 0 0 4px rgba(var(--primary), 0.5);
+}
+
+/* ─── Gradient Accent Lines ─── */
+.accent-line-top {
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgba(var(--primary), 0.4),
+    rgba(var(--accent), 0.3),
+    transparent
+  );
+  height: 1px;
+  width: 100%;
+}
+
+.accent-line-left {
+  background-image: linear-gradient(to bottom, transparent, rgba(var(--primary), 0.5), transparent);
+  width: 2px;
+  height: 100%;
+}
+
+/* ─── Kbd Badge ─── */
+kbd {
+  font-family: var(--font-family-mono);
+}
+
+/* ─── Skip Link ─── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 8px 16px;
+  background: rgb(var(--primary));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 9999;
+  border-radius: 0 0 6px 0;
+  text-decoration: none;
+  transition: top 0.1s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ─── Landing Grid ─── */
 .landing-grid {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

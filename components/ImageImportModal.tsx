@@ -1,5 +1,5 @@
+import { Icon } from '@iconify/react';
 import React, { useState, useRef } from 'react';
-import { UploadCloud, X, Loader2, ScanLine, FileWarning, ArrowRight } from 'lucide-react';
 
 interface ImageImportModalProps {
   onClose: () => void;
@@ -86,6 +86,7 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
       );
     } finally {
       setIsLoading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
@@ -96,7 +97,7 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
         <div className="flex items-center justify-between p-5 border-b border-white/5 bg-[#27272a]/50">
           <div>
             <h3 className="text-lg font-bold text-white flex items-center gap-2">
-              <ScanLine className="w-5 h-5 text-indigo-400" />
+              <Icon icon="lucide:scan-line" className="w-5 h-5 text-indigo-400" />
               Scan & Convert
             </h3>
             <p className="text-xs text-zinc-400 mt-1">
@@ -107,7 +108,7 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
             onClick={onClose}
             className="text-zinc-500 hover:text-white transition-colors p-1 hover:bg-white/5 rounded-lg"
           >
-            <X className="w-5 h-5" />
+            <Icon icon="lucide:x" className="w-5 h-5" />
           </button>
         </div>
 
@@ -126,7 +127,10 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
               onClick={() => fileInputRef.current?.click()}
             >
               <div className="w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <UploadCloud className="w-8 h-8 text-zinc-400 group-hover:text-indigo-400" />
+                <Icon
+                  icon="lucide:upload-cloud"
+                  className="w-8 h-8 text-zinc-400 group-hover:text-indigo-400"
+                />
               </div>
               <p className="text-sm font-medium text-white mb-1">Click or drag image here</p>
               <p className="text-xs text-zinc-500">Supports PNG, JPG, WEBP (Max 5MB)</p>
@@ -158,7 +162,10 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
               {isLoading && (
                 <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center z-10">
                   <div className="w-full h-1 bg-indigo-500/50 absolute top-0 animate-[scan_2s_ease-in-out_infinite]"></div>
-                  <Loader2 className="w-10 h-10 text-indigo-500 animate-spin mb-3" />
+                  <Icon
+                    icon="lucide:loader-2"
+                    className="w-10 h-10 text-indigo-500 animate-spin mb-3"
+                  />
                   <span className="text-sm font-mono text-indigo-300 animate-pulse">
                     Analyzing Structure...
                   </span>
@@ -169,7 +176,7 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
 
           {error && (
             <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-2 text-xs text-red-400">
-              <FileWarning className="w-4 h-4 shrink-0" />
+              <Icon icon="lucide:file-warning" className="w-4 h-4 shrink-0" />
               {error}
             </div>
           )}
@@ -190,7 +197,7 @@ const ImageImportModal: React.FC<ImageImportModalProps> = ({ onClose, onImport }
             className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-bold shadow-lg shadow-indigo-500/20 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {isLoading ? 'Converting...' : 'Convert to Diagram'}
-            {!isLoading && <ArrowRight className="w-4 h-4" />}
+            {!isLoading && <Icon icon="lucide:arrow-right" className="w-4 h-4" />}
           </button>
         </div>
       </div>
