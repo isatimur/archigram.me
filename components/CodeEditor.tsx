@@ -153,10 +153,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           className: isLight ? 'text-blue-600 font-semibold' : 'text-primary font-semibold',
         }, // Keywords -> Primary Color
         {
-          regex: /(?:-->>|-->|---|->|->>|==>|==|-\.->|-\.-)/,
-          className: isLight ? 'text-cyan-600 font-bold' : 'text-cyan-400 font-bold',
-        }, // Arrows
-        {
           regex: /\b(?:left of|right of|over|TB|TD|BT|RL|LR)\b/,
           className: isLight ? 'text-orange-600' : 'text-orange-400',
         }, // Directions
