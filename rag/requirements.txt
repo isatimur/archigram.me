@@ -4,7 +4,7 @@
 # Web Framework
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
-python-multipart==0.0.22
+python-multipart==0.0.26
 
 # Validation & Configuration
 pydantic==2.10.5
@@ -18,7 +18,7 @@ sentence-transformers>=3.0.0
 torch>=2.0.0
 
 # Document Parsing
-pypdf==6.9.1
+pypdf==6.10.2
 
 # Logging
 structlog==24.4.0
