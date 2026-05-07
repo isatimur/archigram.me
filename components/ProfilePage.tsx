@@ -17,6 +17,19 @@ interface ProfilePageProps {
   onDeleteProject: (id: string) => void;
 }
 
+function normalizeHttpUrl(value: string): string | null {
+  try {
+    const url = new URL(value.trim());
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
+    if (!url.hostname) return null;
+    url.username = '';
+    url.password = '';
+    return url.href;
+  } catch {
+    return null;
+  }
+}
+
 const ProfilePage: React.FC<ProfilePageProps> = ({
   user,
   projects,
@@ -37,12 +50,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
   // Sanitize social link: only allow http/https to prevent javascript: XSS
   const safeSocialHref = React.useMemo(() => {
     if (!socialLink) return null;
-    try {
-      const url = new URL(socialLink);
-      return url.protocol === 'http:' || url.protocol === 'https:' ? socialLink : null;
-    } catch {
-      return null;
-    }
+    return normalizeHttpUrl(socialLink);
   }, [socialLink]);
 
   useEffect(() => {

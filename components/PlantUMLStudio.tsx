@@ -36,6 +36,33 @@ A --> User: Done
 deactivate A
 @enduml`;
 
+const DEFAULT_PLANTUML_SERVER_URL = 'https://plantuml.beyond9to6.com';
+
+function normalizePlantUmlServerUrl(value: string): string | null {
+  try {
+    const url = new URL(value.trim());
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
+    if (!url.hostname) return null;
+    url.username = '';
+    url.password = '';
+    url.hash = '';
+    url.search = '';
+    return url.href.replace(/\/$/, '');
+  } catch {
+    return null;
+  }
+}
+
+function buildPlantUmlUrl(
+  serverUrl: string,
+  format: 'svg' | 'png' | 'txt' | 'pdf',
+  encoded: string
+) {
+  const safeServerUrl = normalizePlantUmlServerUrl(serverUrl);
+  if (!safeServerUrl) return null;
+  return `${safeServerUrl}/${format}/${encoded}`;
+}
+
 // --- PlantUML Encoding Logic (Manual Implementation) ---
 function encode6bit(b: number): string {
   if (b < 10) return String.fromCharCode(48 + b);
@@ -98,7 +125,7 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
   const [copied, setCopied] = useState(false);
 
   // Server Configuration State - Updated default URL
-  const [serverUrl, setServerUrl] = useState('https://plantuml.beyond9to6.com');
+  const [serverUrl, setServerUrl] = useState(DEFAULT_PLANTUML_SERVER_URL);
   const [showSettings, setShowSettings] = useState(false);
 
   // Editor History State
@@ -146,10 +173,16 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
 
         const encoded = encodePlantUML(code);
         if (encoded) {
-          const baseUrl = serverUrl.replace(/\/$/, '');
-          const url = `${baseUrl}/svg/${encoded}`;
+          const url = buildPlantUmlUrl(serverUrl, 'svg', encoded);
 
-          if (isMounted) setImageUrl(url);
+          if (isMounted) {
+            if (url) {
+              setImageUrl(url);
+            } else {
+              setImageUrl('');
+              toast.error('PlantUML server URL must be a valid HTTP or HTTPS URL.');
+            }
+          }
         }
       } catch (e) {
         console.error('PlantUML Encode Error', e);
@@ -177,8 +210,11 @@ const PlantUMLStudio: React.FC<PlantUMLStudioProps> = ({ onNavigate }) => {
     const encoded = encodePlantUML(code);
     if (!encoded) return;
 
-    const baseUrl = serverUrl.replace(/\/$/, '');
-    const url = `${baseUrl}/${format}/${encoded}`;
+    const url = buildPlantUmlUrl(serverUrl, format, encoded);
+    if (!url) {
+      toast.error('PlantUML server URL must be a valid HTTP or HTTPS URL.');
+      return;
+    }
 
     try {
       // For images/pdf we might want to fetch as blob to force download name

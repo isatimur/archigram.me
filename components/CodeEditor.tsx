@@ -20,6 +20,11 @@ interface CodeEditorProps {
   isFixing?: boolean;
 }
 
+type HighlightPattern = {
+  regex: RegExp;
+  className: string;
+};
+
 const CodeEditor: React.FC<CodeEditorProps> = ({
   code,
   onChange,
@@ -122,59 +127,56 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   // Robust Tokenizer using Theme Variables for Consistency
   const highlightCode = useCallback(
     (text: string) => {
-      if (!text) return '';
+      if (!text) return null;
 
       const isLight = theme === 'neutral';
 
-      const patterns = [
+      const patterns: HighlightPattern[] = [
         {
-          regex: /(%%.*)/,
+          regex: /%%.*/,
           className: isLight
             ? 'text-slate-500 italic opacity-80'
             : 'text-text-muted italic opacity-70',
         }, // Comments
         {
-          regex: /("[^"]*")/,
+          regex: /"[^"]*"/,
           className: isLight ? 'text-emerald-600 font-medium' : 'text-emerald-400',
         }, // Strings
         {
           regex:
-            /\b(sequenceDiagram|classDiagram|graph|flowchart|gantt|erDiagram|pie|stateDiagram|stateDiagram-v2|gitGraph|journey|mindmap|timeline)\b/,
+            /\b(?:sequenceDiagram|classDiagram|graph|flowchart|gantt|erDiagram|pie|stateDiagram|stateDiagram-v2|gitGraph|journey|mindmap|timeline)\b/,
           className: isLight ? 'text-purple-600 font-bold' : 'text-accent font-bold',
         }, // Types -> Accent Color
         {
           regex:
-            /\b(participant|actor|class|subgraph|end|note|alt|opt|loop|else|rect|par|and|break|critical|autonumber|activate|deactivate|title|style|linkStyle|classDef)\b/,
+            /\b(?:participant|actor|class|subgraph|end|note|alt|opt|loop|else|rect|par|and|break|critical|autonumber|activate|deactivate|title|style|linkStyle|classDef)\b/,
           className: isLight ? 'text-blue-600 font-semibold' : 'text-primary font-semibold',
         }, // Keywords -> Primary Color
         {
-          regex: /(-->>|-->|---|->|->>|==>|==|-\.->|-\.-)/,
+          regex: /(?:-->>|-->|---|->|->>|==>|==|-\.->|-\.-)/,
           className: isLight ? 'text-cyan-600 font-bold' : 'text-cyan-400 font-bold',
         }, // Arrows
         {
-          regex: /\b(left of|right of|over|TB|TD|BT|RL|LR)\b/,
+          regex: /\b(?:left of|right of|over|TB|TD|BT|RL|LR)\b/,
           className: isLight ? 'text-orange-600' : 'text-orange-400',
         }, // Directions
         {
-          regex: /([[\](){}])/,
+          regex: /[[\](){}]/,
           className: isLight ? 'text-yellow-600 font-bold' : 'text-yellow-400',
         }, // Brackets & Shapes
       ];
 
-      const combinedSource = patterns.map((p) => p.regex.source).join('|');
+      const combinedSource = patterns.map((p) => `(${p.regex.source})`).join('|');
       const combinedRegex = new RegExp(combinedSource, 'g');
 
       let lastIndex = 0;
-      let html = '';
+      const tokens: React.ReactNode[] = [];
+      let key = 0;
       let match;
 
       while ((match = combinedRegex.exec(text)) !== null) {
         if (match.index > lastIndex) {
-          html += text
-            .slice(lastIndex, match.index)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
+          tokens.push(text.slice(lastIndex, match.index));
         }
 
         let matchedGroupIndex = -1;
@@ -185,32 +187,31 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           }
         }
 
-        const content = match[0].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
         if (matchedGroupIndex !== -1 && patterns[matchedGroupIndex]) {
-          html += `<span class="${patterns[matchedGroupIndex].className}">${content}</span>`;
+          tokens.push(
+            <span key={key++} className={patterns[matchedGroupIndex].className}>
+              {match[0]}
+            </span>
+          );
         } else {
-          html += content;
+          tokens.push(match[0]);
         }
 
         lastIndex = combinedRegex.lastIndex;
       }
 
       if (lastIndex < text.length) {
-        html += text
-          .slice(lastIndex)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;');
+        tokens.push(text.slice(lastIndex));
       }
 
-      return html;
+      tokens.push('\n');
+      return tokens;
     },
     [theme]
   );
 
   // Memoize highlighted code to avoid re-tokenizing on every render
-  const highlightedHtml = useMemo(() => highlightCode(code), [code, highlightCode]);
+  const highlightedCode = useMemo(() => highlightCode(code), [code, highlightCode]);
 
   const lineCount = code.split('\n').length;
 
@@ -323,8 +324,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
             ref={preRef}
             className="absolute inset-0 p-4 m-0 font-mono text-sm leading-6 pointer-events-none whitespace-pre overflow-hidden text-text transition-colors duration-300"
             style={{ fontFamily: '"JetBrains Mono", monospace' }}
-            dangerouslySetInnerHTML={{ __html: highlightedHtml + '<br/>' }}
-          />
+          >
+            {highlightedCode}
+          </pre>
 
           {/* Input Layer */}
           <textarea
