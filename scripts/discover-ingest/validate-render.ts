@@ -148,7 +148,7 @@ async function main(): Promise<void> {
 
       if (!skipRender) {
         const rendered = await tryRender(raw.mermaidCode);
-        if (!rendered.ok) {
+        if (rendered.ok === false) {
           rejected++;
           rejectReasons.set('render-failed', (rejectReasons.get('render-failed') ?? 0) + 1);
           if (renderFailureSamples.length < MAX_RENDER_SAMPLES) {
