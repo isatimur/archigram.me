@@ -34,6 +34,7 @@ const DiagramPreview = lazy(() => import('@/components/DiagramPreview'));
 const WebGLParticles = lazy(() => import('@/components/WebGLParticles'));
 const PlantUMLStudio = lazy(() => import('@/components/PlantUMLStudio'));
 const BPMNStudio = lazy(() => import('@/components/BPMNStudio'));
+const LibraryRoot = lazy(() => import('@/components/library/LibraryRoot'));
 
 type ThemeVars = React.CSSProperties & Record<`--${string}`, string>;
 
@@ -198,7 +199,7 @@ export default function EditorShell() {
 
   const { handleExportSvg, handleExportPng } = useExportHandlers({ code, theme, customStyle });
 
-  const { currentView, setCurrentView } = useAppRouter();
+  const { currentView, setCurrentView, libraryRoute } = useAppRouter();
 
   const handleFork = (diagram: CommunityDiagram) => {
     handleCreateFromTemplate(diagram.title, diagram.code);
@@ -344,6 +345,9 @@ export default function EditorShell() {
             />
           )}
           {currentView === 'profile' && !user && <LandingPage onNavigate={setCurrentView} />}
+          {currentView === 'library' && (
+            <LibraryRoot route={libraryRoute} onNavigate={setCurrentView} />
+          )}
         </Suspense>
       </div>
     );

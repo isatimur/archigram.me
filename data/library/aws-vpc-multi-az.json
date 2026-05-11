@@ -1,0 +1,36 @@
+{
+  "slug": "aws-vpc-multi-az",
+  "title": "AWS VPC with Public and Private Subnets across Multiple AZs",
+  "category": "cloud-architecture",
+  "diagramType": "flowchart",
+  "code": "flowchart TB\n    INET((Internet))\n    IGW[Internet Gateway]\n    NAT1[NAT Gateway AZ-A]\n    NAT2[NAT Gateway AZ-B]\n\n    subgraph VPC[VPC 10.0.0.0/16]\n        subgraph AZA[Availability Zone A]\n            PUBA[Public Subnet 10.0.0.0/24]\n            PRIA[Private Subnet 10.0.10.0/24]\n            DBA[Isolated Subnet 10.0.20.0/24]\n        end\n        subgraph AZB[Availability Zone B]\n            PUBB[Public Subnet 10.0.1.0/24]\n            PRIB[Private Subnet 10.0.11.0/24]\n            DBB[Isolated Subnet 10.0.21.0/24]\n        end\n    end\n\n    INET --> IGW\n    IGW --> PUBA\n    IGW --> PUBB\n    PUBA --> NAT1\n    PUBB --> NAT2\n    PRIA --> NAT1\n    PRIB --> NAT2\n    PRIA -.-> DBA\n    PRIB -.-> DBB\n    DBA -.-> DBB",
+  "preview": {
+    "svg": "",
+    "width": 1200,
+    "height": 900
+  },
+  "ogImagePath": "/og/library/aws-vpc-multi-az.png",
+  "source": {
+    "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-getting-started.html",
+    "sourceType": "editorial",
+    "license": "CC-BY-4.0",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "Production-ready AWS VPC layout with public, private, and isolated subnets duplicated across two Availability Zones for HA, with NAT gateways for outbound private traffic.",
+    "whatItShows": "A multi-AZ VPC topology that AWS recommends for any workload that needs to survive a single-zone outage. Each AZ gets three subnets: a public subnet for load balancers and bastion hosts, a private subnet for application servers (no public IPs, outbound via NAT), and an isolated subnet for databases (no NAT route — only reachable from private subnets). The Internet Gateway handles inbound public traffic; NAT Gateways handle outbound private traffic. Database subnets in different AZs are linked for replication.",
+    "whenToUse": "Use this layout for any AWS workload that needs four-nines availability or stores regulated data. The three-tier subnet split is the right default for compliance audits — it gives auditors a clear story about which workloads can talk to the internet and which cannot. It is also the layout most Terraform and CDK modules assume, so picking it makes future automation easier.",
+    "howToAdapt": "If cost is a concern, you can run a single shared NAT Gateway across both AZs (cheaper but loses HA on outbound traffic — a single-zone failure breaks egress for the whole VPC). For latency-sensitive apps, add a third AZ with the same three-subnet split. If you do not need a dedicated isolated tier, merge the database into the private subnet and rely on security groups for isolation. For VPC peering or AWS Transit Gateway, leave room in the CIDR by allocating /20 subnets instead of /24.",
+    "keyConcepts": ["vpc", "multi-az", "nat gateway", "subnet tier", "high availability"],
+    "fallback": false
+  },
+  "related": ["aws-three-tier-microservices", "blue-green-deployment"],
+  "tags": ["aws", "vpc", "networking", "multi-az", "high-availability"],
+  "qualityScore": 90,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

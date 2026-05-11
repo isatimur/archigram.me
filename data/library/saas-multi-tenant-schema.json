@@ -1,0 +1,42 @@
+{
+  "slug": "saas-multi-tenant-schema",
+  "title": "Multi-Tenant SaaS Database Schema (Shared Database, Tenant Isolation)",
+  "category": "database-er",
+  "diagramType": "er",
+  "code": "erDiagram\n    TENANT ||--o{ USER : has\n    TENANT ||--o{ WORKSPACE : owns\n    WORKSPACE ||--o{ PROJECT : contains\n    PROJECT ||--o{ DOCUMENT : contains\n    USER ||--o{ MEMBERSHIP : has\n    WORKSPACE ||--o{ MEMBERSHIP : has\n    USER ||--o{ AUDIT_LOG : creates\n    TENANT ||--o{ SUBSCRIPTION : has\n    SUBSCRIPTION ||--o{ INVOICE : produces\n\n    TENANT {\n        uuid id PK\n        string name\n        string plan_tier\n        timestamp created_at\n        timestamp deleted_at\n    }\n    USER {\n        uuid id PK\n        uuid tenant_id FK\n        string email UK\n        string display_name\n        timestamp created_at\n    }\n    WORKSPACE {\n        uuid id PK\n        uuid tenant_id FK\n        string name\n        string slug\n        timestamp created_at\n    }\n    MEMBERSHIP {\n        uuid id PK\n        uuid user_id FK\n        uuid workspace_id FK\n        string role\n        timestamp joined_at\n    }\n    PROJECT {\n        uuid id PK\n        uuid workspace_id FK\n        string name\n        timestamp created_at\n    }\n    DOCUMENT {\n        uuid id PK\n        uuid project_id FK\n        string title\n        jsonb content\n        timestamp updated_at\n    }\n    SUBSCRIPTION {\n        uuid id PK\n        uuid tenant_id FK\n        string stripe_sub_id\n        string status\n        timestamp current_period_end\n    }\n    INVOICE {\n        uuid id PK\n        uuid subscription_id FK\n        int amount_cents\n        string status\n        timestamp issued_at\n    }\n    AUDIT_LOG {\n        uuid id PK\n        uuid tenant_id FK\n        uuid user_id FK\n        string action\n        jsonb metadata\n        timestamp at\n    }",
+  "preview": {
+    "svg": "",
+    "width": 1300,
+    "height": 1000
+  },
+  "ogImagePath": "/og/library/saas-multi-tenant-schema.png",
+  "source": {
+    "url": "https://aws.amazon.com/blogs/database/multi-tenant-data-isolation-with-postgresql-row-level-security/",
+    "sourceType": "editorial",
+    "license": "CC-BY-4.0",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "ER diagram for a B2B SaaS schema using the shared-database, tenant-id pattern — tenants own users, workspaces, projects, documents, subscriptions, and audit logs.",
+    "whatItShows": "A canonical multi-tenant SaaS data model. Every business object (user, workspace, project, document, audit log) carries a tenant_id foreign key so a single shared Postgres database can serve all tenants while enforcing row-level isolation. Workspaces sit between tenants and projects to model the most common product hierarchy (Stripe-style: Account → Workspace → Project → Resource). Memberships are a many-to-many join between users and workspaces with a role column. Subscriptions and invoices integrate with Stripe. Audit logs are append-only and indexed by tenant + user + time.",
+    "whenToUse": "Use the shared-database pattern (this diagram) when you have hundreds-to-thousands of tenants of similar size, want simple operations, and trust application-level or row-level-security tenant filters. Switch to a database-per-tenant pattern only when you need strong physical isolation (regulated industries, very large per-tenant data, noisy-neighbor risk) or when individual tenants demand it contractually.",
+    "howToAdapt": "For Postgres, enforce isolation with Row Level Security policies on tenant_id rather than relying solely on application code (defense in depth). For very large tenants, partition the largest tables (documents, audit_logs) by tenant_id range or hash. If you outgrow Postgres write throughput, add a citus extension and shard by tenant_id — this schema is designed for clean sharding. For Lite/Free plans, drop the workspace layer and let projects belong directly to the tenant. Add soft-delete (deleted_at) to every table you might want to undelete.",
+    "keyConcepts": [
+      "multi-tenancy",
+      "row-level security",
+      "saas schema",
+      "stripe integration",
+      "audit log"
+    ],
+    "fallback": false
+  },
+  "related": ["order-lifecycle", "aws-three-tier-microservices"],
+  "tags": ["postgres", "saas", "multi-tenant", "rls", "schema-design", "stripe"],
+  "qualityScore": 88,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

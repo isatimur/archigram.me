@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-11T00:00:00.000Z",
+  "count": 8,
+  "diagrams": [
+    {
+      "slug": "rag-pipeline",
+      "title": "Production RAG Pipeline (Ingest → Embed → Store → Retrieve → Generate)",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 96,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["rag", "llm", "vector-database", "embeddings", "ai", "retrieval"]
+    },
+    {
+      "slug": "oauth2-authorization-code",
+      "title": "OAuth 2.0 Authorization Code Flow with PKCE",
+      "category": "auth-flows",
+      "diagramType": "sequence",
+      "qualityScore": 95,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["oauth", "auth", "pkce", "openid-connect", "security"]
+    },
+    {
+      "slug": "aws-three-tier-microservices",
+      "title": "AWS Three-Tier Microservices Architecture",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 92,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["aws", "microservices", "three-tier", "alb", "rds", "sqs", "lambda"]
+    },
+    {
+      "slug": "kafka-stream-processing",
+      "title": "Kafka Stream Processing Pipeline (Producer → Topics → Consumers → Sinks)",
+      "category": "data-pipeline",
+      "diagramType": "flowchart",
+      "qualityScore": 91,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["kafka", "streaming", "etl", "cdc", "flink", "ksqldb"]
+    },
+    {
+      "slug": "aws-vpc-multi-az",
+      "title": "AWS VPC with Public and Private Subnets across Multiple AZs",
+      "category": "cloud-architecture",
+      "diagramType": "flowchart",
+      "qualityScore": 90,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["aws", "vpc", "networking", "multi-az", "high-availability"]
+    },
+    {
+      "slug": "blue-green-deployment",
+      "title": "Blue-Green Deployment State Machine",
+      "category": "devops-cicd",
+      "diagramType": "state",
+      "qualityScore": 89,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["devops", "deployment", "blue-green", "canary", "release-engineering"]
+    },
+    {
+      "slug": "saas-multi-tenant-schema",
+      "title": "Multi-Tenant SaaS Database Schema (Shared Database, Tenant Isolation)",
+      "category": "database-er",
+      "diagramType": "er",
+      "qualityScore": 88,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["postgres", "saas", "multi-tenant", "rls", "schema-design", "stripe"]
+    },
+    {
+      "slug": "order-lifecycle",
+      "title": "E-commerce Order Lifecycle State Machine",
+      "category": "state-machines",
+      "diagramType": "state",
+      "qualityScore": 87,
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["ecommerce", "state-machine", "order", "payment", "fulfillment"]
+    }
+  ]
+}

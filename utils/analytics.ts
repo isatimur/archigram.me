@@ -39,6 +39,15 @@ export const analytics = {
     trackEvent('Diagram Forked');
   },
 
+  // Library (popular Mermaid diagrams from the web)
+  libraryForked: (slug: string, category: string) => {
+    trackEvent('Library Diagram Forked', { slug, category });
+  },
+
+  libraryDiagramViewed: (slug: string, category: string) => {
+    trackEvent('Library Diagram Viewed', { slug, category });
+  },
+
   diagramLiked: () => {
     trackEvent('Diagram Liked');
   },
@@ -63,6 +72,14 @@ export const analytics = {
   // Navigation
   viewChanged: (view: string) => {
     trackEvent('View Changed', { view });
+  },
+
+  marketingCtaClicked: (cta: string, surface: string) => {
+    trackEvent('Marketing CTA Clicked', { cta, surface });
+  },
+
+  outboundLinkClicked: (destination: string, surface: string) => {
+    trackEvent('Outbound Link Clicked', { destination, surface });
   },
 
   // Project actions

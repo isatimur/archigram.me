@@ -1,0 +1,36 @@
+{
+  "slug": "kafka-stream-processing",
+  "title": "Kafka Stream Processing Pipeline (Producer → Topics → Consumers → Sinks)",
+  "category": "data-pipeline",
+  "diagramType": "flowchart",
+  "code": "flowchart LR\n    subgraph Sources\n        APP[App Events]\n        DB[CDC from Postgres]\n        IOT[IoT Telemetry]\n    end\n\n    subgraph Producers\n        P1[Event Producer]\n        P2[Debezium]\n        P3[MQTT Bridge]\n    end\n\n    subgraph Kafka[Apache Kafka Cluster]\n        T1[(events.user)]\n        T2[(cdc.orders)]\n        T3[(telemetry.raw)]\n        T4[(events.enriched)]\n    end\n\n    subgraph Processing\n        SP1[Kafka Streams: Enrich]\n        SP2[ksqlDB: Aggregate]\n        SP3[Flink Job: Sessionize]\n    end\n\n    subgraph Sinks\n        WH[(Snowflake)]\n        ES[(Elasticsearch)]\n        S3[(S3 Data Lake)]\n        ALERT[Alerting Service]\n    end\n\n    APP --> P1 --> T1\n    DB --> P2 --> T2\n    IOT --> P3 --> T3\n\n    T1 --> SP1\n    T2 --> SP1\n    SP1 --> T4\n    T4 --> SP2\n    T3 --> SP3\n\n    SP2 --> WH\n    SP2 --> ES\n    SP3 --> S3\n    SP3 --> ALERT",
+  "preview": {
+    "svg": "",
+    "width": 1300,
+    "height": 800
+  },
+  "ogImagePath": "/og/library/kafka-stream-processing.png",
+  "source": {
+    "url": "https://kafka.apache.org/documentation/streams/",
+    "sourceType": "editorial",
+    "license": "Apache-2.0",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "End-to-end Kafka pipeline showing app events, CDC, and IoT telemetry flowing through topics, stream processors (Kafka Streams, ksqlDB, Flink), and sinking into Snowflake, Elasticsearch, and S3.",
+    "whatItShows": "A typical event-driven data platform built on Kafka. Three source families produce into Kafka topics: application events through a custom producer, change-data-capture from Postgres via Debezium, and IoT telemetry through an MQTT bridge. Stream processors then enrich, aggregate, and sessionize; a Kafka Streams job joins user events with CDC data into an enriched topic, ksqlDB rolls aggregates for the warehouse and search index, and a Flink job handles sessionization for IoT before writing to the lake and triggering alerts.",
+    "whenToUse": "Pick this shape when you need a single source of truth for events that fans out to multiple consumers — analytics, search, alerting, and downstream services — without each producer having to know about every consumer. It is the right backbone when more than one team needs to subscribe to the same firehose, when you want exactly-once semantics for downstream sinks, and when you anticipate adding new consumers over time without changing the producers.",
+    "howToAdapt": "If you do not have an on-prem Kafka, swap in Confluent Cloud, AWS MSK, or Redpanda — the topology stays the same. For lower operational overhead, replace the dedicated Flink cluster with Kafka Streams everywhere (good up to mid-volume; Flink wins for high cardinality state and complex windowing). If you are starting small, collapse the three source families into one topic and one consumer group; you can always split later. For ML feature pipelines, add a Feature Store sink alongside Snowflake.",
+    "keyConcepts": ["kafka", "stream processing", "cdc", "data pipeline", "lakehouse"],
+    "fallback": false
+  },
+  "related": ["rag-pipeline", "aws-three-tier-microservices"],
+  "tags": ["kafka", "streaming", "etl", "cdc", "flink", "ksqldb"],
+  "qualityScore": 91,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

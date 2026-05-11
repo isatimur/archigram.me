@@ -1,0 +1,36 @@
+{
+  "slug": "rag-pipeline",
+  "title": "Production RAG Pipeline (Ingest → Embed → Store → Retrieve → Generate)",
+  "category": "ml-ai",
+  "diagramType": "flowchart",
+  "code": "flowchart LR\n    subgraph Ingest[Ingest Pipeline]\n        D1[Docs / Wiki]\n        D2[PDFs]\n        D3[Code & Tickets]\n        EXT[Document Loaders]\n        CHUNK[Chunker + Cleaner]\n        EMBED1[Embedding Model]\n    end\n\n    subgraph Store[Vector Store]\n        VEC[(Vector DB: pgvector / Pinecone)]\n        META[(Metadata Index)]\n    end\n\n    subgraph Query[Query Pipeline]\n        Q[User Query]\n        EMBED2[Embedding Model]\n        RET[Hybrid Retriever]\n        RR[Reranker]\n        LLM[LLM with Context]\n        ANS[Answer + Citations]\n    end\n\n    subgraph Eval[Evaluation Loop]\n        FB[User Feedback]\n        EVAL[Offline Evals]\n    end\n\n    D1 --> EXT\n    D2 --> EXT\n    D3 --> EXT\n    EXT --> CHUNK --> EMBED1 --> VEC\n    CHUNK --> META\n\n    Q --> EMBED2 --> RET\n    META --> RET\n    VEC --> RET\n    RET --> RR --> LLM --> ANS\n    ANS --> FB --> EVAL\n    EVAL -.-> CHUNK\n    EVAL -.-> RR",
+  "preview": {
+    "svg": "",
+    "width": 1300,
+    "height": 800
+  },
+  "ogImagePath": "/og/library/rag-pipeline.png",
+  "source": {
+    "url": "https://docs.langchain.com/docs/use-cases/question-answering",
+    "sourceType": "editorial",
+    "license": "MIT",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "Production-grade Retrieval-Augmented Generation pipeline showing offline ingest (chunk + embed + store) and online query (retrieve + rerank + generate) with a feedback loop for continuous evals.",
+    "whatItShows": "A RAG architecture in two halves. The ingest pipeline pulls source documents (wikis, PDFs, code, tickets) through loaders, normalizes and chunks them, computes embeddings, and writes vectors plus filterable metadata to a vector store. At query time, the user's question is embedded, retrieved against both the vector index and the metadata index (hybrid search), reranked by a cross-encoder for precision, and passed to an LLM as grounded context. Answers go back with citations. Feedback feeds an evaluation loop that improves the chunker and the reranker over time.",
+    "whenToUse": "Use RAG whenever the LLM needs to answer questions over a corpus that does not fit in its context window or that updates frequently — internal documentation Q&A, customer support copilots, code search, and compliance assistants. It is also the right starting point when fine-tuning is overkill or when answers must be grounded in citable sources for audit reasons.",
+    "howToAdapt": "If you are early, start with a single source, naive chunking, and pgvector — you can ship in days and the architecture compose-ups cleanly. Add the reranker once you can measure precision@k slipping below your bar. For multi-tenant SaaS, store a tenant_id on every chunk and filter at retrieval time. For long documents, switch from naive splitting to semantic or structured chunking. Replace the dense retriever with hybrid (BM25 + dense) when factual recall matters more than fluency. For latency-sensitive UX, cache popular query embeddings and stream the LLM response.",
+    "keyConcepts": ["rag", "vector store", "hybrid search", "reranker", "llm grounding"],
+    "fallback": false
+  },
+  "related": ["kafka-stream-processing", "aws-three-tier-microservices"],
+  "tags": ["rag", "llm", "vector-database", "embeddings", "ai", "retrieval"],
+  "qualityScore": 96,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

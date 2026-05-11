@@ -1,0 +1,32 @@
+[
+  {
+    "sourceType": "mermaid-docs",
+    "sourceUrl": "https://raw.githubusercontent.com/mermaid-js/mermaid/develop/packages/mermaid/src/docs/syntax/sequenceDiagram.md",
+    "repo": "mermaid-js/mermaid",
+    "licenseSpdx": "MIT",
+    "stars": 80000,
+    "fetchedAt": "2026-05-10T12:30:00.000Z",
+    "rawContext": "## Sequence diagram example\nCanonical example from the official Mermaid docs.",
+    "mermaidCode": "sequenceDiagram\n    Alice->>John: Hello John, how are you?\n    loop Healthcheck\n        John->>John: Fight against hypochondria\n    end\n    Note right of John: Rational thoughts <br/>prevail!\n    John-->>Alice: Great!\n    John->>Bob: How about you?\n    Bob-->>John: Jolly good!"
+  },
+  {
+    "sourceType": "mermaid-docs",
+    "sourceUrl": "https://raw.githubusercontent.com/mermaid-js/mermaid/develop/packages/mermaid/src/docs/syntax/stateDiagram.md",
+    "repo": "mermaid-js/mermaid",
+    "licenseSpdx": "MIT",
+    "stars": 80000,
+    "fetchedAt": "2026-05-10T12:31:00.000Z",
+    "rawContext": "## State diagram example\nCanonical example showing nested states and forks.",
+    "mermaidCode": "stateDiagram-v2\n    [*] --> Still\n    Still --> [*]\n    Still --> Moving\n    Moving --> Still\n    Moving --> Crash\n    Crash --> [*]\n    state Moving {\n        [*] --> Accelerating\n        Accelerating --> Cruising\n        Cruising --> Decelerating\n        Decelerating --> [*]\n    }"
+  },
+  {
+    "sourceType": "mermaid-docs",
+    "sourceUrl": "https://raw.githubusercontent.com/mermaid-js/mermaid/develop/packages/mermaid/src/docs/syntax/gantt.md",
+    "repo": "mermaid-js/mermaid",
+    "licenseSpdx": "MIT",
+    "stars": 80000,
+    "fetchedAt": "2026-05-10T12:32:00.000Z",
+    "rawContext": "## Gantt example\nProject schedule for a software release.",
+    "mermaidCode": "gantt\n    title Release Plan\n    dateFormat YYYY-MM-DD\n    section Design\n    Spec       :done,    a1, 2026-01-01, 14d\n    Review     :active,  a2, after a1, 7d\n    section Build\n    Feature A  :         b1, after a2, 21d\n    Feature B  :         b2, after b1, 14d\n    section Release\n    Beta       :         c1, after b2, 7d\n    GA         :crit,    c2, after c1, 3d"
+  }
+]

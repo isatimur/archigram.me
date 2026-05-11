@@ -1,0 +1,32 @@
+[
+  {
+    "sourceType": "github-gist",
+    "sourceUrl": "https://gist.github.com/devops-fan/abc123",
+    "repo": "devops-fan/abc123",
+    "licenseSpdx": "CC0-1.0",
+    "stars": 110,
+    "fetchedAt": "2026-05-10T12:10:00.000Z",
+    "rawContext": "Blue/green deployment state machine.",
+    "mermaidCode": "stateDiagram-v2\n    [*] --> Blue\n    Blue --> DeployingGreen: New release\n    DeployingGreen --> SmokeFailed: Tests fail\n    SmokeFailed --> Blue: Rollback\n    DeployingGreen --> Canary: Tests pass\n    Canary --> Rollback: SLO breach\n    Rollback --> Blue\n    Canary --> RampUp: SLOs healthy\n    RampUp --> Green: Full cutover\n    Green --> [*]: Promote"
+  },
+  {
+    "sourceType": "github-gist",
+    "sourceUrl": "https://gist.github.com/ml-eng/def456",
+    "repo": "ml-eng/def456",
+    "licenseSpdx": null,
+    "stars": 38,
+    "fetchedAt": "2026-05-10T12:11:00.000Z",
+    "rawContext": "RAG pipeline sketch for an internal LLM.",
+    "mermaidCode": "flowchart TD\n    Docs[Source Docs] --> Loader[Doc Loader]\n    Loader --> Chunk[Chunker]\n    Chunk --> Embed[Embedding Model]\n    Embed --> Vec[(Vector Store)]\n    User[User Query] --> Embed2[Query Embedder]\n    Embed2 --> Search[Top-K Retrieval]\n    Vec --> Search\n    Search --> Rerank[Cross-Encoder Rerank]\n    Rerank --> Prompt[Prompt Builder]\n    Prompt --> LLM[LLM]\n    LLM --> Answer[Answer]"
+  },
+  {
+    "sourceType": "github-gist",
+    "sourceUrl": "https://gist.github.com/k8s-ninja/ghi789",
+    "repo": "k8s-ninja/ghi789",
+    "licenseSpdx": "MIT",
+    "stars": 220,
+    "fetchedAt": "2026-05-10T12:12:00.000Z",
+    "rawContext": "GitOps deployment flow.",
+    "mermaidCode": "flowchart LR\n    Dev[Developer] -->|git push| GH[GitHub Repo]\n    GH -->|webhook| CI[CI Build]\n    CI --> Reg[Container Registry]\n    GH -->|update manifest| Manifest[Manifest Repo]\n    Manifest --> ArgoCD[ArgoCD]\n    ArgoCD --> K8s[Kubernetes Cluster]\n    Reg --> K8s\n    K8s --> Pods[Workload Pods]\n    Pods --> LB[Load Balancer]"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "slug": "blue-green-deployment",
+  "title": "Blue-Green Deployment State Machine",
+  "category": "devops-cicd",
+  "diagramType": "state",
+  "code": "stateDiagram-v2\n    [*] --> BlueLive\n    BlueLive: Blue Live (100% traffic)\\nGreen idle\n\n    BlueLive --> DeployingGreen: New release\n    DeployingGreen: Deploying to Green\\nRun smoke tests\n\n    DeployingGreen --> SmokeFailed: Tests fail\n    SmokeFailed --> BlueLive: Rollback\n\n    DeployingGreen --> CanaryShift: Tests pass\n    CanaryShift: Shift 5% traffic to Green\\nMonitor SLOs\n\n    CanaryShift --> CanaryFailed: SLO breach\n    CanaryFailed --> BlueLive: Drain Green\n\n    CanaryShift --> RampUp: SLOs healthy\n    RampUp: Shift 25 -> 50 -> 100%\n    RampUp --> GreenLive: Full cutover\n\n    GreenLive: Green Live (100% traffic)\\nBlue idle (warm)\n    GreenLive --> [*]: Promote Green\\nReplace Blue on next release",
+  "preview": {
+    "svg": "",
+    "width": 1100,
+    "height": 800
+  },
+  "ogImagePath": "/og/library/blue-green-deployment.png",
+  "source": {
+    "url": "https://martinfowler.com/bliki/BlueGreenDeployment.html",
+    "sourceType": "editorial",
+    "license": "CC-BY-4.0",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "State diagram for a blue-green deployment with smoke tests and a canary ramp-up — the standard zero-downtime release pattern with safe rollback at every step.",
+    "whatItShows": "A blue-green deployment state machine where Blue serves 100% of traffic until a new release deploys to Green. The machine progresses through Deploying (smoke tests), CanaryShift (5% traffic for SLO monitoring), and RampUp (25 → 50 → 100%) before fully cutting over. Each state has a safe rollback path back to BlueLive if smoke tests fail or SLOs degrade. Once cutover completes, Green becomes the live environment and the (former) Blue stays warm as the next-release rollback target.",
+    "whenToUse": "Use blue-green when you need zero-downtime releases and a fast, predictable rollback path. It is the right pattern for stateless services behind a load balancer where you can pay for double the capacity during the cutover window. The added canary step (this diagram) gives you the safety of progressive delivery while keeping the operational simplicity of two named environments.",
+    "howToAdapt": "If you cannot afford double capacity, switch to a rolling deployment instead — you trade rollback speed for cost. For stateful services, keep the blue-green shape but add a database migration phase where both versions can read/write the schema (expand → contract migrations). For Kubernetes, the same state machine maps to two Deployments behind one Service with label selectors, or you can use Argo Rollouts which implements this directly. Add a manual approval gate between CanaryShift and RampUp for higher-risk releases.",
+    "keyConcepts": ["blue-green", "canary", "rollback", "zero-downtime", "progressive delivery"],
+    "fallback": false
+  },
+  "related": ["aws-three-tier-microservices", "order-lifecycle"],
+  "tags": ["devops", "deployment", "blue-green", "canary", "release-engineering"],
+  "qualityScore": 89,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "order-lifecycle",
+  "title": "E-commerce Order Lifecycle State Machine",
+  "category": "state-machines",
+  "diagramType": "state",
+  "code": "stateDiagram-v2\n    [*] --> Created\n    Created --> AwaitingPayment: place order\n\n    AwaitingPayment --> PaymentFailed: card declined\n    PaymentFailed --> AwaitingPayment: retry\n    PaymentFailed --> Cancelled: give up\n\n    AwaitingPayment --> Paid: payment authorised\n    Paid --> Cancelled: customer cancels\n\n    Paid --> InFulfillment: warehouse picks\n    InFulfillment --> Backordered: out of stock\n    Backordered --> InFulfillment: stock arrives\n    Backordered --> Cancelled: too long\n\n    InFulfillment --> Shipped: handed to carrier\n    Shipped --> InTransit\n    InTransit --> Delivered\n    InTransit --> ReturnedUndelivered: failed delivery\n    ReturnedUndelivered --> InFulfillment: re-ship\n    ReturnedUndelivered --> Refunded: give up\n\n    Delivered --> ReturnRequested: customer return\n    ReturnRequested --> Returned: warehouse confirms\n    Returned --> Refunded\n    Delivered --> [*]: 30-day window closes\n\n    Cancelled --> Refunded: refund issued\n    Refunded --> [*]",
+  "preview": {
+    "svg": "",
+    "width": 1200,
+    "height": 1000
+  },
+  "ogImagePath": "/og/library/order-lifecycle.png",
+  "source": {
+    "url": "https://shopify.engineering/",
+    "sourceType": "editorial",
+    "license": "CC-BY-4.0",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "Complete e-commerce order state machine — from Created through Paid, Fulfillment, Shipped, Delivered, plus all the failure modes (PaymentFailed, Backordered, ReturnedUndelivered, Cancelled, Refunded).",
+    "whatItShows": "An e-commerce order lifecycle with explicit handling for the unhappy paths that account for a surprisingly large fraction of real orders. After Created, the order moves through AwaitingPayment, with PaymentFailed → retry / give-up loops. Once Paid, it enters InFulfillment, where Backordered is a first-class state with its own re-entry and timeout transitions. Shipped → InTransit → Delivered is the happy path; ReturnedUndelivered and the post-delivery ReturnRequested → Returned → Refunded loops cover the rest. Cancellations from any pre-shipped state route to Refunded.",
+    "whenToUse": "Reach for an explicit state machine like this any time multiple teams (checkout, payments, warehouse, carrier integration, customer support) need to coordinate around the same record without stepping on each other. It is also valuable as documentation when onboarding new engineers — they can see what states exist, what transitions are legal, and what the failure modes are without grepping the codebase.",
+    "howToAdapt": "Implement this in code with a state-machine library (XState, statelyai, robot, or a hand-rolled enum + transition table). Persist the current state on the order row and the transition history in a separate event-log table — that gives you both fast reads and a full audit trail. For partial fulfillment (multiple shipments per order), promote shipment to its own entity with its own state machine. For subscriptions, replace the post-delivery branch with a recurring-cycle state machine and reuse the payment branch.",
+    "keyConcepts": ["state machine", "order lifecycle", "ecommerce", "saga", "event sourcing"],
+    "fallback": false
+  },
+  "related": ["saas-multi-tenant-schema", "blue-green-deployment"],
+  "tags": ["ecommerce", "state-machine", "order", "payment", "fulfillment"],
+  "qualityScore": 87,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "sourceType": "awesome-list",
+    "sourceUrl": "https://github.com/mermaid-js/awesome-mermaid#examples",
+    "repo": "mermaid-js/awesome-mermaid",
+    "licenseSpdx": "CC0-1.0",
+    "stars": 4500,
+    "fetchedAt": "2026-05-10T12:20:00.000Z",
+    "rawContext": "Linked example: Stripe Checkout sequence diagram.",
+    "mermaidCode": "sequenceDiagram\n    participant U as User\n    participant W as Website\n    participant S as Stripe Checkout\n    participant API as Backend API\n    U->>W: Click \"Pay\"\n    W->>API: POST /checkout/session\n    API->>S: stripe.checkout.sessions.create\n    S-->>API: { id, url }\n    API-->>W: redirect_url\n    W-->>U: Redirect to Stripe\n    U->>S: Enter card details\n    S->>API: webhook checkout.session.completed\n    API->>API: Mark order as paid\n    S-->>U: 200 success page"
+  },
+  {
+    "sourceType": "awesome-list",
+    "sourceUrl": "https://github.com/mermaid-js/awesome-mermaid#data-architecture",
+    "repo": "mermaid-js/awesome-mermaid",
+    "licenseSpdx": "CC0-1.0",
+    "stars": 4500,
+    "fetchedAt": "2026-05-10T12:21:00.000Z",
+    "rawContext": "Linked example: Modern data stack overview.",
+    "mermaidCode": "flowchart LR\n    Sources[App DBs + SaaS APIs] --> Ingest[Fivetran / Airbyte]\n    Ingest --> Lake[(Data Lake S3)]\n    Lake --> Warehouse[(Snowflake Warehouse)]\n    Warehouse --> dbt[dbt Transform Layer]\n    dbt --> BI[BI Tools]\n    dbt --> Reverse[Reverse ETL]\n    Reverse --> CRM[Salesforce / HubSpot]\n    Reverse --> Marketing[Marketing Tools]"
+  }
+]

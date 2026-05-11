@@ -4,6 +4,8 @@ import { AppView, Collection, CommunityDiagram } from '../types.ts';
 import { fetchCollections, fetchCollectionItems } from '../lib/firestore/collections.ts';
 import { SEED_COLLECTIONS, SEED_DIAGRAMS } from '../scripts/seed-diagrams.ts';
 import CollectionView from './CollectionView.tsx';
+import LibraryIndex from './library/LibraryIndex.tsx';
+import { listAllDiagrams } from '../lib/library/loader.ts';
 
 interface DiscoverPageProps {
   onNavigate: (view: AppView) => void;
@@ -26,13 +28,17 @@ const COLLECTION_GRADIENTS: Record<string, string> = {
   'ml-ai-system-design': 'from-orange-500 to-amber-400',
 };
 
+type DiscoverTab = 'curated' | 'web';
+
 const DiscoverPage: React.FC<DiscoverPageProps> = ({ onNavigate, onFork }) => {
+  const [tab, setTab] = useState<DiscoverTab>('curated');
   const [collections, setCollections] = useState<Collection[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<Collection | null>(null);
   const [collectionDiagrams, setCollectionDiagrams] = useState<CommunityDiagram[]>([]);
   const [isLoadingCollection, setIsLoadingCollection] = useState(false);
+  const libraryCount = listAllDiagrams().length;
 
   useEffect(() => {
     const load = async () => {
@@ -142,18 +148,52 @@ const DiscoverPage: React.FC<DiscoverPageProps> = ({ onNavigate, onFork }) => {
 
       {/* Hero */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
-            Curated Architecture Collections
+            Architecture patterns you can fork
           </h2>
           <p className="text-sm sm:text-lg text-zinc-400 max-w-2xl mx-auto">
-            Explore hand-picked architecture diagrams organized by domain. Learn from real-world
-            patterns and fork them into your workspace.
+            Browse collections for backend systems, cloud infrastructure, data platforms, security,
+            and ML workflows. Open any diagram, inspect the code, and adapt it in your workspace.
           </p>
         </div>
 
-        {/* Collections Grid */}
-        {isLoading ? (
+        {/* Tabs */}
+        <div className="mb-8 flex justify-center">
+          <div
+            role="tablist"
+            aria-label="Discover sources"
+            className="inline-flex rounded-lg border border-white/5 bg-zinc-900/50 p-1"
+          >
+            <button
+              role="tab"
+              aria-selected={tab === 'curated'}
+              onClick={() => setTab('curated')}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                tab === 'curated' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              Curated collections
+            </button>
+            <button
+              role="tab"
+              aria-selected={tab === 'web'}
+              onClick={() => setTab('web')}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                tab === 'web' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              From the Web
+              <span className="ml-1.5 rounded-full bg-indigo-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-indigo-300">
+                {libraryCount}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {tab === 'web' ? (
+          <LibraryIndex embedded />
+        ) : isLoading ? (
           <div className="flex items-center justify-center py-20">
             <Icon icon="lucide:loader-2" className="w-8 h-8 animate-spin text-indigo-500" />
           </div>

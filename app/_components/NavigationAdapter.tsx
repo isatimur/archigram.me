@@ -14,6 +14,7 @@ export const VIEW_TO_PATH: Record<AppView, string> = {
   terms: '/',
   license: '/',
   profile: '/',
+  library: '/library',
 };
 
 export function useAppNavigate() {

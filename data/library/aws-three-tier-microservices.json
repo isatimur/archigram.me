@@ -1,0 +1,42 @@
+{
+  "slug": "aws-three-tier-microservices",
+  "title": "AWS Three-Tier Microservices Architecture",
+  "category": "system-design",
+  "diagramType": "flowchart",
+  "code": "flowchart LR\n    subgraph Client\n        U[Users]\n    end\n    subgraph Edge[Edge Layer]\n        CF[CloudFront CDN]\n        WAF[AWS WAF]\n    end\n    subgraph App[Application Tier]\n        ALB[Application Load Balancer]\n        API1[Order Service]\n        API2[Catalog Service]\n        API3[User Service]\n    end\n    subgraph Data[Data Tier]\n        RDS[(Aurora Postgres)]\n        REDIS[(ElastiCache Redis)]\n        S3[(S3 Bucket)]\n    end\n    subgraph Async[Async Layer]\n        SQS[SQS Queues]\n        LAM[Worker Lambdas]\n    end\n\n    U --> CF\n    CF --> WAF\n    WAF --> ALB\n    ALB --> API1\n    ALB --> API2\n    ALB --> API3\n    API1 --> RDS\n    API2 --> RDS\n    API3 --> RDS\n    API1 --> REDIS\n    API2 --> REDIS\n    API1 --> SQS\n    SQS --> LAM\n    LAM --> S3\n    LAM --> RDS",
+  "preview": {
+    "svg": "",
+    "width": 1200,
+    "height": 800
+  },
+  "ogImagePath": "/og/library/aws-three-tier-microservices.png",
+  "source": {
+    "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+    "sourceType": "editorial",
+    "license": "CC-BY-4.0",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "Reference three-tier microservices architecture on AWS — edge (CloudFront/WAF), app (ALB + service fleet), and data (Aurora/Redis/S3) tiers with async SQS workers.",
+    "whatItShows": "A canonical AWS three-tier microservices layout. Traffic enters through CloudFront and AWS WAF, terminates at an Application Load Balancer, fans out to a fleet of stateless service containers (Order, Catalog, User), and the services share an Aurora Postgres primary, an ElastiCache Redis layer for hot reads, and S3 for blob storage. Heavy work (notifications, image processing, analytics writes) is handed to SQS-backed Lambda workers so the synchronous request path stays fast.",
+    "whenToUse": "Reach for this pattern when you need a clear separation between presentation, application, and data concerns and you want each service to scale independently. It works well for B2C and B2B SaaS apps in the 10k–10M monthly users range, where a managed RDS handles writes, Redis absorbs read traffic, and SQS smooths out spikes. It is a good starting point if you are migrating off a single monolith and want to extract two or three services without committing to full event-driven architecture yet.",
+    "howToAdapt": "Swap the AWS-specific components for their cloud equivalents — Cloud Load Balancing + Cloud SQL on GCP, Front Door + Azure SQL on Azure. If you do not need three services yet, collapse them into one and keep the layered shape; the diagram still earns its keep as a deployment topology. For higher reliability, duplicate the Application and Data tiers across two Availability Zones and put the Aurora cluster in multi-AZ mode. If you outgrow Aurora, replace with Citus or Vitess and shard by tenant.",
+    "keyConcepts": [
+      "three-tier",
+      "microservices",
+      "load balancer",
+      "queue worker",
+      "managed database"
+    ],
+    "fallback": false
+  },
+  "related": ["aws-vpc-multi-az", "kafka-stream-processing", "blue-green-deployment"],
+  "tags": ["aws", "microservices", "three-tier", "alb", "rds", "sqs", "lambda"],
+  "qualityScore": 92,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

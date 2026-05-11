@@ -1,0 +1,36 @@
+{
+  "slug": "oauth2-authorization-code",
+  "title": "OAuth 2.0 Authorization Code Flow with PKCE",
+  "category": "auth-flows",
+  "diagramType": "sequence",
+  "code": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant C as Client App\n    participant A as Authorization Server\n    participant R as Resource Server\n\n    U->>C: Click \"Sign in\"\n    C->>C: Generate code_verifier + code_challenge\n    C->>A: GET /authorize?response_type=code&code_challenge&...\n    A->>U: Show login + consent\n    U->>A: Approve\n    A-->>C: 302 redirect with auth_code\n    C->>A: POST /token (auth_code + code_verifier)\n    A->>A: Verify PKCE challenge\n    A-->>C: { access_token, refresh_token, id_token }\n    C->>R: GET /api/me  (Bearer access_token)\n    R-->>C: 200 user profile JSON\n    Note over C,A: Refresh: POST /token grant_type=refresh_token",
+  "preview": {
+    "svg": "",
+    "width": 1100,
+    "height": 700
+  },
+  "ogImagePath": "/og/library/oauth2-authorization-code.png",
+  "source": {
+    "url": "https://datatracker.ietf.org/doc/html/rfc7636",
+    "sourceType": "editorial",
+    "license": "CC0-1.0",
+    "fetchedAt": "2026-05-11T00:00:00.000Z"
+  },
+  "attribution": {
+    "author": "Archigram editorial",
+    "authorUrl": "https://archigram.me"
+  },
+  "ai": {
+    "summary": "Sequence diagram of the OAuth 2.0 Authorization Code flow with PKCE — the recommended pattern for SPAs, mobile apps, and any public client that cannot keep a secret.",
+    "whatItShows": "Step-by-step interaction between the user, client app, authorization server, and resource server during an OAuth 2.0 sign-in. The client generates a PKCE code_verifier and a derived code_challenge, redirects the user to /authorize, and after consent receives a short-lived authorization code. It exchanges the code (plus the original code_verifier) for tokens at /token; the auth server verifies the PKCE challenge before issuing an access token, refresh token, and OIDC id_token. The client then calls a protected resource as a Bearer.",
+    "whenToUse": "This is the modern default for any new OAuth integration. PKCE makes the flow safe even for public clients (SPAs, mobile, CLIs) that cannot keep a client secret confidential. Use it whenever the client can perform a redirect — almost always preferred over the older Implicit flow (now deprecated) and the Resource Owner Password Credentials grant (which leaks the user password to the client).",
+    "howToAdapt": "For confidential server-side clients, you can keep the PKCE step (defense in depth) and additionally include the client_secret on the token request. For machine-to-machine flows where there is no user, switch to the Client Credentials grant (a much shorter sequence). For step-up auth, add an acr_values parameter to the /authorize call and prompt the user for a stronger factor. If you need offline access, request the offline_access scope and persist the refresh token in the browser via httpOnly cookie or in secure mobile storage.",
+    "keyConcepts": ["oauth 2.0", "pkce", "authorization code", "openid connect", "bearer token"],
+    "fallback": false
+  },
+  "related": ["aws-three-tier-microservices", "order-lifecycle"],
+  "tags": ["oauth", "auth", "pkce", "openid-connect", "security"],
+  "qualityScore": 95,
+  "ingestedAt": "2026-05-11T00:00:00.000Z",
+  "schemaVersion": 1
+}

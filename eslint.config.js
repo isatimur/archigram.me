@@ -91,8 +91,10 @@ export default [
       'react/prop-types': 'off',
       'react/no-unescaped-entities': 'off',
 
-      // React Hooks rules
-      ...reactHooks.configs.recommended.rules,
+      // React Hooks rules. Keep this scoped to the stable hooks contract; newer
+      // presets also enable React Compiler rules that require a dedicated cleanup pass.
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
 
       // General rules
       'no-console': ['warn', { allow: ['warn', 'error'] }],
@@ -126,7 +128,15 @@ export default [
   },
   {
     // CLI scripts are allowed to use console.log for output
-    files: ['scripts/**/*.ts', 'cli/**/*.ts', 'mcp-server/**/*.ts'],
+    files: ['scripts/**/*.ts', 'scripts/**/*.d.ts', 'cli/**/*.ts', 'mcp-server/**/*.ts'],
+    languageOptions: {
+      globals: {
+        // Bun runtime globals used by scripts
+        Bun: 'readonly',
+        Buffer: 'readonly',
+        ReadableStream: 'readonly',
+      },
+    },
     rules: {
       'no-console': 'off',
     },

@@ -86,7 +86,13 @@ export type AppView =
   | 'privacy'
   | 'terms'
   | 'license'
-  | 'profile';
+  | 'profile'
+  | 'library';
+
+export type LibraryRoute =
+  | { kind: 'index' }
+  | { kind: 'category'; category: string }
+  | { kind: 'detail'; category: string; slug: string };
 
 export type PromptDomain = 'general' | 'healthcare' | 'finance' | 'ecommerce' | 'devops' | 'ml';
 

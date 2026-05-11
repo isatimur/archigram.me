@@ -1,0 +1,62 @@
+[
+  {
+    "sourceType": "github-readme",
+    "sourceUrl": "https://github.com/acme-org/payments-service/blob/main/README.md",
+    "repo": "acme-org/payments-service",
+    "licenseSpdx": "Apache-2.0",
+    "stars": 2480,
+    "fetchedAt": "2026-05-10T12:00:00.000Z",
+    "rawContext": "## Architecture\n\nThe payments service sits behind an API gateway and orchestrates Stripe, the ledger DB, and a payout worker.",
+    "mermaidCode": "flowchart LR\n    Client[Client App] --> Gateway[API Gateway]\n    Gateway --> Auth[Auth Service]\n    Gateway --> Pay[Payments Service]\n    Pay --> Stripe[Stripe API]\n    Pay --> Ledger[(Ledger DB)]\n    Pay --> Queue[[Payout Queue]]\n    Queue --> Worker[Payout Worker]\n    Worker --> Bank[Bank Transfer API]"
+  },
+  {
+    "sourceType": "github-readme",
+    "sourceUrl": "https://github.com/acme-org/sso-handbook/blob/main/docs/oidc.md",
+    "repo": "acme-org/sso-handbook",
+    "licenseSpdx": "MIT",
+    "stars": 850,
+    "fetchedAt": "2026-05-10T12:01:00.000Z",
+    "rawContext": "## OpenID Connect Flow\n\nThis is the standard authorization-code-with-PKCE flow used by every modern SPA.",
+    "mermaidCode": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant SPA as SPA\n    participant AS as Auth Server\n    participant API as API\n    U->>SPA: Click sign in\n    SPA->>SPA: Generate PKCE pair\n    SPA->>AS: /authorize + code_challenge\n    AS->>U: Login + consent\n    U->>AS: Approve\n    AS-->>SPA: Redirect with code\n    SPA->>AS: POST /token + code_verifier\n    AS-->>SPA: { access_token, id_token }\n    SPA->>API: GET /me\n    API-->>SPA: 200 profile"
+  },
+  {
+    "sourceType": "github-readme",
+    "sourceUrl": "https://github.com/acme-org/billing-models/blob/main/README.md",
+    "repo": "acme-org/billing-models",
+    "licenseSpdx": "MIT",
+    "stars": 620,
+    "fetchedAt": "2026-05-10T12:02:00.000Z",
+    "rawContext": "## Domain Model\n\nClasses for the subscription billing engine — products, plans, subscriptions, invoices.",
+    "mermaidCode": "classDiagram\n    class Product {\n        +String id\n        +String name\n        +List~Plan~ plans\n    }\n    class Plan {\n        +String id\n        +Money price\n        +String interval\n    }\n    class Subscription {\n        +String id\n        +Plan plan\n        +Customer customer\n        +DateTime startsAt\n        +cancel()\n        +renew()\n    }\n    class Invoice {\n        +String id\n        +Money total\n        +String status\n    }\n    Product \"1\" --> \"*\" Plan\n    Plan \"1\" --> \"*\" Subscription\n    Subscription \"1\" --> \"*\" Invoice"
+  },
+  {
+    "sourceType": "github-readme",
+    "sourceUrl": "https://github.com/acme-org/saas-schema/blob/main/docs/erd.md",
+    "repo": "acme-org/saas-schema",
+    "licenseSpdx": "Apache-2.0",
+    "stars": 1340,
+    "fetchedAt": "2026-05-10T12:03:00.000Z",
+    "rawContext": "## ER Diagram\n\nMulti-tenant SaaS schema with workspaces, users, and projects.",
+    "mermaidCode": "erDiagram\n    WORKSPACE ||--o{ MEMBERSHIP : has\n    USER ||--o{ MEMBERSHIP : joins\n    WORKSPACE ||--o{ PROJECT : owns\n    PROJECT ||--o{ TASK : contains\n    USER ||--o{ TASK : assigned\n    WORKSPACE {\n        uuid id PK\n        string name\n        string slug\n    }\n    USER {\n        uuid id PK\n        string email\n    }\n    PROJECT {\n        uuid id PK\n        uuid workspace_id FK\n    }"
+  },
+  {
+    "sourceType": "github-readme",
+    "sourceUrl": "https://github.com/acme-org/tiny-readme/blob/main/README.md",
+    "repo": "acme-org/tiny-readme",
+    "licenseSpdx": "MIT",
+    "stars": 5,
+    "fetchedAt": "2026-05-10T12:04:00.000Z",
+    "rawContext": "## Diagram\n\nA two-node sketch — should be REJECTED by validation for being too small.",
+    "mermaidCode": "flowchart LR\n    A --> B"
+  },
+  {
+    "sourceType": "github-readme",
+    "sourceUrl": "https://github.com/community-mirror/payments-fork/blob/main/README.md",
+    "repo": "community-mirror/payments-fork",
+    "licenseSpdx": "Apache-2.0",
+    "stars": 12,
+    "fetchedAt": "2026-05-10T12:05:00.000Z",
+    "rawContext": "## Architecture (forked)\n\nNear-duplicate of acme-org/payments-service — should be folded into the higher-starred original by dedupe.",
+    "mermaidCode": "flowchart LR\n    Client[Client App] --> Gateway[API Gateway]\n    Gateway --> Auth[Auth Service]\n    Gateway --> Pay[Payments Service]\n    Pay --> Stripe[Stripe API]\n    Pay --> Ledger[(Ledger DB)]\n    Pay --> Queue[[Payout Queue]]\n    Queue --> Worker[Payout Worker]\n    Worker --> Bank[Bank Transfer API]\n    Worker --> Notify[Notify Webhook]\n    Notify --> Slack[Slack]"
+  }
+]
