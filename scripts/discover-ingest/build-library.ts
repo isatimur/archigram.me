@@ -279,6 +279,19 @@ async function main(): Promise<void> {
     }
   }
 
+  // If nothing new was copied, skip touching _manifest.json and _review.md —
+  // a no-op run shouldn't produce a noisy PR with a fresh `generatedAt` timestamp.
+  if (copied === 0) {
+    console.log(
+      `\n[orchestrator] no new records to write to ${libDir}; leaving manifest + review queue untouched`
+    );
+    void copyFileSync;
+    void basename;
+    void PROJECT_ROOT;
+    void ALL_STAGES;
+    return;
+  }
+
   // Regenerate manifest from union of hand-seeded + new files.
   const allDiagrams: LibraryDiagram[] = [];
   for (const f of readdirSync(libDir)) {
