@@ -39,38 +39,46 @@ export async function searchCode(query: string, limit: number): Promise<CodeSear
   const perPage = 100;
   const results: CodeSearchItem[] = [];
 
+  const MAX_RETRIES_PER_PAGE = 3;
   for (let page = 1; results.length < limit && page <= 10; page++) {
-    try {
-      const res = await octokit.search.code({
-        q: query,
-        sort: 'indexed',
-        order: 'desc',
-        per_page: perPage,
-        page,
-      });
-      const items = res.data.items;
-      if (!items || items.length === 0) break;
-      for (const it of items) {
-        results.push({
-          htmlUrl: it.html_url,
-          path: it.path,
-          repoFullName: it.repository.full_name,
-          defaultRef: 'HEAD',
+    let pageRetries = 0;
+    while (true) {
+      try {
+        const res = await octokit.search.code({
+          q: query,
+          sort: 'indexed',
+          order: 'desc',
+          per_page: perPage,
+          page,
         });
-        if (results.length >= limit) break;
+        const items = res.data.items;
+        if (!items || items.length === 0) return results.slice(0, limit);
+        for (const it of items) {
+          results.push({
+            htmlUrl: it.html_url,
+            path: it.path,
+            repoFullName: it.repository.full_name,
+            defaultRef: 'HEAD',
+          });
+          if (results.length >= limit) return results.slice(0, limit);
+        }
+        if (items.length < perPage) return results.slice(0, limit);
+        break;
+      } catch (err) {
+        const e = err as { status?: number; message?: string };
+        if ((e.status === 403 || e.status === 429) && pageRetries < MAX_RETRIES_PER_PAGE) {
+          pageRetries++;
+          console.warn(
+            `[github] code search got ${e.status} on page ${page} (attempt ${pageRetries}/${MAX_RETRIES_PER_PAGE}), sleeping 30s…`
+          );
+          await sleep(30_000);
+          continue;
+        }
+        console.warn(
+          `[github] code search failed on page ${page} after ${pageRetries} retries: status=${e.status} message=${e.message ?? err}; ending search`
+        );
+        return results.slice(0, limit);
       }
-      if (items.length < perPage) break;
-    } catch (err) {
-      const e = err as { status?: number; message?: string };
-      // Secondary rate limit — back off and retry once
-      if (e.status === 403 || e.status === 429) {
-        console.warn(`[github] rate-limited on page ${page}, sleeping 30s…`);
-        await sleep(30_000);
-        page--; // retry this page
-        continue;
-      }
-      console.warn(`[github] code search failed on page ${page}: ${e.message ?? err}`);
-      break;
     }
   }
 
@@ -86,7 +94,7 @@ export type RepoInfo = {
 
 const repoCache = new Map<string, RepoInfo>();
 
-export async function getRepoInfo(fullName: string): Promise<RepoInfo | null> {
+export async function getRepoInfo(fullName: string, attempt = 0): Promise<RepoInfo | null> {
   if (repoCache.has(fullName)) return repoCache.get(fullName) ?? null;
   const octokit = getOctokit();
   const [owner, repo] = fullName.split('/');
@@ -103,12 +111,17 @@ export async function getRepoInfo(fullName: string): Promise<RepoInfo | null> {
     return info;
   } catch (err) {
     const e = err as { status?: number; message?: string };
-    if (e.status === 403 || e.status === 429) {
-      console.warn(`[github] repo lookup rate-limited for ${fullName}, sleeping 30s…`);
+    const MAX_REPO_RETRIES = 2;
+    if ((e.status === 403 || e.status === 429) && attempt < MAX_REPO_RETRIES) {
+      console.warn(
+        `[github] repo lookup got ${e.status} for ${fullName} (attempt ${attempt + 1}/${MAX_REPO_RETRIES}), sleeping 30s…`
+      );
       await sleep(30_000);
-      return getRepoInfo(fullName);
+      return getRepoInfo(fullName, attempt + 1);
     }
-    console.warn(`[github] repo lookup failed for ${fullName}: ${e.message ?? err}`);
+    console.warn(
+      `[github] repo lookup failed for ${fullName} (status=${e.status}, message=${e.message ?? err}); skipping`
+    );
     return null;
   }
 }

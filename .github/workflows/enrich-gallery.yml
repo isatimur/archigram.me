@@ -46,10 +46,15 @@ jobs:
         run: bun add -g @mermaid-js/mermaid-cli
 
       - name: Run library ingestion pipeline
+        # Uses LIBRARY_INGEST_TOKEN (a PAT with 5000/hr rate limit and gist scope)
+        # if provided; falls back to the workflow GITHUB_TOKEN (1000/hr, no gist
+        # access) otherwise. With the workflow token, the gist source stage will
+        # 403 and be skipped automatically.
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.LIBRARY_INGEST_TOKEN || secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INGEST_LIMIT: ${{ github.event.inputs.limit || '100' }}
+        timeout-minutes: 30
         run: |
           bun run scripts/discover-ingest/build-library.ts --prod --limit=$INGEST_LIMIT
 

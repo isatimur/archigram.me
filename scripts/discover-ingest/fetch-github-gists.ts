@@ -59,18 +59,26 @@ async function runWithGitHub(outputDir: string, limit: number): Promise<number> 
 
   // Public gist listing — we then filter client-side.
   let page = 1;
+  const MAX_RETRIES_PER_PAGE = 3;
+  let pageRetries = 0;
   while (written < limit && page <= 5) {
     let res;
     try {
       res = await octokit.gists.listPublic({ per_page: 100, page });
+      pageRetries = 0;
     } catch (err) {
       const e = err as { status?: number; message?: string };
-      if (e.status === 403 || e.status === 429) {
-        console.warn('[stage 2] rate-limited listing gists, sleeping 30s…');
+      if ((e.status === 403 || e.status === 429) && pageRetries < MAX_RETRIES_PER_PAGE) {
+        pageRetries++;
+        console.warn(
+          `[stage 2] gist listing got ${e.status} (attempt ${pageRetries}/${MAX_RETRIES_PER_PAGE}), sleeping 30s…`
+        );
         await sleep(30_000);
         continue;
       }
-      console.warn(`[stage 2] gist listing failed: ${e.message ?? err}`);
+      console.warn(
+        `[stage 2] gist listing failed after ${pageRetries} retries (status=${e.status}, message=${e.message ?? err}); skipping this source`
+      );
       break;
     }
 
