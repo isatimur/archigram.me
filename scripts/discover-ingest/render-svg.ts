@@ -37,16 +37,22 @@ function parseSvgDims(svg: string): { width: number; height: number } {
   };
 }
 
+const PUPPETEER_CONFIG_JSON = JSON.stringify({
+  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+});
+
 async function renderSvg(code: string): Promise<string | null> {
   const dir = mkdtempSync(join(tmpdir(), 'mmdc-final-'));
   const inFile = join(dir, 'in.mmd');
   const outFile = join(dir, 'out.svg');
+  const puppeteerCfg = join(dir, 'puppeteer.json');
   try {
     writeFileSync(inFile, code, 'utf-8');
-    const proc = Bun.spawn(['mmdc', '-i', inFile, '-o', outFile, '-b', 'transparent'], {
-      stdout: 'pipe',
-      stderr: 'pipe',
-    });
+    writeFileSync(puppeteerCfg, PUPPETEER_CONFIG_JSON, 'utf-8');
+    const proc = Bun.spawn(
+      ['mmdc', '-i', inFile, '-o', outFile, '-b', 'transparent', '-p', puppeteerCfg],
+      { stdout: 'pipe', stderr: 'pipe' }
+    );
     const ok = (await proc.exited) === 0;
     if (!ok || !existsSync(outFile)) return null;
     return readFileSync(outFile, 'utf-8');

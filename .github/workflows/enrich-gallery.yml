@@ -42,6 +42,20 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
+      - name: Install Chromium system dependencies (Puppeteer)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libnss3 libatk-bridge2.0-0 libgtk-3-0 libgbm1 libdrm2 \
+            libxcomposite1 libxdamage1 libxrandr2 libxkbcommon0 \
+            libxss1 libasound2t64 libpango-1.0-0 libcairo2 \
+            fonts-noto-color-emoji fonts-liberation libxshmfence1 || \
+          sudo apt-get install -y --no-install-recommends \
+            libnss3 libatk-bridge2.0-0 libgtk-3-0 libgbm1 libdrm2 \
+            libxcomposite1 libxdamage1 libxrandr2 libxkbcommon0 \
+            libxss1 libasound2 libpango-1.0-0 libcairo2 \
+            fonts-noto-color-emoji fonts-liberation libxshmfence1
+
       - name: Install mermaid-cli (mmdc) for SVG rendering
         run: bun add -g @mermaid-js/mermaid-cli
 

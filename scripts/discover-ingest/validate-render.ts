@@ -37,22 +37,30 @@ async function isMmdcAvailable(): Promise<boolean> {
   }
 }
 
+// CI-friendly puppeteer config (no sandbox; gives Chromium a fighting chance on
+// fresh runners that don't have user namespaces enabled).
+const PUPPETEER_CONFIG_JSON = JSON.stringify({
+  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+});
+
 async function tryRender(
   code: string
 ): Promise<{ ok: true; svg: string } | { ok: false; reason: string }> {
   const dir = mkdtempSync(join(tmpdir(), 'mmdc-'));
   const inFile = join(dir, 'in.mmd');
   const outFile = join(dir, 'out.svg');
+  const puppeteerCfg = join(dir, 'puppeteer.json');
   try {
     writeFileSync(inFile, code, 'utf-8');
-    const proc = Bun.spawn(['mmdc', '-i', inFile, '-o', outFile, '-b', 'transparent'], {
-      stdout: 'pipe',
-      stderr: 'pipe',
-    });
+    writeFileSync(puppeteerCfg, PUPPETEER_CONFIG_JSON, 'utf-8');
+    const proc = Bun.spawn(
+      ['mmdc', '-i', inFile, '-o', outFile, '-b', 'transparent', '-p', puppeteerCfg],
+      { stdout: 'pipe', stderr: 'pipe' }
+    );
     const code2 = await proc.exited;
     if (code2 !== 0) {
       const stderr = await new Response(proc.stderr).text();
-      return { ok: false, reason: stderr.slice(0, 200) || `exit ${code2}` };
+      return { ok: false, reason: stderr.slice(0, 300) || `exit ${code2}` };
     }
     if (!existsSync(outFile)) return { ok: false, reason: 'no SVG produced' };
     const svg = readFileSync(outFile, 'utf-8');
@@ -109,6 +117,8 @@ async function main(): Promise<void> {
   let accepted = 0;
   let rejected = 0;
   const rejectReasons = new Map<string, number>();
+  const renderFailureSamples: string[] = [];
+  const MAX_RENDER_SAMPLES = 5;
 
   for (const dir of inputs) {
     if (!existsSync(dir)) continue;
@@ -141,6 +151,9 @@ async function main(): Promise<void> {
         if (!rendered.ok) {
           rejected++;
           rejectReasons.set('render-failed', (rejectReasons.get('render-failed') ?? 0) + 1);
+          if (renderFailureSamples.length < MAX_RENDER_SAMPLES) {
+            renderFailureSamples.push(rendered.reason);
+          }
           continue;
         }
         const dims = parseSvgDims(rendered.svg);
@@ -164,6 +177,12 @@ async function main(): Promise<void> {
 
   console.log(`[stage 5] accepted=${accepted} rejected=${rejected}`);
   for (const [reason, n] of rejectReasons) console.log(`  rejected.${reason}: ${n}`);
+  if (renderFailureSamples.length > 0) {
+    console.log(`[stage 5] sample render failures (first ${renderFailureSamples.length}):`);
+    for (const sample of renderFailureSamples) {
+      console.log(`  ${sample.replace(/\n/g, ' ').slice(0, 250)}`);
+    }
+  }
   console.log(`[stage 5] wrote ${accepted} records → ${outputDir}`);
 }
 
