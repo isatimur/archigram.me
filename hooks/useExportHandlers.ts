@@ -16,21 +16,17 @@ export function useExportHandlers({ theme, customStyle }: Params) {
     if (!svg) return null;
 
     const clone = svg.cloneNode(true) as SVGElement;
-    let width = 0,
-      height = 0;
     const viewBox = svg.getAttribute('viewBox')?.split(' ').map(Number);
-
-    if (viewBox && viewBox.length === 4) {
-      width = viewBox[2];
-      height = viewBox[3];
-    } else {
-      const rect = svg.getBoundingClientRect();
-      const transform = container?.style.transform;
-      const scaleMatch = transform?.match(/scale\(([\d.]+)\)/);
-      const currentScale = scaleMatch ? parseFloat(scaleMatch[1]) : 1;
-      width = rect.width / currentScale;
-      height = rect.height / currentScale;
-    }
+    const { width, height } =
+      viewBox && viewBox.length === 4
+        ? { width: viewBox[2], height: viewBox[3] }
+        : (() => {
+            const rect = svg.getBoundingClientRect();
+            const transform = container?.style.transform;
+            const scaleMatch = transform?.match(/scale\(([\d.]+)\)/);
+            const currentScale = scaleMatch ? parseFloat(scaleMatch[1]) : 1;
+            return { width: rect.width / currentScale, height: rect.height / currentScale };
+          })();
 
     clone.setAttribute('width', width.toString());
     clone.setAttribute('height', height.toString());
