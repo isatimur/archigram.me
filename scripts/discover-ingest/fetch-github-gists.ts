@@ -102,7 +102,7 @@ async function runWithGitHub(outputDir: string, limit: number): Promise<number> 
         if (!isMermaid) continue;
 
         // Fetch raw content
-        let content = '';
+        let content: string;
         try {
           const raw = await fetch(file.raw_url ?? '', {
             headers: {
