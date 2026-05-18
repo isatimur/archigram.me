@@ -126,7 +126,7 @@ export const auditDiagram = async (code: string): Promise<AuditReport> => {
     return JSON.parse(cleanJson);
   } catch (error) {
     console.error('Audit Error:', error);
-    throw new Error('Failed to audit diagram.');
+    throw new Error('Failed to audit diagram.', { cause: error });
   }
 };
 
