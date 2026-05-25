@@ -90,6 +90,12 @@ interface LibraryDiagram {
   related: string[];
   tags: string[];
   qualityScore: number;
+  review?: {
+    status: 'pending' | 'approved' | 'rejected' | 'needs-cleanup';
+    notes?: string[];
+    reviewedAt?: string;
+    reviewedBy?: string;
+  };
   ingestedAt: string;
 }
 
@@ -637,7 +643,9 @@ function loadDiagrams(): LibraryDiagram[] {
   const diagrams: LibraryDiagram[] = [];
   for (const file of entries) {
     const raw = readFileSync(join(DATA_DIR, file), 'utf8');
-    diagrams.push(JSON.parse(raw) as LibraryDiagram);
+    const diagram = JSON.parse(raw) as LibraryDiagram;
+    if (diagram.review?.status === 'pending' || diagram.review?.status === 'rejected') continue;
+    diagrams.push(diagram);
   }
   // Sort by qualityScore desc (matches loader.listAllDiagrams behavior)
   diagrams.sort((a, b) => b.qualityScore - a.qualityScore);

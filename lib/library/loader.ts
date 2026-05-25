@@ -30,6 +30,10 @@ function record(): Record<string, LibraryDiagram> {
   return recordCache;
 }
 
+function isPublicDiagram(diagram: LibraryDiagram): boolean {
+  return diagram.review?.status !== 'pending' && diagram.review?.status !== 'rejected';
+}
+
 export function getManifest(): LibraryManifest {
   const entry = Object.values(manifestModule)[0] as LibraryManifest | undefined;
   if (entry) return entry;
@@ -52,7 +56,9 @@ export function getManifest(): LibraryManifest {
 }
 
 export function listAllDiagrams(): LibraryDiagram[] {
-  return Object.values(record()).sort((a, b) => b.qualityScore - a.qualityScore);
+  return Object.values(record())
+    .filter(isPublicDiagram)
+    .sort((a, b) => b.qualityScore - a.qualityScore);
 }
 
 export function listByCategory(category: CategorySlug): LibraryDiagram[] {
@@ -60,7 +66,9 @@ export function listByCategory(category: CategorySlug): LibraryDiagram[] {
 }
 
 export function getDiagramBySlug(slug: string): LibraryDiagram | null {
-  return record()[slug] ?? null;
+  const diagram = record()[slug] ?? null;
+  if (!diagram || !isPublicDiagram(diagram)) return null;
+  return diagram;
 }
 
 export function listFeatured(n = 6): LibraryDiagram[] {

@@ -71,6 +71,12 @@ export interface LibraryDiagram {
   related: string[];
   tags: string[];
   qualityScore: number;
+  review?: {
+    status: 'pending' | 'approved' | 'rejected' | 'needs-cleanup';
+    notes?: string[];
+    reviewedAt?: string;
+    reviewedBy?: string;
+  };
   ingestedAt: string;
   schemaVersion: 1;
 }
