@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-25T10:35:03.906Z",
-  "count": 208,
+  "generatedAt": "2026-05-25T12:51:59.607Z",
+  "count": 156,
   "diagrams": [
     {
       "slug": "rag-pipeline",
@@ -40,21 +40,13 @@
       "tags": ["kafka", "streaming", "etl", "cdc", "flink", "ksqldb"]
     },
     {
-      "slug": "mindmap-structure-concepts",
-      "title": "Mindmap Structure and Concepts",
-      "category": "general-flowcharts",
-      "diagramType": "mindmap",
+      "slug": "aws-vpc-multi-az",
+      "title": "AWS VPC with Public and Private Subnets across Multiple AZs",
+      "category": "cloud-architecture",
+      "diagramType": "flowchart",
       "qualityScore": 90,
-      "ingestedAt": "2026-05-18T10:31:43.408Z",
-      "tags": [
-        "mindmap",
-        "brainstorming",
-        "ideation",
-        "visual thinking",
-        "information architecture",
-        "planning",
-        "productivity"
-      ]
+      "ingestedAt": "2026-05-11T00:00:00.000Z",
+      "tags": ["aws", "vpc", "networking", "multi-az", "high-availability"]
     },
     {
       "slug": "mindmap-structure-and-concepts",
@@ -74,13 +66,21 @@
       ]
     },
     {
-      "slug": "aws-vpc-multi-az",
-      "title": "AWS VPC with Public and Private Subnets across Multiple AZs",
-      "category": "cloud-architecture",
-      "diagramType": "flowchart",
+      "slug": "mindmap-structure-concepts",
+      "title": "Mindmap Structure and Concepts",
+      "category": "general-flowcharts",
+      "diagramType": "mindmap",
       "qualityScore": 90,
-      "ingestedAt": "2026-05-11T00:00:00.000Z",
-      "tags": ["aws", "vpc", "networking", "multi-az", "high-availability"]
+      "ingestedAt": "2026-05-18T10:31:43.408Z",
+      "tags": [
+        "mindmap",
+        "brainstorming",
+        "ideation",
+        "visual thinking",
+        "information architecture",
+        "planning",
+        "productivity"
+      ]
     },
     {
       "slug": "blue-green-deployment",
@@ -187,21 +187,22 @@
       ]
     },
     {
-      "slug": "multi-turn-llm-conversation-flow-context-management",
-      "title": "Multi-turn LLM Conversation Flow with Context Management",
+      "slug": "microlm-development-qwen-migration-workflow",
+      "title": "MicroLM Development & Qwen Migration Workflow",
       "category": "ml-ai",
       "diagramType": "flowchart",
       "qualityScore": 82,
-      "ingestedAt": "2026-05-18T10:31:43.400Z",
-      "tags": [
-        "LLM",
-        "Chatbot",
-        "Conversational AI",
-        "Prompt Management",
-        "Context Truncation",
-        "State Management",
-        "AI Workflow"
-      ]
+      "ingestedAt": "2026-05-18T10:31:43.426Z",
+      "tags": ["LLM", "Fine-tuning", "LoRA", "Qwen", "vLLM", "Machine Learning", "MLOps"]
+    },
+    {
+      "slug": "microlm-project-global-overview-self-developed-qwen-pipelines",
+      "title": "MicroLM Project Global Overview: Self-Developed & Qwen Pipelines",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 82,
+      "ingestedAt": "2026-05-25T10:35:03.883Z",
+      "tags": ["LLM", "Fine-tuning", "LoRA", "Pretraining", "Data Processing", "vLLM", "Qwen"]
     },
     {
       "slug": "multi-turn-conversation-flow-context-management",
@@ -221,20 +222,20 @@
       ]
     },
     {
-      "slug": "pybreeze-modular-architecture",
-      "title": "PyBreeze Modular Architecture",
-      "category": "system-design",
+      "slug": "multi-turn-llm-conversation-flow-context-management",
+      "title": "Multi-turn LLM Conversation Flow with Context Management",
+      "category": "ml-ai",
       "diagramType": "flowchart",
       "qualityScore": 82,
-      "ingestedAt": "2026-05-25T10:35:03.875Z",
+      "ingestedAt": "2026-05-18T10:31:43.400Z",
       "tags": [
-        "PyBreeze",
-        "IDE",
-        "PySide6",
-        "Modular Design",
-        "Automation",
-        "System Architecture",
-        "Flowchart"
+        "LLM",
+        "Chatbot",
+        "Conversational AI",
+        "Prompt Management",
+        "Context Truncation",
+        "State Management",
+        "AI Workflow"
       ]
     },
     {
@@ -255,24 +256,6 @@
       ]
     },
     {
-      "slug": "microlm-development-qwen-migration-workflow",
-      "title": "MicroLM Development & Qwen Migration Workflow",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 82,
-      "ingestedAt": "2026-05-18T10:31:43.426Z",
-      "tags": ["LLM", "Fine-tuning", "LoRA", "Qwen", "vLLM", "Machine Learning", "MLOps"]
-    },
-    {
-      "slug": "microlm-project-global-overview-self-developed-qwen-pipelines",
-      "title": "MicroLM Project Global Overview: Self-Developed & Qwen Pipelines",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 82,
-      "ingestedAt": "2026-05-25T10:35:03.883Z",
-      "tags": ["LLM", "Fine-tuning", "LoRA", "Pretraining", "Data Processing", "vLLM", "Qwen"]
-    },
-    {
       "slug": "pybreeze-modular-architecture-design",
       "title": "PyBreeze Modular Architecture Design",
       "category": "system-design",
@@ -290,224 +273,20 @@
       ]
     },
     {
-      "slug": "llm-single-turn-text-generation-inference-path",
-      "title": "LLM Single-Turn Text Generation Inference Path",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.402Z",
-      "tags": [
-        "LLM",
-        "Inference",
-        "Text Generation",
-        "Tokenizer",
-        "Sampling",
-        "Deep Learning",
-        "NLP"
-      ]
-    },
-    {
-      "slug": "cross-process-remote-method-invocation",
-      "title": "Cross-Process Remote Method Invocation",
+      "slug": "pybreeze-modular-architecture",
+      "title": "PyBreeze Modular Architecture",
       "category": "system-design",
       "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.404Z",
-      "tags": [
-        "IPC",
-        "RPC",
-        "postMessage",
-        "WebView",
-        "Main Process",
-        "RemoteMessenger",
-        "Cross-Process"
-      ]
-    },
-    {
-      "slug": "microlm-transformer-language-model-forward-pass",
-      "title": "MicroLM Transformer Language Model Forward Pass",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.404Z",
-      "tags": [
-        "LLM",
-        "Transformer",
-        "Deep Learning",
-        "Neural Network",
-        "Forward Pass",
-        "MicroLM",
-        "AI Model"
-      ]
-    },
-    {
-      "slug": "remotemessenger-inter-process-communication-flow",
-      "title": "RemoteMessenger Inter-Process Communication Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.408Z",
-      "tags": [
-        "IPC",
-        "WebViews",
-        "Messaging",
-        "Asynchronous Communication",
-        "Frontend-Backend",
-        "JavaScript",
-        "Cross-Process"
-      ]
-    },
-    {
-      "slug": "joplin-decryption-flow",
-      "title": "Joplin Decryption Flow",
-      "category": "auth-flows",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.409Z",
-      "tags": [
-        "Joplin",
-        "Decryption",
-        "Encryption",
-        "Security",
-        "Flowchart",
-        "Data Protection",
-        "Master Key"
-      ]
-    },
-    {
-      "slug": "fhir-group-creation-clickhouse-member-indexing",
-      "title": "FHIR Group Creation with ClickHouse Member Indexing",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-25T10:35:03.873Z",
-      "tags": [
-        "FHIR",
-        "REST API",
-        "MongoDB",
-        "ClickHouse",
-        "Data Indexing",
-        "System Design",
-        "Asynchronous"
-      ]
-    },
-    {
-      "slug": "remote-method-invocation-flow",
-      "title": "Remote Method Invocation (RMI) Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-25T10:35:03.873Z",
-      "tags": [
-        "RMI",
-        "IPC",
-        "postMessage",
-        "WebView",
-        "System Communication",
-        "Flowchart",
-        "Message Passing"
-      ]
-    },
-    {
-      "slug": "microlm-transformer-forward-path",
-      "title": "MicroLM Transformer Forward Path",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
+      "qualityScore": 82,
       "ingestedAt": "2026-05-25T10:35:03.875Z",
       "tags": [
-        "Transformer",
-        "LLM",
-        "Deep Learning",
-        "Neural Network",
-        "Forward Pass",
-        "MicroLM",
-        "Attention Mechanism"
-      ]
-    },
-    {
-      "slug": "joplin-encryption-process-flow",
-      "title": "Joplin Encryption Process Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.413Z",
-      "tags": [
-        "encryption",
-        "security",
-        "joplin",
-        "data protection",
-        "master key",
-        "sync",
-        "flowchart"
-      ]
-    },
-    {
-      "slug": "pure-di-code-generation-workflow",
-      "title": "Pure.DI Code Generation Workflow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.416Z",
-      "tags": [
-        "Pure.DI",
-        "Dependency Injection",
-        "Code Generation",
-        "Workflow",
-        "Flowchart",
-        "Compilation",
-        "Build Process"
-      ]
-    },
-    {
-      "slug": "fhir-group-creation-clickhouse-indexing",
-      "title": "FHIR Group Creation with ClickHouse Indexing",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.424Z",
-      "tags": [
-        "FHIR",
-        "ClickHouse",
-        "MongoDB",
-        "Group Management",
-        "Data Indexing",
-        "Sequence Diagram",
-        "API"
-      ]
-    },
-    {
-      "slug": "dependency-injection-composition-invoice-generation",
-      "title": "Dependency Injection Composition for Invoice Generation",
-      "category": "system-design",
-      "diagramType": "class",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-18T10:31:43.427Z",
-      "tags": [
-        "Dependency Injection",
-        "DI Container",
-        "Composition Root",
-        "Invoice Generation",
-        "Logging",
-        "Class Diagram",
-        "Mermaid"
-      ]
-    },
-    {
-      "slug": "llm-single-turn-text-generation-inference-path-2",
-      "title": "Large Language Model Single-Turn Text Generation Inference Path",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 81,
-      "ingestedAt": "2026-05-25T10:35:03.870Z",
-      "tags": [
-        "LLM",
-        "Text Generation",
-        "Inference",
-        "Prompting",
-        "Tokenizer",
-        "AI",
-        "Machine Learning"
+        "PyBreeze",
+        "IDE",
+        "PySide6",
+        "Modular Design",
+        "Automation",
+        "System Architecture",
+        "Flowchart"
       ]
     },
     {
@@ -545,104 +324,224 @@
       ]
     },
     {
-      "slug": "sft-data-protocol-training-path",
-      "title": "SFT Data Protocol and Training Path",
-      "category": "ml-ai",
+      "slug": "cross-process-remote-method-invocation",
+      "title": "Cross-Process Remote Method Invocation",
+      "category": "system-design",
       "diagramType": "flowchart",
-      "qualityScore": 80,
-      "ingestedAt": "2026-05-18T10:31:43.401Z",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.404Z",
       "tags": [
-        "LLM",
-        "Fine-tuning",
-        "NLP",
-        "Data Preprocessing",
-        "Machine Learning",
-        "Chatbot",
-        "AI"
+        "IPC",
+        "RPC",
+        "postMessage",
+        "WebView",
+        "Main Process",
+        "RemoteMessenger",
+        "Cross-Process"
       ]
     },
     {
-      "slug": "lora-integration-parameter-efficient-fine-tuning",
-      "title": "LoRA Integration and Parameter-Efficient Fine-tuning",
-      "category": "ml-ai",
+      "slug": "dependency-injection-composition-invoice-generation",
+      "title": "Dependency Injection Composition for Invoice Generation",
+      "category": "system-design",
+      "diagramType": "class",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.427Z",
+      "tags": [
+        "Dependency Injection",
+        "DI Container",
+        "Composition Root",
+        "Invoice Generation",
+        "Logging",
+        "Class Diagram",
+        "Mermaid"
+      ]
+    },
+    {
+      "slug": "fhir-group-creation-clickhouse-indexing",
+      "title": "FHIR Group Creation with ClickHouse Indexing",
+      "category": "system-design",
+      "diagramType": "sequence",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.424Z",
+      "tags": [
+        "FHIR",
+        "ClickHouse",
+        "MongoDB",
+        "Group Management",
+        "Data Indexing",
+        "Sequence Diagram",
+        "API"
+      ]
+    },
+    {
+      "slug": "fhir-group-creation-clickhouse-member-indexing",
+      "title": "FHIR Group Creation with ClickHouse Member Indexing",
+      "category": "system-design",
+      "diagramType": "sequence",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-25T10:35:03.873Z",
+      "tags": [
+        "FHIR",
+        "REST API",
+        "MongoDB",
+        "ClickHouse",
+        "Data Indexing",
+        "System Design",
+        "Asynchronous"
+      ]
+    },
+    {
+      "slug": "joplin-decryption-flow",
+      "title": "Joplin Decryption Flow",
+      "category": "auth-flows",
       "diagramType": "flowchart",
-      "qualityScore": 80,
+      "qualityScore": 81,
       "ingestedAt": "2026-05-18T10:31:43.409Z",
       "tags": [
-        "LoRA",
-        "Fine-tuning",
-        "LLM",
-        "Machine Learning",
-        "Deep Learning",
-        "Parameter-Efficient",
-        "AI"
+        "Joplin",
+        "Decryption",
+        "Encryption",
+        "Security",
+        "Flowchart",
+        "Data Protection",
+        "Master Key"
       ]
     },
     {
-      "slug": "kv-cache-inference-path-llm",
-      "title": "KV Cache Inference Path for Large Language Models",
+      "slug": "joplin-encryption-process-flow",
+      "title": "Joplin Encryption Process Flow",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.413Z",
+      "tags": [
+        "encryption",
+        "security",
+        "joplin",
+        "data protection",
+        "master key",
+        "sync",
+        "flowchart"
+      ]
+    },
+    {
+      "slug": "llm-single-turn-text-generation-inference-path-2",
+      "title": "Large Language Model Single-Turn Text Generation Inference Path",
       "category": "ml-ai",
       "diagramType": "flowchart",
-      "qualityScore": 80,
-      "ingestedAt": "2026-05-18T10:31:43.418Z",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-25T10:35:03.870Z",
       "tags": [
         "LLM",
-        "Large Language Model",
+        "Text Generation",
         "Inference",
-        "KV Cache",
-        "Transformer",
-        "Deep Learning",
-        "AI Optimization"
-      ]
-    },
-    {
-      "slug": "llm-pretraining-workflow",
-      "title": "LLM Pretraining Workflow",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 80,
-      "ingestedAt": "2026-05-25T10:35:03.880Z",
-      "tags": [
-        "LLM",
-        "Pretraining",
-        "Deep Learning",
-        "Machine Learning",
-        "Optimization",
-        "PyTorch",
-        "Training Loop"
-      ]
-    },
-    {
-      "slug": "llm-pretraining-loop-adamw-cosine-scheduler",
-      "title": "LLM Pre-training Loop with AdamW and Cosine Scheduler",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 80,
-      "ingestedAt": "2026-05-18T10:31:43.430Z",
-      "tags": [
-        "LLM",
-        "Transformer",
-        "Deep Learning",
-        "Training Loop",
-        "Optimization",
+        "Prompting",
+        "Tokenizer",
+        "AI",
         "Machine Learning"
       ]
     },
     {
-      "slug": "lora-integration-parameter-efficient-fine-tuning-workflow",
-      "title": "LoRA Integration and Parameter-Efficient Fine-tuning Workflow",
+      "slug": "llm-single-turn-text-generation-inference-path",
+      "title": "LLM Single-Turn Text Generation Inference Path",
       "category": "ml-ai",
       "diagramType": "flowchart",
-      "qualityScore": 80,
-      "ingestedAt": "2026-05-25T10:35:03.884Z",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.402Z",
       "tags": [
-        "LoRA",
-        "PEFT",
-        "Fine-tuning",
-        "Machine Learning",
-        "Deep Learning",
         "LLM",
-        "Model Training"
+        "Inference",
+        "Text Generation",
+        "Tokenizer",
+        "Sampling",
+        "Deep Learning",
+        "NLP"
+      ]
+    },
+    {
+      "slug": "microlm-transformer-forward-path",
+      "title": "MicroLM Transformer Forward Path",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-25T10:35:03.875Z",
+      "tags": [
+        "Transformer",
+        "LLM",
+        "Deep Learning",
+        "Neural Network",
+        "Forward Pass",
+        "MicroLM",
+        "Attention Mechanism"
+      ]
+    },
+    {
+      "slug": "microlm-transformer-language-model-forward-pass",
+      "title": "MicroLM Transformer Language Model Forward Pass",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.404Z",
+      "tags": [
+        "LLM",
+        "Transformer",
+        "Deep Learning",
+        "Neural Network",
+        "Forward Pass",
+        "MicroLM",
+        "AI Model"
+      ]
+    },
+    {
+      "slug": "pure-di-code-generation-workflow",
+      "title": "Pure.DI Code Generation Workflow",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.416Z",
+      "tags": [
+        "Pure.DI",
+        "Dependency Injection",
+        "Code Generation",
+        "Workflow",
+        "Flowchart",
+        "Compilation",
+        "Build Process"
+      ]
+    },
+    {
+      "slug": "remote-method-invocation-flow",
+      "title": "Remote Method Invocation (RMI) Flow",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-25T10:35:03.873Z",
+      "tags": [
+        "RMI",
+        "IPC",
+        "postMessage",
+        "WebView",
+        "System Communication",
+        "Flowchart",
+        "Message Passing"
+      ]
+    },
+    {
+      "slug": "remotemessenger-inter-process-communication-flow",
+      "title": "RemoteMessenger Inter-Process Communication Flow",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 81,
+      "ingestedAt": "2026-05-18T10:31:43.408Z",
+      "tags": [
+        "IPC",
+        "WebViews",
+        "Messaging",
+        "Asynchronous Communication",
+        "Frontend-Backend",
+        "JavaScript",
+        "Cross-Process"
       ]
     },
     {
@@ -663,6 +562,90 @@
       ]
     },
     {
+      "slug": "kv-cache-inference-path-llm",
+      "title": "KV Cache Inference Path for Large Language Models",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 80,
+      "ingestedAt": "2026-05-18T10:31:43.418Z",
+      "tags": [
+        "LLM",
+        "Large Language Model",
+        "Inference",
+        "KV Cache",
+        "Transformer",
+        "Deep Learning",
+        "AI Optimization"
+      ]
+    },
+    {
+      "slug": "llm-pretraining-loop-adamw-cosine-scheduler",
+      "title": "LLM Pre-training Loop with AdamW and Cosine Scheduler",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 80,
+      "ingestedAt": "2026-05-18T10:31:43.430Z",
+      "tags": [
+        "LLM",
+        "Transformer",
+        "Deep Learning",
+        "Training Loop",
+        "Optimization",
+        "Machine Learning"
+      ]
+    },
+    {
+      "slug": "llm-pretraining-workflow",
+      "title": "LLM Pretraining Workflow",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 80,
+      "ingestedAt": "2026-05-25T10:35:03.880Z",
+      "tags": [
+        "LLM",
+        "Pretraining",
+        "Deep Learning",
+        "Machine Learning",
+        "Optimization",
+        "PyTorch",
+        "Training Loop"
+      ]
+    },
+    {
+      "slug": "lora-integration-parameter-efficient-fine-tuning-workflow",
+      "title": "LoRA Integration and Parameter-Efficient Fine-tuning Workflow",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 80,
+      "ingestedAt": "2026-05-25T10:35:03.884Z",
+      "tags": [
+        "LoRA",
+        "PEFT",
+        "Fine-tuning",
+        "Machine Learning",
+        "Deep Learning",
+        "LLM",
+        "Model Training"
+      ]
+    },
+    {
+      "slug": "lora-integration-parameter-efficient-fine-tuning",
+      "title": "LoRA Integration and Parameter-Efficient Fine-tuning",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 80,
+      "ingestedAt": "2026-05-18T10:31:43.409Z",
+      "tags": [
+        "LoRA",
+        "Fine-tuning",
+        "LLM",
+        "Machine Learning",
+        "Deep Learning",
+        "Parameter-Efficient",
+        "AI"
+      ]
+    },
+    {
       "slug": "sft-data-protocol-assistant-only-loss-training-path",
       "title": "SFT Data Protocol and Assistant-Only Loss Training Path",
       "category": "ml-ai",
@@ -680,6 +663,49 @@
       ]
     },
     {
+      "slug": "sft-data-protocol-training-path",
+      "title": "SFT Data Protocol and Training Path",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 80,
+      "ingestedAt": "2026-05-18T10:31:43.401Z",
+      "tags": [
+        "LLM",
+        "Fine-tuning",
+        "NLP",
+        "Data Preprocessing",
+        "Machine Learning",
+        "Chatbot",
+        "AI"
+      ]
+    },
+    {
+      "slug": "end-to-end-llm-engineering-deployment-pipeline",
+      "title": "End-to-End LLM Engineering and Deployment Pipeline",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 79,
+      "ingestedAt": "2026-05-25T10:35:03.886Z",
+      "tags": ["LLM", "AI", "Machine Learning", "Deployment", "Training", "Evaluation", "vLLM"]
+    },
+    {
+      "slug": "fhir-group-member-incremental-addition-clickhouse",
+      "title": "FHIR Group Member Incremental Addition with ClickHouse",
+      "category": "system-design",
+      "diagramType": "sequence",
+      "qualityScore": 79,
+      "ingestedAt": "2026-05-18T10:31:43.419Z",
+      "tags": [
+        "FHIR",
+        "PATCH",
+        "ClickHouse",
+        "MongoDB",
+        "Sequence Diagram",
+        "System Design",
+        "Event Sourcing"
+      ]
+    },
+    {
       "slug": "fhir-group-member-patch-clickhouse-mongodb",
       "title": "FHIR Group Member PATCH Flow with ClickHouse and MongoDB",
       "category": "system-design",
@@ -689,20 +715,20 @@
       "tags": ["FHIR", "API", "PATCH", "ClickHouse", "MongoDB", "System Design", "Data Pipeline"]
     },
     {
-      "slug": "joplin-web-app-resource-loading-flow",
-      "title": "Joplin Web App Resource Loading Flow",
-      "category": "system-design",
+      "slug": "instructie-six-step-data-pipeline-2",
+      "title": "InstructIE Six-Step Data Pipeline",
+      "category": "data-pipeline",
       "diagramType": "flowchart",
       "qualityScore": 79,
-      "ingestedAt": "2026-05-25T10:35:03.873Z",
+      "ingestedAt": "2026-05-25T10:35:03.876Z",
       "tags": [
-        "Joplin",
-        "Web App",
-        "Resource Management",
-        "File System",
-        "Rendering",
-        "Blob URL",
-        "Assets"
+        "Data Processing",
+        "LLM",
+        "Training Data",
+        "Pipeline",
+        "JSONL",
+        "Normalization",
+        "Sampling"
       ]
     },
     {
@@ -723,80 +749,20 @@
       ]
     },
     {
-      "slug": "qwen-lora-fine-tuning-path-2",
-      "title": "Qwen LoRA Fine-tuning Path",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 79,
-      "ingestedAt": "2026-05-25T10:35:03.881Z",
-      "tags": ["LLM", "Fine-tuning", "LoRA", "Qwen", "PEFT", "Hugging Face", "Machine Learning"]
-    },
-    {
-      "slug": "microlm-model-forward-pass-2",
-      "title": "MicroLM Model Forward Pass",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 79,
-      "ingestedAt": "2026-05-25T10:35:03.879Z",
-      "tags": [
-        "LLM",
-        "Transformer",
-        "Deep Learning",
-        "Neural Network",
-        "Forward Pass",
-        "AI Model",
-        "Machine Learning"
-      ]
-    },
-    {
-      "slug": "microlm-model-forward-pass",
-      "title": "MicroLM Model Forward Pass",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 79,
-      "ingestedAt": "2026-05-18T10:31:43.417Z",
-      "tags": [
-        "Transformer",
-        "LLM",
-        "Neural Network",
-        "Deep Learning",
-        "Model Architecture",
-        "Forward Pass",
-        "MicroLM"
-      ]
-    },
-    {
-      "slug": "qwen-vllm-service-inference-path-2",
-      "title": "Qwen / vLLM Service Inference Path",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 79,
-      "ingestedAt": "2026-05-25T10:35:03.888Z",
-      "tags": [
-        "Qwen",
-        "vLLM",
-        "LoRA",
-        "LLM Inference",
-        "API Serving",
-        "Machine Learning",
-        "Deployment"
-      ]
-    },
-    {
-      "slug": "fhir-group-member-incremental-addition-clickhouse",
-      "title": "FHIR Group Member Incremental Addition with ClickHouse",
+      "slug": "joplin-web-app-resource-loading-flow",
+      "title": "Joplin Web App Resource Loading Flow",
       "category": "system-design",
-      "diagramType": "sequence",
+      "diagramType": "flowchart",
       "qualityScore": 79,
-      "ingestedAt": "2026-05-18T10:31:43.419Z",
+      "ingestedAt": "2026-05-25T10:35:03.873Z",
       "tags": [
-        "FHIR",
-        "PATCH",
-        "ClickHouse",
-        "MongoDB",
-        "Sequence Diagram",
-        "System Design",
-        "Event Sourcing"
+        "Joplin",
+        "Web App",
+        "Resource Management",
+        "File System",
+        "Rendering",
+        "Blob URL",
+        "Assets"
       ]
     },
     {
@@ -807,32 +773,6 @@
       "qualityScore": 79,
       "ingestedAt": "2026-05-18T10:31:43.420Z",
       "tags": ["LLM", "AI", "Machine Learning", "Deployment", "Data Pipeline", "Training", "vLLM"]
-    },
-    {
-      "slug": "instructie-six-step-data-pipeline-2",
-      "title": "InstructIE Six-Step Data Pipeline",
-      "category": "data-pipeline",
-      "diagramType": "flowchart",
-      "qualityScore": 79,
-      "ingestedAt": "2026-05-25T10:35:03.876Z",
-      "tags": [
-        "Data Processing",
-        "LLM",
-        "Training Data",
-        "Pipeline",
-        "JSONL",
-        "Normalization",
-        "Sampling"
-      ]
-    },
-    {
-      "slug": "qwen-lora-fine-tuning-path",
-      "title": "Qwen LoRA Fine-tuning Path",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 79,
-      "ingestedAt": "2026-05-18T10:31:43.422Z",
-      "tags": ["LLM", "Fine-tuning", "LoRA", "Qwen", "PEFT", "Hugging Face", "Machine Learning"]
     },
     {
       "slug": "llm-structured-output-evaluation-flow-2",
@@ -869,13 +809,73 @@
       ]
     },
     {
-      "slug": "end-to-end-llm-engineering-deployment-pipeline",
-      "title": "End-to-End LLM Engineering and Deployment Pipeline",
+      "slug": "microlm-model-forward-pass-2",
+      "title": "MicroLM Model Forward Pass",
       "category": "ml-ai",
       "diagramType": "flowchart",
       "qualityScore": 79,
-      "ingestedAt": "2026-05-25T10:35:03.886Z",
-      "tags": ["LLM", "AI", "Machine Learning", "Deployment", "Training", "Evaluation", "vLLM"]
+      "ingestedAt": "2026-05-25T10:35:03.879Z",
+      "tags": [
+        "LLM",
+        "Transformer",
+        "Deep Learning",
+        "Neural Network",
+        "Forward Pass",
+        "AI Model",
+        "Machine Learning"
+      ]
+    },
+    {
+      "slug": "microlm-model-forward-pass",
+      "title": "MicroLM Model Forward Pass",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 79,
+      "ingestedAt": "2026-05-18T10:31:43.417Z",
+      "tags": [
+        "Transformer",
+        "LLM",
+        "Neural Network",
+        "Deep Learning",
+        "Model Architecture",
+        "Forward Pass",
+        "MicroLM"
+      ]
+    },
+    {
+      "slug": "qwen-lora-fine-tuning-path-2",
+      "title": "Qwen LoRA Fine-tuning Path",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 79,
+      "ingestedAt": "2026-05-25T10:35:03.881Z",
+      "tags": ["LLM", "Fine-tuning", "LoRA", "Qwen", "PEFT", "Hugging Face", "Machine Learning"]
+    },
+    {
+      "slug": "qwen-lora-fine-tuning-path",
+      "title": "Qwen LoRA Fine-tuning Path",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 79,
+      "ingestedAt": "2026-05-18T10:31:43.422Z",
+      "tags": ["LLM", "Fine-tuning", "LoRA", "Qwen", "PEFT", "Hugging Face", "Machine Learning"]
+    },
+    {
+      "slug": "qwen-vllm-service-inference-path-2",
+      "title": "Qwen / vLLM Service Inference Path",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 79,
+      "ingestedAt": "2026-05-25T10:35:03.888Z",
+      "tags": [
+        "Qwen",
+        "vLLM",
+        "LoRA",
+        "LLM Inference",
+        "API Serving",
+        "Machine Learning",
+        "Deployment"
+      ]
     },
     {
       "slug": "qwen-vllm-service-inference-path",
@@ -885,6 +885,15 @@
       "qualityScore": 79,
       "ingestedAt": "2026-05-18T10:31:43.436Z",
       "tags": ["Qwen", "vLLM", "LLM", "Inference", "API", "Model Serving", "LoRA"]
+    },
+    {
+      "slug": "bpe-training-path-microlm",
+      "title": "BPE Training Path for MicroLM",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 78,
+      "ingestedAt": "2026-05-18T10:31:43.414Z",
+      "tags": ["BPE", "Tokenizer", "Vocabulary", "NLP", "Language Model", "MicroLM", "AI"]
     },
     {
       "slug": "dependency-injection-root-bind-scenario",
@@ -904,30 +913,21 @@
       ]
     },
     {
-      "slug": "remote-messenger-initialization-handshake-2",
-      "title": "Remote Messenger Initialization Handshake",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 78,
-      "ingestedAt": "2026-05-18T10:31:43.411Z",
-      "tags": [
-        "IPC",
-        "WebView",
-        "Main Process",
-        "Messenger",
-        "Flowchart",
-        "Handshake",
-        "Communication"
-      ]
-    },
-    {
-      "slug": "bpe-training-path-microlm",
-      "title": "BPE Training Path for MicroLM",
+      "slug": "gpt2-byte-pair-encoding-tokenizer-training",
+      "title": "GPT-2 Style Byte-Pair Encoding (BPE) Tokenizer Training",
       "category": "ml-ai",
       "diagramType": "flowchart",
       "qualityScore": 78,
-      "ingestedAt": "2026-05-18T10:31:43.414Z",
-      "tags": ["BPE", "Tokenizer", "Vocabulary", "NLP", "Language Model", "MicroLM", "AI"]
+      "ingestedAt": "2026-05-25T10:35:03.885Z",
+      "tags": [
+        "BPE",
+        "Tokenizer",
+        "NLP",
+        "Machine Learning",
+        "Large Language Models",
+        "Vocabulary",
+        "Data Preprocessing"
+      ]
     },
     {
       "slug": "remote-messenger-initialization-flow-2",
@@ -947,15 +947,6 @@
       ]
     },
     {
-      "slug": "remote-messenger-initialization-handshake",
-      "title": "RemoteMessenger Initialization Handshake",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 78,
-      "ingestedAt": "2026-05-18T10:31:43.423Z",
-      "tags": ["Mermaid", "flowchart", "IPC", "RemoteMessenger", "Joplin", "WebView", "MainProcess"]
-    },
-    {
       "slug": "remote-messenger-initialization-flow",
       "title": "RemoteMessenger Initialization Flow",
       "category": "system-design",
@@ -965,21 +956,65 @@
       "tags": ["IPC", "Main Process", "WebView", "Communication", "Mermaid", "Flowchart", "Joplin"]
     },
     {
-      "slug": "gpt2-byte-pair-encoding-tokenizer-training",
-      "title": "GPT-2 Style Byte-Pair Encoding (BPE) Tokenizer Training",
-      "category": "ml-ai",
+      "slug": "remote-messenger-initialization-handshake-2",
+      "title": "Remote Messenger Initialization Handshake",
+      "category": "system-design",
       "diagramType": "flowchart",
       "qualityScore": 78,
-      "ingestedAt": "2026-05-25T10:35:03.885Z",
+      "ingestedAt": "2026-05-18T10:31:43.411Z",
+      "tags": [
+        "IPC",
+        "WebView",
+        "Main Process",
+        "Messenger",
+        "Flowchart",
+        "Handshake",
+        "Communication"
+      ]
+    },
+    {
+      "slug": "remote-messenger-initialization-handshake",
+      "title": "RemoteMessenger Initialization Handshake",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 78,
+      "ingestedAt": "2026-05-18T10:31:43.423Z",
+      "tags": ["Mermaid", "flowchart", "IPC", "RemoteMessenger", "Joplin", "WebView", "MainProcess"]
+    },
+    {
+      "slug": "bpe-training-data-preparation-flow",
+      "title": "BPE Training Data Preparation Flow",
+      "category": "data-pipeline",
+      "diagramType": "flowchart",
+      "qualityScore": 77,
+      "ingestedAt": "2026-05-18T10:31:43.413Z",
       "tags": [
         "BPE",
-        "Tokenizer",
+        "Tokenizer training",
+        "Data pipeline",
         "NLP",
-        "Machine Learning",
         "Large Language Models",
-        "Vocabulary",
-        "Data Preprocessing"
+        "Corpus",
+        "Data preprocessing"
       ]
+    },
+    {
+      "slug": "fhir-group-member-search-flow-2",
+      "title": "FHIR Group Member Search Flow with ClickHouse and MongoDB",
+      "category": "system-design",
+      "diagramType": "sequence",
+      "qualityScore": 77,
+      "ingestedAt": "2026-05-25T10:35:03.879Z",
+      "tags": ["FHIR", "Group", "Member", "Search", "ClickHouse", "MongoDB", "Sequence Diagram"]
+    },
+    {
+      "slug": "fhir-group-member-search-flow",
+      "title": "FHIR Group Member Search Flow",
+      "category": "system-design",
+      "diagramType": "sequence",
+      "qualityScore": 77,
+      "ingestedAt": "2026-05-18T10:31:43.418Z",
+      "tags": ["FHIR", "Group", "Member", "Search", "API", "MongoDB", "ClickHouse"]
     },
     {
       "slug": "language-model-tokenization-memmap-data-preparation",
@@ -1008,15 +1043,6 @@
       "tags": ["LLM", "Deployment", "Verification", "vLLM", "Benchmarking", "Smoke Tests", "CI/CD"]
     },
     {
-      "slug": "llm-evaluation-path-microlm",
-      "title": "LLM Evaluation Path for MicroLM",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 77,
-      "ingestedAt": "2026-05-25T10:35:03.870Z",
-      "tags": ["LLM", "AI", "Machine Learning", "Evaluation", "Fine-tuning", "LoRA", "Prompt"]
-    },
-    {
       "slug": "llm-deployment-verification-path",
       "title": "LLM Deployment Verification Path",
       "category": "ml-ai",
@@ -1026,21 +1052,13 @@
       "tags": ["LLM", "Deployment", "Verification", "Benchmarking", "Stability", "vLLM", "AI"]
     },
     {
-      "slug": "bpe-training-data-preparation-flow",
-      "title": "BPE Training Data Preparation Flow",
-      "category": "data-pipeline",
+      "slug": "llm-evaluation-path-microlm",
+      "title": "LLM Evaluation Path for MicroLM",
+      "category": "ml-ai",
       "diagramType": "flowchart",
       "qualityScore": 77,
-      "ingestedAt": "2026-05-18T10:31:43.413Z",
-      "tags": [
-        "BPE",
-        "Tokenizer training",
-        "Data pipeline",
-        "NLP",
-        "Large Language Models",
-        "Corpus",
-        "Data preprocessing"
-      ]
+      "ingestedAt": "2026-05-25T10:35:03.870Z",
+      "tags": ["LLM", "AI", "Machine Learning", "Evaluation", "Fine-tuning", "LoRA", "Prompt"]
     },
     {
       "slug": "microlm-self-developed-evaluation-path",
@@ -1050,24 +1068,6 @@
       "qualityScore": 77,
       "ingestedAt": "2026-05-18T10:31:43.415Z",
       "tags": ["LLM", "AI", "Evaluation", "Fine-tuning", "LoRA", "Prompt", "MicroLM"]
-    },
-    {
-      "slug": "fhir-group-member-search-flow-2",
-      "title": "FHIR Group Member Search Flow with ClickHouse and MongoDB",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 77,
-      "ingestedAt": "2026-05-25T10:35:03.879Z",
-      "tags": ["FHIR", "Group", "Member", "Search", "ClickHouse", "MongoDB", "Sequence Diagram"]
-    },
-    {
-      "slug": "fhir-group-member-search-flow",
-      "title": "FHIR Group Member Search Flow",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 77,
-      "ingestedAt": "2026-05-18T10:31:43.418Z",
-      "tags": ["FHIR", "Group", "Member", "Search", "API", "MongoDB", "ClickHouse"]
     },
     {
       "slug": "pre-training-data-preparation-flow-microlm",
@@ -1096,6 +1096,15 @@
       ]
     },
     {
+      "slug": "lora-model-merging-deployment-2",
+      "title": "LoRA Model Merging for Deployment",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 76,
+      "ingestedAt": "2026-05-25T10:35:03.880Z",
+      "tags": ["LoRA", "PEFT", "LLM", "Model Deployment", "vLLM", "Fine-tuning"]
+    },
+    {
       "slug": "lora-model-merging-deployment",
       "title": "LoRA Model Merging for Deployment",
       "category": "ml-ai",
@@ -1113,13 +1122,21 @@
       ]
     },
     {
-      "slug": "lora-model-merging-deployment-2",
-      "title": "LoRA Model Merging for Deployment",
+      "slug": "ai-agent-orchestration-pipeline-with-feedback-loops",
+      "title": "AI Agent Orchestration Pipeline with Feedback Loops",
       "category": "ml-ai",
       "diagramType": "flowchart",
-      "qualityScore": 76,
-      "ingestedAt": "2026-05-25T10:35:03.880Z",
-      "tags": ["LoRA", "PEFT", "LLM", "Model Deployment", "vLLM", "Fine-tuning"]
+      "qualityScore": 74,
+      "ingestedAt": "2026-05-18T10:31:43.410Z",
+      "tags": [
+        "AI",
+        "Agent Orchestration",
+        "Data Pipeline",
+        "Workflow",
+        "Feedback Loop",
+        "Redis",
+        "Validation"
+      ]
     },
     {
       "slug": "cfn-loop-flow-modular-ai-agent-orchestration",
@@ -1136,23 +1153,6 @@
         "Modular Architecture",
         "Validation",
         "Shell Scripting"
-      ]
-    },
-    {
-      "slug": "ai-agent-orchestration-pipeline-with-feedback-loops",
-      "title": "AI Agent Orchestration Pipeline with Feedback Loops",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 74,
-      "ingestedAt": "2026-05-18T10:31:43.410Z",
-      "tags": [
-        "AI",
-        "Agent Orchestration",
-        "Data Pipeline",
-        "Workflow",
-        "Feedback Loop",
-        "Redis",
-        "Validation"
       ]
     },
     {
@@ -1182,6 +1182,23 @@
       ]
     },
     {
+      "slug": "advent-kerning-work-plan-sequence",
+      "title": "Advent Kerning Work Plan Sequence",
+      "category": "general-flowcharts",
+      "diagramType": "sequence",
+      "qualityScore": 71,
+      "ingestedAt": "2026-05-18T10:31:43.421Z",
+      "tags": [
+        "Advent",
+        "Kerning",
+        "Glyphs",
+        "Font Development",
+        "Workflow",
+        "Sequence Diagram",
+        "Design Process"
+      ]
+    },
+    {
       "slug": "aqara-mcp-server-integration-flow",
       "title": "Aqara MCP Server Integration Flow",
       "category": "system-design",
@@ -1196,23 +1213,6 @@
         "Cloud API",
         "System Integration",
         "Flowchart"
-      ]
-    },
-    {
-      "slug": "crewclaw-cloud-native-development-platform-architecture",
-      "title": "CrewClaw Cloud-Native Development Platform Architecture",
-      "category": "cloud-architecture",
-      "diagramType": "flowchart",
-      "qualityScore": 71,
-      "ingestedAt": "2026-05-18T10:31:43.405Z",
-      "tags": [
-        "Cloud-Native",
-        "System Architecture",
-        "Microservices",
-        "Kubernetes",
-        "API Gateway",
-        "AI/ML",
-        "File Management"
       ]
     },
     {
@@ -1250,23 +1250,6 @@
       ]
     },
     {
-      "slug": "advent-kerning-work-plan-sequence",
-      "title": "Advent Kerning Work Plan Sequence",
-      "category": "general-flowcharts",
-      "diagramType": "sequence",
-      "qualityScore": 71,
-      "ingestedAt": "2026-05-18T10:31:43.421Z",
-      "tags": [
-        "Advent",
-        "Kerning",
-        "Glyphs",
-        "Font Development",
-        "Workflow",
-        "Sequence Diagram",
-        "Design Process"
-      ]
-    },
-    {
       "slug": "clawloops-cloud-native-development-platform-architecture",
       "title": "ClawLoops Cloud-Native Development Platform Architecture",
       "category": "cloud-architecture",
@@ -1281,6 +1264,23 @@
         "Traefik",
         "LLM",
         "Development Platform"
+      ]
+    },
+    {
+      "slug": "crewclaw-cloud-native-development-platform-architecture",
+      "title": "CrewClaw Cloud-Native Development Platform Architecture",
+      "category": "cloud-architecture",
+      "diagramType": "flowchart",
+      "qualityScore": 71,
+      "ingestedAt": "2026-05-18T10:31:43.405Z",
+      "tags": [
+        "Cloud-Native",
+        "System Architecture",
+        "Microservices",
+        "Kubernetes",
+        "API Gateway",
+        "AI/ML",
+        "File Management"
       ]
     },
     {
@@ -1301,6 +1301,24 @@
       ]
     },
     {
+      "slug": "asr-interview-coder-llm-system-flow-2",
+      "title": "ASR Interview Coder LLM System Flow",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 69,
+      "ingestedAt": "2026-05-25T10:35:03.887Z",
+      "tags": ["ASR", "LLM", "System Design", "Conversational AI", "Agents", "Flowchart", "AI"]
+    },
+    {
+      "slug": "asr-interview-coder-llm-system-flow",
+      "title": "ASR Interview Coder LLM System Flow",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 69,
+      "ingestedAt": "2026-05-18T10:31:43.434Z",
+      "tags": ["ASR", "LLM", "Conversational AI", "System Design", "Flowchart", "Agent", "Pipeline"]
+    },
+    {
       "slug": "clawloops-layered-ai-runtime-architecture",
       "title": "ClawLoops Layered AI Runtime Architecture",
       "category": "system-design",
@@ -1315,49 +1333,6 @@
         "Model Access",
         "Security Isolation",
         "Traefik"
-      ]
-    },
-    {
-      "slug": "asr-interview-coder-llm-system-flow-2",
-      "title": "ASR Interview Coder LLM System Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 69,
-      "ingestedAt": "2026-05-25T10:35:03.887Z",
-      "tags": ["ASR", "LLM", "System Design", "Conversational AI", "Agents", "Flowchart", "AI"]
-    },
-    {
-      "slug": "cloud-native-k8s-elastic-scaling-architecture",
-      "title": "Cloud-Native K8s Elastic Scaling Architecture",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 69,
-      "ingestedAt": "2026-05-18T10:31:43.421Z",
-      "tags": [
-        "Kubernetes",
-        "Cloud-Native",
-        "Traefik",
-        "PostgreSQL",
-        "LLM",
-        "System Design",
-        "Scalability"
-      ]
-    },
-    {
-      "slug": "clawloops-layered-system-architecture",
-      "title": "ClawLoops Layered System Architecture",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 69,
-      "ingestedAt": "2026-05-25T10:35:03.882Z",
-      "tags": [
-        "ClawLoops",
-        "System Architecture",
-        "AI Platform",
-        "Runtime Orchestration",
-        "Model Serving",
-        "Traefik",
-        "PostgreSQL"
       ]
     },
     {
@@ -1378,15 +1353,6 @@
       ]
     },
     {
-      "slug": "asr-interview-coder-llm-system-flow",
-      "title": "ASR Interview Coder LLM System Flow",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 69,
-      "ingestedAt": "2026-05-18T10:31:43.434Z",
-      "tags": ["ASR", "LLM", "Conversational AI", "System Design", "Flowchart", "Agent", "Pipeline"]
-    },
-    {
       "slug": "clawloops-layered-system-architecture-2",
       "title": "ClawLoops Layered System Architecture",
       "category": "system-design",
@@ -1404,6 +1370,40 @@
       ]
     },
     {
+      "slug": "clawloops-layered-system-architecture",
+      "title": "ClawLoops Layered System Architecture",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 69,
+      "ingestedAt": "2026-05-25T10:35:03.882Z",
+      "tags": [
+        "ClawLoops",
+        "System Architecture",
+        "AI Platform",
+        "Runtime Orchestration",
+        "Model Serving",
+        "Traefik",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "slug": "cloud-native-k8s-elastic-scaling-architecture",
+      "title": "Cloud-Native K8s Elastic Scaling Architecture",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 69,
+      "ingestedAt": "2026-05-18T10:31:43.421Z",
+      "tags": [
+        "Kubernetes",
+        "Cloud-Native",
+        "Traefik",
+        "PostgreSQL",
+        "LLM",
+        "System Design",
+        "Scalability"
+      ]
+    },
+    {
       "slug": "gray-deployment-request-routing-load-balancing",
       "title": "Gray Deployment Request Routing with Load Balancing",
       "category": "devops-cicd",
@@ -1418,6 +1418,23 @@
         "Zuul",
         "Microservices",
         "DevOps"
+      ]
+    },
+    {
+      "slug": "high-level-open-scheduler-workflow",
+      "title": "High-Level Open Scheduler Workflow",
+      "category": "system-design",
+      "diagramType": "sequence",
+      "qualityScore": 68,
+      "ingestedAt": "2026-05-18T10:31:43.434Z",
+      "tags": [
+        "Scheduler",
+        "Job Management",
+        "Cloud Orchestration",
+        "System Design",
+        "Workflow",
+        "Distributed Systems",
+        "Resource Management"
       ]
     },
     {
@@ -1447,23 +1464,6 @@
       ]
     },
     {
-      "slug": "high-level-open-scheduler-workflow",
-      "title": "High-Level Open Scheduler Workflow",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 68,
-      "ingestedAt": "2026-05-18T10:31:43.434Z",
-      "tags": [
-        "Scheduler",
-        "Job Management",
-        "Cloud Orchestration",
-        "System Design",
-        "Workflow",
-        "Distributed Systems",
-        "Resource Management"
-      ]
-    },
-    {
       "slug": "simple-flowchart-branch-merge",
       "title": "Simple Flowchart with Branch and Merge",
       "category": "general-flowcharts",
@@ -1473,20 +1473,20 @@
       "tags": ["Flowchart", "Basic", "Process", "Diagram", "Control Flow", "Graph", "Example"]
     },
     {
-      "slug": "loaddensity-performance-testing-framework-architecture",
-      "title": "LoadDensity Performance Testing Framework Architecture",
-      "category": "system-design",
+      "slug": "ai-intent-recognition-flow-llms",
+      "title": "AI Intent Recognition Flow with LLMs",
+      "category": "ml-ai",
       "diagramType": "flowchart",
       "qualityScore": 67,
-      "ingestedAt": "2026-05-25T10:35:03.871Z",
+      "ingestedAt": "2026-05-25T10:35:03.885Z",
       "tags": [
-        "Load Testing",
-        "Performance Testing",
-        "System Architecture",
-        "Locust",
-        "API Testing",
-        "DevOps",
-        "Monitoring"
+        "AI",
+        "Machine Learning",
+        "Natural Language Processing",
+        "Chatbot",
+        "System Design",
+        "Flowchart",
+        "Intent Classification"
       ]
     },
     {
@@ -1507,23 +1507,6 @@
       ]
     },
     {
-      "slug": "load-density-load-testing-framework-architecture",
-      "title": "Load Density Load Testing Framework Architecture",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 67,
-      "ingestedAt": "2026-05-25T10:35:03.877Z",
-      "tags": [
-        "Load Testing",
-        "Performance Testing",
-        "Locust",
-        "API Testing",
-        "DevOps",
-        "CI/CD",
-        "System Architecture"
-      ]
-    },
-    {
       "slug": "load-density-architecture-overview",
       "title": "LoadDensity Architecture Overview",
       "category": "devops-cicd",
@@ -1541,20 +1524,20 @@
       ]
     },
     {
-      "slug": "ai-intent-recognition-flow-llms",
-      "title": "AI Intent Recognition Flow with LLMs",
-      "category": "ml-ai",
+      "slug": "load-density-load-testing-framework-architecture",
+      "title": "Load Density Load Testing Framework Architecture",
+      "category": "devops-cicd",
       "diagramType": "flowchart",
       "qualityScore": 67,
-      "ingestedAt": "2026-05-25T10:35:03.885Z",
+      "ingestedAt": "2026-05-25T10:35:03.877Z",
       "tags": [
-        "AI",
-        "Machine Learning",
-        "Natural Language Processing",
-        "Chatbot",
-        "System Design",
-        "Flowchart",
-        "Intent Classification"
+        "Load Testing",
+        "Performance Testing",
+        "Locust",
+        "API Testing",
+        "DevOps",
+        "CI/CD",
+        "System Architecture"
       ]
     },
     {
@@ -1575,20 +1558,20 @@
       ]
     },
     {
-      "slug": "blockchain-farm-to-table-supply-chain-traceability",
-      "title": "Blockchain-based Farm-to-Table Supply Chain Traceability",
+      "slug": "loaddensity-performance-testing-framework-architecture",
+      "title": "LoadDensity Performance Testing Framework Architecture",
       "category": "system-design",
       "diagramType": "flowchart",
       "qualityScore": 67,
-      "ingestedAt": "2026-05-25T10:35:03.889Z",
+      "ingestedAt": "2026-05-25T10:35:03.871Z",
       "tags": [
-        "supply chain",
-        "blockchain",
-        "traceability",
-        "logistics",
-        "farm-to-table",
-        "QR code",
-        "Web3"
+        "Load Testing",
+        "Performance Testing",
+        "System Architecture",
+        "Locust",
+        "API Testing",
+        "DevOps",
+        "Monitoring"
       ]
     },
     {
@@ -1609,40 +1592,6 @@
       ]
     },
     {
-      "slug": "supply-chain-traceability-blockchain-qr-codes",
-      "title": "Supply Chain Traceability with Blockchain and QR Codes",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 65,
-      "ingestedAt": "2026-05-25T10:35:03.877Z",
-      "tags": [
-        "supply chain",
-        "traceability",
-        "blockchain",
-        "QR code",
-        "product tracking",
-        "logistics",
-        "authenticity"
-      ]
-    },
-    {
-      "slug": "error-handling-flow",
-      "title": "Error Handling Flow",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 65,
-      "ingestedAt": "2026-05-25T10:35:03.886Z",
-      "tags": [
-        "Error management",
-        "Application flow",
-        "User interface",
-        "Fault tolerance",
-        "Retry logic",
-        "User journey",
-        "System design"
-      ]
-    },
-    {
       "slug": "blockchain-agricultural-supply-chain-flow",
       "title": "Blockchain-Based Agricultural Supply Chain Flow",
       "category": "system-design",
@@ -1657,74 +1606,6 @@
         "Logistics",
         "Food Security",
         "MetaMask"
-      ]
-    },
-    {
-      "slug": "success-metrics-flow-2",
-      "title": "Success Metrics Flow",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 65,
-      "ingestedAt": "2026-05-25T10:35:03.871Z",
-      "tags": [
-        "Success Metrics",
-        "Supply Chain",
-        "User Roles",
-        "Onboarding",
-        "Transparency",
-        "Trust",
-        "System Design"
-      ]
-    },
-    {
-      "slug": "krishisetu-deployment-launch-flow",
-      "title": "KrishiSetu Deployment & Launch Flow",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 64,
-      "ingestedAt": "2026-05-25T10:35:03.868Z",
-      "tags": [
-        "Deployment",
-        "Launch Flow",
-        "Node.js",
-        "npm",
-        "Hardhat",
-        "Firebase CLI",
-        "Smart Contract"
-      ]
-    },
-    {
-      "slug": "success-metrics-flow",
-      "title": "Success Metrics Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 64,
-      "ingestedAt": "2026-05-18T10:31:43.406Z",
-      "tags": [
-        "KPIs",
-        "System Design",
-        "Flowchart",
-        "Success Criteria",
-        "User Journey",
-        "Supply Chain Management",
-        "Metrics"
-      ]
-    },
-    {
-      "slug": "blockchain-integration-flow-2",
-      "title": "Blockchain Integration Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 64,
-      "ingestedAt": "2026-05-25T10:35:03.871Z",
-      "tags": [
-        "blockchain",
-        "web3",
-        "dApp",
-        "MetaMask",
-        "smart contract",
-        "transaction flow",
-        "frontend"
       ]
     },
     {
@@ -1745,32 +1626,6 @@
       ]
     },
     {
-      "slug": "performance-monitoring-flow-2",
-      "title": "Performance and Monitoring Flow",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 64,
-      "ingestedAt": "2026-05-25T10:35:03.883Z",
-      "tags": [
-        "Monitoring",
-        "Performance",
-        "Analytics",
-        "Error Handling",
-        "DevOps",
-        "System Health",
-        "Optimization"
-      ]
-    },
-    {
-      "slug": "frontend-architecture-blockchain-firebase",
-      "title": "Frontend Architecture with Blockchain and Firebase Integration",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 64,
-      "ingestedAt": "2026-05-25T10:35:03.887Z",
-      "tags": ["Frontend", "React", "dApp", "Blockchain", "Firebase", "Web3", "Architecture"]
-    },
-    {
       "slug": "robust-error-handling-flow-with-retry",
       "title": "Robust Error Handling Flow with Retry",
       "category": "general-flowcharts",
@@ -1788,37 +1643,20 @@
       ]
     },
     {
-      "slug": "farmer-workflow-blockchain-crop-registration-2",
-      "title": "Farmer Workflow for Blockchain Crop Registration",
+      "slug": "success-metrics-flow",
+      "title": "Success Metrics Flow",
       "category": "system-design",
       "diagramType": "flowchart",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-25T10:35:03.875Z",
+      "qualityScore": 64,
+      "ingestedAt": "2026-05-18T10:31:43.406Z",
       "tags": [
-        "Farmer Workflow",
-        "Blockchain",
-        "Agriculture",
-        "Crop Registration",
-        "Decentralized System",
-        "QR Code",
-        "Data Entry"
-      ]
-    },
-    {
-      "slug": "development-workflow-2",
-      "title": "Development Workflow",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-25T10:35:03.873Z",
-      "tags": [
-        "Development",
-        "Workflow",
-        "CI/CD",
-        "Deployment",
-        "Testing",
-        "Frontend",
-        "Smart Contract"
+        "KPIs",
+        "System Design",
+        "Flowchart",
+        "Success Criteria",
+        "User Journey",
+        "Supply Chain Management",
+        "Metrics"
       ]
     },
     {
@@ -1829,23 +1667,6 @@
       "qualityScore": 63,
       "ingestedAt": "2026-05-18T10:31:43.408Z",
       "tags": ["AI Chatbot", "LLM", "RAG", "Llama 3.1", "GPT-4o-mini", "LangFuse", "Vectorstore"]
-    },
-    {
-      "slug": "distributor-supply-chain-workflow-blockchain",
-      "title": "Distributor Supply Chain Workflow with Blockchain",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-25T10:35:03.874Z",
-      "tags": [
-        "supply chain",
-        "distributor",
-        "blockchain",
-        "logistics",
-        "workflow",
-        "tracking",
-        "enterprise"
-      ]
     },
     {
       "slug": "flujo-scrap-limite-reparaciones-modem",
@@ -1862,74 +1683,6 @@
         "electronics repair",
         "flowchart",
         "inventory management"
-      ]
-    },
-    {
-      "slug": "three-stage-training-inference-flow-memory-augmented-ai",
-      "title": "Three-Stage Training and Inference Flow for Memory-Augmented AI",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-25T10:35:03.877Z",
-      "tags": [
-        "AI Training",
-        "Inference Flow",
-        "Memory Networks",
-        "Machine Learning",
-        "Deep Learning",
-        "Flowchart",
-        "System Architecture"
-      ]
-    },
-    {
-      "slug": "flujo-scrap-limite-reparaciones",
-      "title": "Flujo SCRAP - Límite de Reparaciones",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-25T10:35:03.880Z",
-      "tags": [
-        "repair process",
-        "scrap",
-        "quality control",
-        "workflow",
-        "manufacturing",
-        "asset management",
-        "flowchart"
-      ]
-    },
-    {
-      "slug": "retailer-workflow-blockchain-product-traceability",
-      "title": "Retailer Workflow for Blockchain Product Traceability",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-25T10:35:03.880Z",
-      "tags": [
-        "Retail",
-        "Blockchain",
-        "Supply Chain",
-        "Workflow",
-        "Product Management",
-        "Traceability",
-        "System Design"
-      ]
-    },
-    {
-      "slug": "syff-synthetic-font-functions-project-schedule",
-      "title": "SYFF (Synthetic Font Functions) Project Schedule",
-      "category": "devops-cicd",
-      "diagramType": "gantt",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-18T10:31:43.423Z",
-      "tags": [
-        "Gantt chart",
-        "Project schedule",
-        "Task management",
-        "Software development",
-        "Timeline",
-        "Planning",
-        "Documentation"
       ]
     },
     {
@@ -1950,23 +1703,6 @@
       ]
     },
     {
-      "slug": "hybrid-data-flow-firebase-blockchain-storage",
-      "title": "Hybrid Data Flow with Firebase and Blockchain Storage",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 63,
-      "ingestedAt": "2026-05-25T10:35:03.883Z",
-      "tags": [
-        "Data Flow",
-        "System Architecture",
-        "Firebase",
-        "Blockchain",
-        "Real-time Sync",
-        "Immutable Records",
-        "Decentralized Applications"
-      ]
-    },
-    {
       "slug": "product-supply-chain-traceability-blockchain-qr",
       "title": "Product Supply Chain Traceability with Blockchain and QR",
       "category": "system-design",
@@ -1984,6 +1720,23 @@
       ]
     },
     {
+      "slug": "syff-synthetic-font-functions-project-schedule",
+      "title": "SYFF (Synthetic Font Functions) Project Schedule",
+      "category": "devops-cicd",
+      "diagramType": "gantt",
+      "qualityScore": 63,
+      "ingestedAt": "2026-05-18T10:31:43.423Z",
+      "tags": [
+        "Gantt chart",
+        "Project schedule",
+        "Task management",
+        "Software development",
+        "Timeline",
+        "Planning",
+        "Documentation"
+      ]
+    },
+    {
       "slug": "system-architecture-voice-enabled-rag-application",
       "title": "System Architecture for Voice-Enabled RAG Application",
       "category": "system-design",
@@ -1993,285 +1746,20 @@
       "tags": ["Voice Assistant", "RAG System", "System Architecture", "AI", "ASR", "TTS", "LLM"]
     },
     {
-      "slug": "customer-product-traceability-workflow-qr-codes",
-      "title": "Customer Product Traceability Workflow with QR Codes",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.868Z",
-      "tags": [
-        "customer workflow",
-        "product traceability",
-        "QR code",
-        "supply chain",
-        "authenticity",
-        "user journey",
-        "product verification"
-      ]
-    },
-    {
-      "slug": "service-integration-architecture",
-      "title": "Service Integration Architecture",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.868Z",
-      "tags": [
-        "Blockchain",
-        "Firebase",
-        "QR Code",
-        "System Design",
-        "Web3",
-        "MetaMask",
-        "Service Integration"
-      ]
-    },
-    {
-      "slug": "reparacion-a-scrap-directo",
-      "title": "Reparación a SCRAP Directo",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.400Z",
-      "tags": [
-        "Repair Process",
-        "Quality Control",
-        "Manufacturing",
-        "Inventory Management",
-        "Scrap Management",
-        "Product Lifecycle",
-        "Workflow Diagram"
-      ]
-    },
-    {
-      "slug": "repair-to-scrap-direct-flow",
-      "title": "Repair to Scrap Direct Flow",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.869Z",
-      "tags": [
-        "Repair",
-        "Scrap",
-        "Flowchart",
-        "Quality Control",
-        "Inventory Management",
-        "Process Flow",
-        "Diagnostics"
-      ]
-    },
-    {
-      "slug": "mes-system-architecture-net8-iot-gateway",
-      "title": "MES System Architecture with .NET 8 and IoT Gateway",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.403Z",
-      "tags": ["MES", "IoT", "System Architecture", ".NET", "Backend", "Frontend", "Database"]
-    },
-    {
-      "slug": "blockchain-integration-flow",
-      "title": "Blockchain Integration Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.406Z",
-      "tags": [
-        "Blockchain",
-        "Web3",
-        "dApp",
-        "MetaMask",
-        "Smart Contract",
-        "Transaction Flow",
-        "Frontend"
-      ]
-    },
-    {
-      "slug": "modem-post-packaging-damage-return-to-diagnosis-flow",
-      "title": "Modem Post-Packaging Damage Return to Diagnosis Flow",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.872Z",
-      "tags": [
-        "Modem repair",
-        "Quality control",
-        "Inventory management",
-        "Workflow automation",
-        "Reverse logistics",
-        "Damage detection",
-        "Product lifecycle"
-      ]
-    },
-    {
-      "slug": "modem-repair-flow-failure-recovery",
-      "title": "Modem Repair Flow - Failure and Recovery",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.872Z",
-      "tags": [
-        "modem",
-        "repair",
-        "manufacturing",
-        "workflow",
-        "flowchart",
-        "quality assurance",
-        "electronics"
-      ]
-    },
-    {
-      "slug": "krishisetu-application-launch-flow",
-      "title": "KrishiSetu Application Deployment & Launch Flow",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.409Z",
-      "tags": [
-        "Deployment",
-        "Launch Flow",
-        "Node.js",
-        "Hardhat",
-        "Smart Contract",
-        "Frontend",
-        "PowerShell"
-      ]
-    },
-    {
-      "slug": "modem-reentry-flow-customer-return",
-      "title": "Modem Reentry Flow - Customer Return",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.875Z",
-      "tags": ["modem", "return", "inventory", "flowchart", "system", "process", "re-entry"]
-    },
-    {
-      "slug": "farmer-workflow-blockchain-crop-registration",
-      "title": "Farmer Workflow for Blockchain Crop Registration",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.412Z",
-      "tags": [
-        "Farmer",
-        "Blockchain",
-        "Workflow",
-        "Agriculture",
-        "Decentralized",
-        "Data Entry",
-        "QR Code"
-      ]
-    },
-    {
-      "slug": "type-state-machine-field-transformations",
-      "title": "Type State Machine for Field Transformations",
-      "category": "general-flowcharts",
-      "diagramType": "state",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.416Z",
-      "tags": [
-        "State machine",
-        "Type system",
-        "Fluent API",
-        "Data modeling",
-        "Schema definition",
-        "Programming",
-        "Builder pattern"
-      ]
-    },
-    {
-      "slug": "scrap-directo-modem-flow",
-      "title": "SCRAP Directo Flow for Modems",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.878Z",
-      "tags": [
-        "Modem",
-        "Scrap",
-        "Inventory",
-        "Flowchart",
-        "Disposal",
-        "Damage Assessment",
-        "Process Flow"
-      ]
-    },
-    {
-      "slug": "flujo-scrap-directo-modem",
-      "title": "Flujo SCRAP Directo",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.416Z",
-      "tags": [
-        "SCRAP",
-        "Modem",
-        "Inventory Management",
-        "Process Flow",
-        "Disposal",
-        "Quality Control",
-        "Asset Management"
-      ]
-    },
-    {
-      "slug": "grand-lifecycle-logic-driven-fulfillment",
-      "title": "Grand Lifecycle: Logic-Driven Fulfillment",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.419Z",
-      "tags": [
-        "e-commerce",
-        "order processing",
-        "fulfillment",
-        "stock management",
-        "supply chain",
-        "JWT authentication",
-        "Java backend"
-      ]
-    },
-    {
-      "slug": "product-repair-workflow-retest-re-diagnosis",
-      "title": "Product Repair Workflow with Retest and Re-diagnosis",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.419Z",
-      "tags": [
-        "Repair process",
-        "Quality assurance",
-        "Manufacturing",
-        "Workflow",
-        "Troubleshooting",
-        "Product lifecycle",
-        "Flowchart"
-      ]
-    },
-    {
-      "slug": "rag-workflow-conversational-ai",
-      "title": "RAG Workflow for Conversational AI",
-      "category": "ml-ai",
-      "diagramType": "sequence",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.420Z",
-      "tags": ["RAG", "LLM", "ASR", "TTS", "Milvus", "Qwen", "Conversational AI"]
-    },
-    {
-      "slug": "job-analysis-dual-mode-question-answering-system",
-      "title": "Job Analysis and Dual-Mode Question Answering System",
+      "slug": "three-stage-training-inference-flow-memory-augmented-ai",
+      "title": "Three-Stage Training and Inference Flow for Memory-Augmented AI",
       "category": "ml-ai",
       "diagramType": "flowchart",
-      "qualityScore": 62,
-      "ingestedAt": "2026-05-25T10:35:03.881Z",
+      "qualityScore": 63,
+      "ingestedAt": "2026-05-25T10:35:03.877Z",
       "tags": [
-        "AI",
-        "LLM",
-        "Job Analysis",
-        "System Design",
-        "Workflow",
-        "Contextual Processing",
-        "Interview Preparation"
+        "AI Training",
+        "Inference Flow",
+        "Memory Networks",
+        "Machine Learning",
+        "Deep Learning",
+        "Flowchart",
+        "System Architecture"
       ]
     },
     {
@@ -2309,6 +1797,126 @@
       ]
     },
     {
+      "slug": "blockchain-integration-flow",
+      "title": "Blockchain Integration Flow",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.406Z",
+      "tags": [
+        "Blockchain",
+        "Web3",
+        "dApp",
+        "MetaMask",
+        "Smart Contract",
+        "Transaction Flow",
+        "Frontend"
+      ]
+    },
+    {
+      "slug": "farmer-workflow-blockchain-crop-registration",
+      "title": "Farmer Workflow for Blockchain Crop Registration",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.412Z",
+      "tags": [
+        "Farmer",
+        "Blockchain",
+        "Workflow",
+        "Agriculture",
+        "Decentralized",
+        "Data Entry",
+        "QR Code"
+      ]
+    },
+    {
+      "slug": "flujo-scrap-directo-modem",
+      "title": "Flujo SCRAP Directo",
+      "category": "general-flowcharts",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.416Z",
+      "tags": [
+        "SCRAP",
+        "Modem",
+        "Inventory Management",
+        "Process Flow",
+        "Disposal",
+        "Quality Control",
+        "Asset Management"
+      ]
+    },
+    {
+      "slug": "grand-lifecycle-logic-driven-fulfillment",
+      "title": "Grand Lifecycle: Logic-Driven Fulfillment",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.419Z",
+      "tags": [
+        "e-commerce",
+        "order processing",
+        "fulfillment",
+        "stock management",
+        "supply chain",
+        "JWT authentication",
+        "Java backend"
+      ]
+    },
+    {
+      "slug": "job-analysis-dual-mode-question-answering-system",
+      "title": "Job Analysis and Dual-Mode Question Answering System",
+      "category": "ml-ai",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-25T10:35:03.881Z",
+      "tags": [
+        "AI",
+        "LLM",
+        "Job Analysis",
+        "System Design",
+        "Workflow",
+        "Contextual Processing",
+        "Interview Preparation"
+      ]
+    },
+    {
+      "slug": "krishisetu-application-launch-flow",
+      "title": "KrishiSetu Application Deployment & Launch Flow",
+      "category": "devops-cicd",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.409Z",
+      "tags": [
+        "Deployment",
+        "Launch Flow",
+        "Node.js",
+        "Hardhat",
+        "Smart Contract",
+        "Frontend",
+        "PowerShell"
+      ]
+    },
+    {
+      "slug": "krishisetu-frontend-service-architecture",
+      "title": "KrishiSetu Frontend & Service Architecture",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.435Z",
+      "tags": ["KrishiSetu", "Frontend", "Blockchain", "Firebase", "dApp", "Architecture", "Web3"]
+    },
+    {
+      "slug": "mes-system-architecture-net8-iot-gateway",
+      "title": "MES System Architecture with .NET 8 and IoT Gateway",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.403Z",
+      "tags": ["MES", "IoT", "System Architecture", ".NET", "Backend", "Frontend", "Database"]
+    },
+    {
       "slug": "modem-re-entry-process-customer-returns",
       "title": "Modem Re-entry Process for Customer Returns",
       "category": "general-flowcharts",
@@ -2343,148 +1951,63 @@
       ]
     },
     {
-      "slug": "krishisetu-frontend-service-architecture",
-      "title": "KrishiSetu Frontend & Service Architecture",
-      "category": "system-design",
+      "slug": "product-repair-workflow-retest-re-diagnosis",
+      "title": "Product Repair Workflow with Retest and Re-diagnosis",
+      "category": "general-flowcharts",
       "diagramType": "flowchart",
       "qualityScore": 62,
-      "ingestedAt": "2026-05-18T10:31:43.435Z",
-      "tags": ["KrishiSetu", "Frontend", "Blockchain", "Firebase", "dApp", "Architecture", "Web3"]
-    },
-    {
-      "slug": "farmer-product-creation-on-blockchain",
-      "title": "Farmer Product Creation on Blockchain",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-25T10:35:03.868Z",
+      "ingestedAt": "2026-05-18T10:31:43.419Z",
       "tags": [
-        "blockchain",
-        "supply chain",
-        "product registration",
-        "MetaMask",
-        "QR code",
-        "Firebase",
-        "farmer"
-      ]
-    },
-    {
-      "slug": "development-workflow",
-      "title": "Development Workflow",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-18T10:31:43.409Z",
-      "tags": [
-        "Development",
+        "Repair process",
+        "Quality assurance",
+        "Manufacturing",
         "Workflow",
-        "CI/CD",
-        "Testing",
-        "Deployment",
-        "Frontend",
-        "Smart Contract"
+        "Troubleshooting",
+        "Product lifecycle",
+        "Flowchart"
       ]
     },
     {
-      "slug": "inheritance-pattern-field-classes",
-      "title": "Inheritance Pattern for Field Classes",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-18T10:31:43.422Z",
-      "tags": [
-        "inheritance",
-        "design pattern",
-        "object-oriented programming",
-        "type safety",
-        "typescript",
-        "class hierarchy",
-        "software architecture"
-      ]
+      "slug": "rag-workflow-conversational-ai",
+      "title": "RAG Workflow for Conversational AI",
+      "category": "ml-ai",
+      "diagramType": "sequence",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.420Z",
+      "tags": ["RAG", "LLM", "ASR", "TTS", "Milvus", "Qwen", "Conversational AI"]
     },
     {
-      "slug": "distributor-workflow-supply-chain-blockchain",
-      "title": "Distributor Workflow in Supply Chain with Blockchain Update",
+      "slug": "reparacion-a-scrap-directo",
+      "title": "Reparación a SCRAP Directo",
       "category": "general-flowcharts",
       "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-18T10:31:43.425Z",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.400Z",
       "tags": [
-        "supply chain",
-        "logistics",
-        "distributor",
-        "blockchain",
-        "workflow",
-        "transit",
-        "traceability"
-      ]
-    },
-    {
-      "slug": "sci-ace-research-document-upload-approval-workflow",
-      "title": "SCI-ACE Research Document Upload and Approval Workflow",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-18T10:31:43.429Z",
-      "tags": [
-        "SCI-ACE",
-        "Research Workflow",
-        "Document Management",
-        "Approval Process",
-        "Flowchart",
-        "Academic Review",
-        "Compliance"
-      ]
-    },
-    {
-      "slug": "krishisetu-system-launcher-flow-2",
-      "title": "KrishiSetu System Launcher Flow",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-25T10:35:03.876Z",
-      "tags": [
-        "KrishiSetu",
-        "Blockchain",
-        "Deployment",
-        "Hardhat",
-        "Firebase",
-        "System Startup",
-        "Automation"
-      ]
-    },
-    {
-      "slug": "retailer-workflow-blockchain-product-tracking",
-      "title": "Retailer Workflow for Blockchain Product Tracking",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-18T10:31:43.433Z",
-      "tags": [
-        "Retailer",
-        "Workflow",
-        "Blockchain",
-        "Supply Chain",
+        "Repair Process",
+        "Quality Control",
+        "Manufacturing",
         "Inventory Management",
-        "QR Code",
-        "Wallet"
+        "Scrap Management",
+        "Product Lifecycle",
+        "Workflow Diagram"
       ]
     },
     {
-      "slug": "data-flow-architecture",
-      "title": "Data Flow Architecture",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 61,
-      "ingestedAt": "2026-05-18T10:31:43.436Z",
+      "slug": "type-state-machine-field-transformations",
+      "title": "Type State Machine for Field Transformations",
+      "category": "general-flowcharts",
+      "diagramType": "state",
+      "qualityScore": 62,
+      "ingestedAt": "2026-05-18T10:31:43.416Z",
       "tags": [
-        "Data Flow",
-        "Frontend",
-        "Validation",
-        "State Management",
-        "Firebase",
-        "Blockchain",
-        "Real-time Sync"
+        "State machine",
+        "Type system",
+        "Fluent API",
+        "Data modeling",
+        "Schema definition",
+        "Programming",
+        "Builder pattern"
       ]
     },
     {
@@ -2505,54 +2028,105 @@
       ]
     },
     {
-      "slug": "flujo-scrap-directo-modem-2",
-      "title": "Flujo SCRAP Directo de Módem",
-      "category": "general-flowcharts",
-      "diagramType": "sequence",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.399Z",
-      "tags": [
-        "Inventory",
-        "SCRAP",
-        "Modem",
-        "Warehouse",
-        "Logistics",
-        "Damage",
-        "Sequence Diagram"
-      ]
-    },
-    {
-      "slug": "service-integration-blockchain-firebase-qr-code",
-      "title": "Service Integration: Blockchain, Firebase, and QR Code",
+      "slug": "data-flow-architecture",
+      "title": "Data Flow Architecture",
       "category": "system-design",
       "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.399Z",
+      "qualityScore": 61,
+      "ingestedAt": "2026-05-18T10:31:43.436Z",
       "tags": [
-        "Blockchain",
+        "Data Flow",
+        "Frontend",
+        "Validation",
+        "State Management",
         "Firebase",
-        "QR Code",
-        "System Architecture",
-        "Service Integration",
-        "Web3",
-        "Decentralized Applications"
+        "Blockchain",
+        "Real-time Sync"
       ]
     },
     {
-      "slug": "flujo-insumos-cosmeticos-ram",
-      "title": "Flujo de Insumos Cosméticos entre Estaciones RAM",
+      "slug": "development-workflow",
+      "title": "Development Workflow",
+      "category": "devops-cicd",
+      "diagramType": "flowchart",
+      "qualityScore": 61,
+      "ingestedAt": "2026-05-18T10:31:43.409Z",
+      "tags": [
+        "Development",
+        "Workflow",
+        "CI/CD",
+        "Testing",
+        "Deployment",
+        "Frontend",
+        "Smart Contract"
+      ]
+    },
+    {
+      "slug": "distributor-workflow-supply-chain-blockchain",
+      "title": "Distributor Workflow in Supply Chain with Blockchain Update",
       "category": "general-flowcharts",
       "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.869Z",
+      "qualityScore": 61,
+      "ingestedAt": "2026-05-18T10:31:43.425Z",
       "tags": [
-        "cosmetics",
-        "inventory",
         "supply chain",
         "logistics",
-        "flowchart",
-        "process management",
-        "warehouse"
+        "distributor",
+        "blockchain",
+        "workflow",
+        "transit",
+        "traceability"
+      ]
+    },
+    {
+      "slug": "inheritance-pattern-field-classes",
+      "title": "Inheritance Pattern for Field Classes",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 61,
+      "ingestedAt": "2026-05-18T10:31:43.422Z",
+      "tags": [
+        "inheritance",
+        "design pattern",
+        "object-oriented programming",
+        "type safety",
+        "typescript",
+        "class hierarchy",
+        "software architecture"
+      ]
+    },
+    {
+      "slug": "retailer-workflow-blockchain-product-tracking",
+      "title": "Retailer Workflow for Blockchain Product Tracking",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 61,
+      "ingestedAt": "2026-05-18T10:31:43.433Z",
+      "tags": [
+        "Retailer",
+        "Workflow",
+        "Blockchain",
+        "Supply Chain",
+        "Inventory Management",
+        "QR Code",
+        "Wallet"
+      ]
+    },
+    {
+      "slug": "sci-ace-research-document-upload-approval-workflow",
+      "title": "SCI-ACE Research Document Upload and Approval Workflow",
+      "category": "general-flowcharts",
+      "diagramType": "flowchart",
+      "qualityScore": 61,
+      "ingestedAt": "2026-05-18T10:31:43.429Z",
+      "tags": [
+        "SCI-ACE",
+        "Research Workflow",
+        "Document Management",
+        "Approval Process",
+        "Flowchart",
+        "Academic Review",
+        "Compliance"
       ]
     },
     {
@@ -2573,159 +2147,6 @@
       ]
     },
     {
-      "slug": "voice-chat-assistant-core-data-flow",
-      "title": "Voice Chat Assistant Core Data Flow",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.410Z",
-      "tags": [
-        "Voice Assistant",
-        "Chatbot",
-        "Conversational AI",
-        "System Design",
-        "Microservices",
-        "Redis",
-        "MongoDB"
-      ]
-    },
-    {
-      "slug": "krishisetu-system-launcher-flow",
-      "title": "KrishiSetu System Launcher Flow",
-      "category": "devops-cicd",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.413Z",
-      "tags": [
-        "DevOps",
-        "System Setup",
-        "Blockchain",
-        "Hardhat",
-        "Firebase",
-        "Deployment",
-        "Automation"
-      ]
-    },
-    {
-      "slug": "simod-device-repair-packaging-process-flow",
-      "title": "SIMOD Device Repair and Packaging Process Flow",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.414Z",
-      "tags": [
-        "Process management",
-        "Quality assurance",
-        "Repair workflow",
-        "Manufacturing",
-        "Inventory management",
-        "SIMOD",
-        "Flowchart"
-      ]
-    },
-    {
-      "slug": "multi-agent-ai-chatbot-voice-interaction-flow",
-      "title": "Multi-Agent AI Chatbot Voice Interaction Flow",
-      "category": "ml-ai",
-      "diagramType": "sequence",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.878Z",
-      "tags": [
-        "AI Chatbot",
-        "Voice Assistant",
-        "Sequence Diagram",
-        "Redis",
-        "MongoDB",
-        "ASR",
-        "TTS"
-      ]
-    },
-    {
-      "slug": "gpio-key-debounce-state-machine",
-      "title": "GPIO Key Debounce State Machine",
-      "category": "state-machines",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.421Z",
-      "tags": [
-        "Debounce",
-        "GPIO",
-        "Embedded",
-        "State Machine",
-        "Button",
-        "Microcontroller",
-        "Flowchart"
-      ]
-    },
-    {
-      "slug": "inventory-system-roles-and-actions",
-      "title": "Inventory System Roles and Actions Flowchart",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.881Z",
-      "tags": [
-        "inventory",
-        "roles",
-        "workflow",
-        "system design",
-        "flowchart",
-        "user permissions",
-        "process flow"
-      ]
-    },
-    {
-      "slug": "qr-code-product-verification-flow",
-      "title": "QR Code Product Verification Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.883Z",
-      "tags": [
-        "QR Code",
-        "Blockchain",
-        "Supply Chain",
-        "Verification",
-        "Consumer App",
-        "Product Tracking",
-        "Authenticity"
-      ]
-    },
-    {
-      "slug": "dedalus-orchestrator-ai-coaching-system",
-      "title": "Dedalus Orchestrator AI Coaching System",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.425Z",
-      "tags": [
-        "AI",
-        "Coaching",
-        "Orchestrator",
-        "Multi-agent",
-        "Snowflake",
-        "Data Pipeline",
-        "System Design"
-      ]
-    },
-    {
-      "slug": "inventory-system-roles-workflow-actions",
-      "title": "Inventory System Roles and Workflow Actions",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-18T10:31:43.425Z",
-      "tags": [
-        "Inventory System",
-        "User Roles",
-        "Workflow",
-        "Process Mapping",
-        "System Design",
-        "Flowchart",
-        "Operations"
-      ]
-    },
-    {
       "slug": "cosmetic-process-insumos-flow-between-ram-stations",
       "title": "Cosmetic Process: Insumos Flow Between RAM Stations",
       "category": "general-flowcharts",
@@ -2740,23 +2161,6 @@
         "Process Flow",
         "Workflow",
         "Material Handling"
-      ]
-    },
-    {
-      "slug": "simod-process-flow-optimal-failure-paths",
-      "title": "SIMOD Process Flow with Optimal and Failure Paths",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.883Z",
-      "tags": [
-        "Process Management",
-        "Workflow",
-        "Quality Assurance",
-        "Manufacturing",
-        "Inventory",
-        "SIMOD",
-        "Flowchart"
       ]
     },
     {
@@ -2777,199 +2181,139 @@
       ]
     },
     {
-      "slug": "supply-chain-update-blockchain",
-      "title": "Supply Chain Update on Blockchain",
-      "category": "system-design",
+      "slug": "dedalus-orchestrator-ai-coaching-system",
+      "title": "Dedalus Orchestrator AI Coaching System",
+      "category": "ml-ai",
       "diagramType": "flowchart",
       "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.885Z",
+      "ingestedAt": "2026-05-18T10:31:43.425Z",
       "tags": [
-        "blockchain",
-        "supply chain",
-        "distributor",
-        "retailer",
-        "product tracking",
-        "decentralized",
-        "web3"
-      ]
-    },
-    {
-      "slug": "dedalus-orchestrator-coaching-report-generation",
-      "title": "Dedalus Orchestrator Coaching Report Generation",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.888Z",
-      "tags": [
-        "Orchestration",
-        "Agents",
+        "AI",
+        "Coaching",
+        "Orchestrator",
+        "Multi-agent",
         "Snowflake",
-        "Data Analysis",
-        "System Workflow",
-        "AI Coaching",
-        "Report Generation"
+        "Data Pipeline",
+        "System Design"
       ]
     },
     {
-      "slug": "modem-direct-scrap-flow",
-      "title": "Modem Direct SCRAP Flow",
+      "slug": "flujo-scrap-directo-modem-2",
+      "title": "Flujo SCRAP Directo de Módem",
       "category": "general-flowcharts",
       "diagramType": "sequence",
       "qualityScore": 60,
-      "ingestedAt": "2026-05-25T10:35:03.888Z",
+      "ingestedAt": "2026-05-18T10:31:43.399Z",
       "tags": [
+        "Inventory",
         "SCRAP",
         "Modem",
-        "Inventory",
-        "Sequence Diagram",
-        "Workflow",
+        "Warehouse",
         "Logistics",
-        "Quality Control"
+        "Damage",
+        "Sequence Diagram"
       ]
     },
     {
-      "slug": "snowflake-video-analytics-snowpark-cortex-ai",
-      "title": "Snowflake Video Analytics with Snowpark & Cortex AI",
-      "category": "data-pipeline",
+      "slug": "gpio-key-debounce-state-machine",
+      "title": "GPIO Key Debounce State Machine",
+      "category": "state-machines",
       "diagramType": "flowchart",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.869Z",
+      "qualityScore": 60,
+      "ingestedAt": "2026-05-18T10:31:43.421Z",
       "tags": [
-        "Snowflake",
-        "Data Pipeline",
-        "Video Analytics",
-        "Computer Vision",
-        "Snowpark",
-        "Cortex AI",
-        "Streamlit"
-      ]
-    },
-    {
-      "slug": "optimal-modem-flow-no-failures",
-      "title": "Optimal Modem Flow - No Failures",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.870Z",
-      "tags": [
-        "Modem",
-        "Workflow",
-        "Process",
-        "Quality Control",
-        "Manufacturing",
-        "Shipment",
+        "Debounce",
+        "GPIO",
+        "Embedded",
+        "State Machine",
+        "Button",
+        "Microcontroller",
         "Flowchart"
       ]
     },
     {
-      "slug": "configuration-management-service-opa-etcd-rag-architecture",
-      "title": "Configuration Management Service with OPA, etcd, and RAG Architecture",
-      "category": "cloud-architecture",
-      "diagramType": "flowchart",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.871Z",
-      "tags": ["OPA", "etcd", "APISIX", "Microservices", "High Availability", "RAG", "LLM"]
-    },
-    {
-      "slug": "email-reply-handling-unibox-management",
-      "title": "Email Reply Handling and Unibox Management",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.872Z",
-      "tags": [
-        "Email Automation",
-        "Lead Management",
-        "IMAP",
-        "SMTP",
-        "NestJS",
-        "PostgreSQL",
-        "Unibox"
-      ]
-    },
-    {
-      "slug": "high-availability-multi-datacenter-config-rag-architecture",
-      "title": "High-Availability Multi-Datacenter Configuration Management & RAG Arch",
+      "slug": "inventory-system-roles-workflow-actions",
+      "title": "Inventory System Roles and Workflow Actions",
       "category": "system-design",
       "diagramType": "flowchart",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.872Z",
+      "qualityScore": 60,
+      "ingestedAt": "2026-05-18T10:31:43.425Z",
       "tags": [
-        "High Availability",
-        "Disaster Recovery",
-        "Microservices",
-        "OPA",
-        "etcd",
-        "RAG",
-        "Cloud Architecture"
-      ]
-    },
-    {
-      "slug": "user-authorization-access-control-flow",
-      "title": "User Authorization and Access Control Flow",
-      "category": "auth-flows",
-      "diagramType": "flowchart",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.876Z",
-      "tags": [
-        "authorization",
-        "access control",
-        "security",
-        "flowchart",
-        "user management",
-        "permissions",
-        "RBAC"
-      ]
-    },
-    {
-      "slug": "user-registration-login-otp-flow",
-      "title": "User Registration & Login Flow with OTP Verification",
-      "category": "auth-flows",
-      "diagramType": "sequence",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.882Z",
-      "tags": [
-        "Authentication",
-        "Registration",
-        "Login",
-        "OTP",
-        "Email Verification",
-        "JWT",
-        "Angular"
-      ]
-    },
-    {
-      "slug": "image-generation-flow-gemini-api",
-      "title": "Image Generation Flow with Gemini API",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.882Z",
-      "tags": [
-        "AI",
-        "Machine Learning",
-        "Generative AI",
-        "Gemini API",
+        "Inventory System",
+        "User Roles",
+        "Workflow",
+        "Process Mapping",
+        "System Design",
         "Flowchart",
-        "Image Processing",
-        "User Workflow"
+        "Operations"
       ]
     },
     {
-      "slug": "modem-return-to-diagnosis-flow",
-      "title": "Modem Return to Diagnosis Flow",
+      "slug": "krishisetu-system-launcher-flow",
+      "title": "KrishiSetu System Launcher Flow",
+      "category": "devops-cicd",
+      "diagramType": "flowchart",
+      "qualityScore": 60,
+      "ingestedAt": "2026-05-18T10:31:43.413Z",
+      "tags": [
+        "DevOps",
+        "System Setup",
+        "Blockchain",
+        "Hardhat",
+        "Firebase",
+        "Deployment",
+        "Automation"
+      ]
+    },
+    {
+      "slug": "service-integration-blockchain-firebase-qr-code",
+      "title": "Service Integration: Blockchain, Firebase, and QR Code",
+      "category": "system-design",
+      "diagramType": "flowchart",
+      "qualityScore": 60,
+      "ingestedAt": "2026-05-18T10:31:43.399Z",
+      "tags": [
+        "Blockchain",
+        "Firebase",
+        "QR Code",
+        "System Architecture",
+        "Service Integration",
+        "Web3",
+        "Decentralized Applications"
+      ]
+    },
+    {
+      "slug": "simod-device-repair-packaging-process-flow",
+      "title": "SIMOD Device Repair and Packaging Process Flow",
+      "category": "general-flowcharts",
+      "diagramType": "flowchart",
+      "qualityScore": 60,
+      "ingestedAt": "2026-05-18T10:31:43.414Z",
+      "tags": [
+        "Process management",
+        "Quality assurance",
+        "Repair workflow",
+        "Manufacturing",
+        "Inventory management",
+        "SIMOD",
+        "Flowchart"
+      ]
+    },
+    {
+      "slug": "voice-chat-assistant-core-data-flow",
+      "title": "Voice Chat Assistant Core Data Flow",
       "category": "system-design",
       "diagramType": "sequence",
-      "qualityScore": 59,
-      "ingestedAt": "2026-05-25T10:35:03.882Z",
+      "qualityScore": 60,
+      "ingestedAt": "2026-05-18T10:31:43.410Z",
       "tags": [
-        "Modem",
-        "Return Process",
-        "Diagnosis",
-        "Packaging",
-        "Sequence Diagram",
-        "System Flow",
-        "Workflow"
+        "Voice Assistant",
+        "Chatbot",
+        "Conversational AI",
+        "System Design",
+        "Microservices",
+        "Redis",
+        "MongoDB"
       ]
     },
     {
@@ -2980,100 +2324,6 @@
       "qualityScore": 58,
       "ingestedAt": "2026-05-25T10:35:03.869Z",
       "tags": ["Orchestra", "Governance", "Policy", "Escalation", "Audit", "Lineage", "Workflow"]
-    },
-    {
-      "slug": "customer-segmentation-lookalike-audience-workflow",
-      "title": "Customer Segmentation and Lookalike Audience Workflow",
-      "category": "data-pipeline",
-      "diagramType": "flowchart",
-      "qualityScore": 58,
-      "ingestedAt": "2026-05-25T10:35:03.876Z",
-      "tags": [
-        "Customer Data",
-        "Marketing Analytics",
-        "Audience Building",
-        "Data Workflow",
-        "Segmentation",
-        "CRM",
-        "Data Processing"
-      ]
-    },
-    {
-      "slug": "smart-speaker-voice-command-processing",
-      "title": "Smart Speaker Voice Command Processing",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 58,
-      "ingestedAt": "2026-05-25T10:35:03.876Z",
-      "tags": [
-        "Smart Speaker",
-        "Voice Assistant",
-        "Speech Recognition",
-        "Speaker Identification",
-        "Flask",
-        "Web Application",
-        "AI/ML"
-      ]
-    },
-    {
-      "slug": "static-malware-feature-extraction-flow",
-      "title": "Static Malware Feature Extraction Flow",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 58,
-      "ingestedAt": "2026-05-25T10:35:03.880Z",
-      "tags": [
-        "Malware Detection",
-        "Feature Engineering",
-        "PDF Analysis",
-        "Office Document Analysis",
-        "Machine Learning Pipeline",
-        "Security Analytics",
-        "Data Flow"
-      ]
-    },
-    {
-      "slug": "automated-email-warmup-system-nestjs-redis",
-      "title": "Automated Email Warmup System with NestJS and Redis",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 58,
-      "ingestedAt": "2026-05-25T10:35:03.883Z",
-      "tags": [
-        "Email Warmup",
-        "NestJS",
-        "Redis BullMQ",
-        "PostgreSQL",
-        "SMTP",
-        "Automation",
-        "System Design"
-      ]
-    },
-    {
-      "slug": "highly-available-rag-platform-opa-etcd-ai-gateway",
-      "title": "Highly Available RAG Platform with OPA, ETCD, and AI Gateway",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 58,
-      "ingestedAt": "2026-05-25T10:35:03.888Z",
-      "tags": ["RAG", "LLM", "AI", "Microservices", "OPA", "ETCD", "APISIX"]
-    },
-    {
-      "slug": "email-pipeline-monitoring-incident-response",
-      "title": "Email Pipeline Monitoring and Incident Response",
-      "category": "devops-cicd",
-      "diagramType": "sequence",
-      "qualityScore": 57,
-      "ingestedAt": "2026-05-25T10:35:03.869Z",
-      "tags": [
-        "Monitoring",
-        "Alerting",
-        "Incident Response",
-        "DevOps",
-        "Prometheus",
-        "Grafana",
-        "Email Pipeline"
-      ]
     },
     {
       "slug": "memory-consolidation-flow",
@@ -3090,108 +2340,6 @@
         "Sequence Diagram",
         "Vector Database",
         "Event Log"
-      ]
-    },
-    {
-      "slug": "cms-team-specific-policy-update-flow",
-      "title": "CMS Team-Specific Policy Update Flow",
-      "category": "system-design",
-      "diagramType": "sequence",
-      "qualityScore": 57,
-      "ingestedAt": "2026-05-25T10:35:03.873Z",
-      "tags": [
-        "Policy",
-        "OPA",
-        "etcd",
-        "APISIX",
-        "MongoDB",
-        "Configuration Management",
-        "Microservices"
-      ]
-    },
-    {
-      "slug": "end-to-end-rag-query-flow-vault-mongodb",
-      "title": "End-to-End RAG Query Flow with Vault and MongoDB",
-      "category": "ml-ai",
-      "diagramType": "sequence",
-      "qualityScore": 57,
-      "ingestedAt": "2026-05-25T10:35:03.881Z",
-      "tags": [
-        "RAG",
-        "APISIX",
-        "MongoDB",
-        "Vector DB",
-        "Vault",
-        "LLM",
-        "Microservices Architecture Flow"
-      ]
-    },
-    {
-      "slug": "dynamic-server-discovery-and-registration-flow",
-      "title": "Dynamic Server Discovery and Registration Flow",
-      "category": "system-design",
-      "diagramType": "flowchart",
-      "qualityScore": 57,
-      "ingestedAt": "2026-05-25T10:35:03.885Z",
-      "tags": [
-        "Dynamic Discovery",
-        "Server Management",
-        "System Architecture",
-        "Configuration",
-        "Plugin System",
-        "Microservices",
-        "Component Loading"
-      ]
-    },
-    {
-      "slug": "repair-counter-scrap-candidacy-flow",
-      "title": "Repair Counter Flow for SCRAP Candidacy",
-      "category": "general-flowcharts",
-      "diagramType": "flowchart",
-      "qualityScore": 57,
-      "ingestedAt": "2026-05-25T10:35:03.885Z",
-      "tags": [
-        "Repair Management",
-        "Scrap Decision",
-        "Inventory Control",
-        "Quality Assurance",
-        "Flowchart",
-        "Process Automation",
-        "Alert System"
-      ]
-    },
-    {
-      "slug": "ai-powered-sales-prospecting-agent-interaction-flow",
-      "title": "AI-Powered Sales Prospecting Agent Interaction Flow",
-      "category": "ml-ai",
-      "diagramType": "sequence",
-      "qualityScore": 57,
-      "ingestedAt": "2026-05-25T10:35:03.888Z",
-      "tags": [
-        "AI",
-        "Gemini API",
-        "Sales Prospecting",
-        "Sequence Diagram",
-        "Frontend",
-        "Backend",
-        "LLM"
-      ]
-    },
-    {
-      "slug": "unet-like-neural-network-architecture",
-      "title": "UNet-like Neural Network Architecture",
-      "category": "ml-ai",
-      "diagramType": "flowchart",
-      "qualityScore": 57,
-      "ingestedAt": "2026-05-25T10:35:03.888Z",
-      "tags": [
-        "Neural Network",
-        "Deep Learning",
-        "U-Net",
-        "Convolution",
-        "Deconvolution",
-        "Machine Learning",
-        "Computer Vision"
       ]
     }
   ]

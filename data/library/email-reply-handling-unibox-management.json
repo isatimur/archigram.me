@@ -39,5 +39,13 @@
   "tags": ["Email Automation", "Lead Management", "IMAP", "SMTP", "NestJS", "PostgreSQL", "Unibox"],
   "qualityScore": 59,
   "ingestedAt": "2026-05-25T10:35:03.872Z",
-  "schemaVersion": 1
+  "schemaVersion": 1,
+  "review": {
+    "status": "pending",
+    "notes": [
+      "Missing source license. Hold from public library until attribution and reuse rights are verified."
+    ],
+    "reviewedAt": "2026-05-25T12:51:59.479Z",
+    "reviewedBy": "library-ingest-gate"
+  }
 }

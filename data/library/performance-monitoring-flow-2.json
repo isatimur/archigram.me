@@ -47,5 +47,13 @@
   ],
   "qualityScore": 64,
   "ingestedAt": "2026-05-25T10:35:03.883Z",
-  "schemaVersion": 1
+  "schemaVersion": 1,
+  "review": {
+    "status": "pending",
+    "notes": [
+      "Missing source license. Hold from public library until attribution and reuse rights are verified."
+    ],
+    "reviewedAt": "2026-05-25T12:51:59.490Z",
+    "reviewedBy": "library-ingest-gate"
+  }
 }
