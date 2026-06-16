@@ -18,7 +18,7 @@ sentence-transformers>=3.0.0
 torch>=2.0.0
 
 # Document Parsing
-pypdf==6.12.0
+pypdf==6.13.0
 
 # Logging
 structlog==24.4.0
