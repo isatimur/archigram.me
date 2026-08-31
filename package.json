@@ -95,7 +95,7 @@
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
-    "@vercel/node": "^5.7.13",
+    "@vercel/node": "^9.0.1",
     "@vitejs/plugin-react": "^6.0.1",
     "@vitest/coverage-v8": "^4.1.0",
     "@vitest/ui": "^4.1.0",
