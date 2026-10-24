@@ -18,7 +18,7 @@ sentence-transformers>=3.0.0
 torch>=2.0.0
 
 # Document Parsing
-pypdf==6.19.0
+pypdf==6.21.2
 
 # Logging
 structlog==24.4.0
@@ -30,4 +30,4 @@ slowapi==0.1.9
 httpx==0.28.1
 
 # Security
-python-jose[cryptography]==3.4.0
+python-jose[cryptography]==3.5.0
